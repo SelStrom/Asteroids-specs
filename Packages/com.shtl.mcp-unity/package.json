@@ -1,0 +1,10 @@
+{
+  "name": "com.shtl.mcp-unity",
+  "version": "0.1.0",
+  "displayName": "MCP Unity",
+  "description": "Model Context Protocol integration for Unity Editor. Scaffold — реализация в Phase 2.",
+  "unity": "2022.3",
+  "author": {
+    "name": "SelStrom"
+  }
+}
