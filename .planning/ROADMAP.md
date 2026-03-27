@@ -38,7 +38,7 @@
 **Plans:** 3 планов
 
 Plans:
-- [ ] 01-01-PLAN.md — ProjectSettings, Physics2D, QualitySettings, Packages/manifest.json, .gitignore
+- [x] 01-01-PLAN.md — ProjectSettings, Physics2D, QualitySettings, Packages/manifest.json, .gitignore
 - [ ] 01-02-PLAN.md — Структура папок Assets, три asmdef, embedded-пакет scaffold, сцена Main.unity
 - [ ] 01-03-PLAN.md — Sprite Atlas (GameAtlas.spriteAtlas) и инструкция для пользователя
 
@@ -158,7 +158,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Project Foundation | 0/3 | Not started | - |
+| 1. Project Foundation | 1/3 | In progress | - |
 | 2. MCP Basic | 0/? | Not started | - |
 | 3. Core Mechanics | 0/? | Not started | - |
 | 4. Asteroids & Progression | 0/? | Not started | - |
@@ -173,8 +173,8 @@ Plans:
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SETUP-01 | Phase 1 | Pending |
-| SETUP-02 | Phase 1 | Pending |
+| SETUP-01 | Phase 1 | Complete (01-01) |
+| SETUP-02 | Phase 1 | Complete (01-01) |
 | SETUP-03 | Phase 1 | Pending |
 | SETUP-04 | Phase 1 | Pending |
 | SETUP-05 | Phase 1 | Pending |
