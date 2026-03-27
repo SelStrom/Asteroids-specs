@@ -4,6 +4,7 @@
 // В противном случае — минимальная ручная реализация:
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 using System.Collections.Generic;
 
 namespace SelStrom.Asteroids
@@ -42,6 +43,9 @@ namespace SelStrom.Asteroids
         public IEnumerator<InputAction> GetEnumerator() => _asset.GetEnumerator();
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
         public InputActionRebindingExtensions.RebindingOperation PerformInteractiveRebinding(InputAction action, int bindingIndex = -1) => action.PerformInteractiveRebinding(bindingIndex);
+        public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false) => _asset.FindAction(actionNameOrId, throwIfNotFound);
+        public InputBinding? FindBinding(InputBinding mask, out InputAction action) => _asset.FindBinding(mask, out action);
+        public IReadOnlyList<InputBinding> bindings => _asset.bindings;
 
         public struct PlayerMap
         {

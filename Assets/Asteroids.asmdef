@@ -4,6 +4,7 @@
     "references": [
         "Conf",
         "Unity.InputSystem",
+        "Unity.TextMeshPro",
         "Unity.Services.Core",
         "Unity.Services.Authentication",
         "Unity.Services.Leaderboards",
