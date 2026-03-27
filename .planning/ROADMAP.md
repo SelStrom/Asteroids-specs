@@ -75,11 +75,16 @@ Plans:
 **Success Criteria** (что должно быть ПРАВДОЙ):
   1. Корабль вращается по A/D, разгоняется по W с накоплением скорости (без замедления при отпускании)
   2. Корабль и пули телепортируются на противоположный край при выходе за экран
-  3. Одновременно летит не более 4 пуль; новая пуля не создаётся, если лимит достигнут
-  4. При гибели корабля воспроизводится анимация взрыва, через 2 секунды корабль появляется в центре с 3-секундным миганием неуязвимости
+  3. Одновременно летит не более 5 пуль (DATA_SCHEMA MaxShoots=5); новая пуля не создаётся, если лимит достигнут
+  4. При гибели корабля он скрывается, через 2 секунды корабль появляется в центре с 3-секундным миганием неуязвимости
   5. Визуальный индикатор сопла виден только при зажатом W
 
-**Plans:** TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Инфраструктура: Utils, Configs C# классы, Model ECS core, Input Actions asset
+- [ ] 03-02-PLAN.md — Сущности + Системы ECS, Input layer (PlayerInput, PlayerActions)
+- [ ] 03-03-PLAN.md — View layer, Application layer, Prefabs, Config assets, сцена Main.unity
 
 ---
 
@@ -166,7 +171,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Project Foundation | 3/2 | Complete   | 2026-03-27 |
 | 2. MCP Basic | 1/4 | In Progress|  |
-| 3. Core Mechanics | 0/? | Not started | - |
+| 3. Core Mechanics | 0/3 | Planned | - |
 | 4. Asteroids & Progression | 0/? | Not started | - |
 | 5. UFO & Progression Polish | 0/? | Not started | - |
 | 6. Audio & Visual Polish | 0/? | Not started | - |
@@ -262,4 +267,4 @@ Plans:
 ---
 
 *Roadmap created: 2026-03-27*
-*Last updated: 2026-03-27 — Phase 2 plans added (02-01..02-04)*
+*Last updated: 2026-03-27 — Phase 3 plans added (03-01..03-03)*
