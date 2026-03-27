@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "mcp-unity": {
+      "command": "node",
+      "args": ["Packages/com.shtl.mcp-unity/Editor~/Server/dist/index.js"]
+    }
+  }
+}
