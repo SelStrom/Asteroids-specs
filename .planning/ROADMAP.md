@@ -35,7 +35,12 @@
   4. Сцены `Bootstrap`, `MainMenu`, `Game`, `Leaderboard` существуют в `Assets/Scenes/`
   5. Sprite Atlas содержит все игровые спрайты, в Inspector нет предупреждений о недостающих текстурах
 
-**Plans:** TBD
+**Plans:** 3 планов
+
+Plans:
+- [ ] 01-01-PLAN.md — ProjectSettings, Physics2D, QualitySettings, Packages/manifest.json, .gitignore
+- [ ] 01-02-PLAN.md — Структура папок Assets, три asmdef, embedded-пакет scaffold, сцена Main.unity
+- [ ] 01-03-PLAN.md — Sprite Atlas (GameAtlas.spriteAtlas) и инструкция для пользователя
 
 ---
 
@@ -153,7 +158,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Project Foundation | 0/? | Not started | - |
+| 1. Project Foundation | 0/3 | Not started | - |
 | 2. MCP Basic | 0/? | Not started | - |
 | 3. Core Mechanics | 0/? | Not started | - |
 | 4. Asteroids & Progression | 0/? | Not started | - |
