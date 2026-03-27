@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-27T15:58:58.083Z"
+last_updated: "2026-03-27T16:10:00.000Z"
 progress:
   total_phases: 8
   completed_phases: 1
   total_plans: 7
-  completed_plans: 3
+  completed_plans: 5
 ---
 
 # Project State
@@ -36,6 +36,8 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - AsteroidsEditor.asmdef: autoReferenced=false, includePlatforms=[Editor] — Editor-сборки не попадают в build
 - [Phase 01-project-foundation]: GameAtlas.spriteAtlas: enableRotation=0, padding=4, generateMipMaps=0, maxTextureSize=2048, WebGL RGBA32
 - [Phase 01-project-foundation]: Sprite Atlas пустой (m_PackedSprites=[]) — PNG предоставит пользователь, атлас принимает спрайты после импорта
+- [Phase 02-mcp-basic]: McpUnityBridge: ручная JSON-сериализация через StringBuilder — JsonUtility не поддерживает анонимные типы
+- [Phase 02-mcp-basic]: McpUnityBridge: EditorApplication.delayCall dispatching всех Unity API вызовов из фонового Thread
 
 ## Milestone
 
