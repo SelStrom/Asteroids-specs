@@ -11,8 +11,8 @@
 
 - [ ] **SETUP-01**: Unity 2022.3 LTS проект создан с Built-in Render Pipeline, WebGL Player Settings, Gamma color space
 - [ ] **SETUP-02**: UPM-пакеты подключены: `com.unity.services.authentication`, `com.unity.services.leaderboards`
-- [ ] **SETUP-03**: Embedded-пакет `com.shtl.mcp-unity` добавлен в `Packages/` с корректным `package.json`
-- [ ] **SETUP-04**: Единственная сцена `Main.unity` создана в `Assets/Scenes/`; переключение экранов через `SetActive()` на Canvas-объектах
+- [x] **SETUP-03**: Embedded-пакет `com.shtl.mcp-unity` добавлен в `Packages/` с корректным `package.json`
+- [x] **SETUP-04**: Единственная сцена `Main.unity` создана в `Assets/Scenes/`; переключение экранов через `SetActive()` на Canvas-объектах
 - [ ] **SETUP-05**: Sprite Atlas настроен (Allow Rotation = false, Padding = 4, Mip Maps = false) и содержит все игровые спрайты из предоставленного атласа
 
 ### Ship (Корабль игрока)

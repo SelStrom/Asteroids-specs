@@ -39,7 +39,7 @@
 
 Plans:
 - [x] 01-01-PLAN.md — ProjectSettings, Physics2D, QualitySettings, Packages/manifest.json, .gitignore
-- [ ] 01-02-PLAN.md — Структура папок Assets, три asmdef, embedded-пакет scaffold, сцена Main.unity
+- [x] 01-02-PLAN.md — Структура папок Assets, три asmdef, embedded-пакет scaffold, сцена Main.unity
 - [ ] 01-03-PLAN.md — Sprite Atlas (GameAtlas.spriteAtlas) и инструкция для пользователя
 
 ---
