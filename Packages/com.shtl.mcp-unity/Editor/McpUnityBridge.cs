@@ -531,6 +531,8 @@ namespace Shtl.McpUnity.Editor
             }
             fields.TryGetValue("value_asset_path", out string valueAssetPath);
             fields.TryGetValue("value_asset_name", out string valueAssetName);
+            fields.TryGetValue("value_object_name", out string valueObjectName);
+            fields.TryGetValue("value_component_type", out string valueComponentType);
 
             GameObject go = GameObject.Find(objectName);
             if (go == null)
@@ -562,7 +564,40 @@ namespace Shtl.McpUnity.Editor
                 return;
             }
 
-            if (string.IsNullOrEmpty(valueAssetPath))
+            if (!string.IsNullOrEmpty(valueObjectName))
+            {
+                // Ссылка на объект сцены по имени
+                GameObject valueGo = GameObject.Find(valueObjectName);
+                if (valueGo == null)
+                {
+                    SendJsonRaw(context, $"{{\"success\":false,\"message\":\"Value GameObject not found: {EscapeJson(valueObjectName)}\"}}");
+                    return;
+                }
+
+                if (!string.IsNullOrEmpty(valueComponentType))
+                {
+                    Component found = null;
+                    foreach (Component c in valueGo.GetComponents<Component>())
+                    {
+                        if (c != null && c.GetType().Name == valueComponentType)
+                        {
+                            found = c;
+                            break;
+                        }
+                    }
+                    if (found == null)
+                    {
+                        SendJsonRaw(context, $"{{\"success\":false,\"message\":\"Component '{EscapeJson(valueComponentType)}' not found on '{EscapeJson(valueObjectName)}'\"}}");
+                        return;
+                    }
+                    prop.objectReferenceValue = found;
+                }
+                else
+                {
+                    prop.objectReferenceValue = valueGo;
+                }
+            }
+            else if (string.IsNullOrEmpty(valueAssetPath))
             {
                 prop.objectReferenceValue = null;
             }

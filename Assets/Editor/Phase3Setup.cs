@@ -4,6 +4,7 @@ using SelStrom.Asteroids.Configs;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
 namespace SelStrom.Asteroids.Editor
@@ -165,7 +166,7 @@ namespace SelStrom.Asteroids.Editor
             // EventSystem для UI
             var esGo = new GameObject("EventSystem");
             esGo.AddComponent<UnityEngine.EventSystems.EventSystem>();
-            esGo.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
+            esGo.AddComponent<InputSystemUIInputModule>();
 
             // TitleScreen — активен при старте
             var titleGo = new GameObject("TitleScreen");

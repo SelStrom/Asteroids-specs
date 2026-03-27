@@ -4,6 +4,7 @@
     "references": [
         "Asteroids",
         "Conf",
+        "Unity.InputSystem",
         "Unity.TextMeshPro",
         "Shtl.Mvvm"
     ],
