@@ -33,7 +33,7 @@ namespace SelStrom.Asteroids
 
         public void Enable() { _asset.Enable(); }
         public void Disable() { _asset.Disable(); }
-        public void Dispose() { _asset?.Dispose(); }
+        public void Dispose() { if (_asset != null) { Object.Destroy(_asset); } }
 
         // IInputActionCollection2 members
         public InputBinding? bindingMask { get => _asset.bindingMask; set => _asset.bindingMask = value; }
