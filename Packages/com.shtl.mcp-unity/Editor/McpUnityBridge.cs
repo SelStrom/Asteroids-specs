@@ -9,6 +9,7 @@ using UnityEditor;
 using UnityEditor.Compilation;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Shtl.McpUnity.Editor
 {
@@ -168,6 +169,18 @@ namespace Shtl.McpUnity.Editor
                         HandleImportAsset(context, assetPath);
                         break;
                     }
+                    case "/run_menu_item":
+                        HandleRunMenuItem(context);
+                        break;
+                    case "/find_assets":
+                        HandleFindAssets(context);
+                        break;
+                    case "/set_asset_field":
+                        HandleSetAssetField(context);
+                        break;
+                    case "/set_scene_object_field":
+                        HandleSetSceneObjectField(context);
+                        break;
                     default:
                         context.Response.StatusCode = 404;
                         SendJsonRaw(context, "{\"success\":false,\"message\":\"Unknown endpoint\"}");
@@ -317,6 +330,281 @@ namespace Shtl.McpUnity.Editor
         {
             AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
             SendJsonRaw(context, $"{{\"success\":true,\"message\":\"Imported asset: {EscapeJson(path)}\"}}");
+        }
+
+        /// <summary>
+        /// Читает тело запроса и извлекает все строковые поля из плоского JSON-объекта.
+        /// </summary>
+        private static Dictionary<string, string> ReadBodyFields(HttpListenerContext context)
+        {
+            string body;
+            using (var reader = new StreamReader(context.Request.InputStream, Encoding.UTF8))
+            {
+                body = reader.ReadToEnd();
+            }
+
+            var result = new Dictionary<string, string>(StringComparer.Ordinal);
+            int pos = 0;
+            int len = body.Length;
+
+            while (pos < len)
+            {
+                int kOpen = body.IndexOf('"', pos);
+                if (kOpen < 0) { break; }
+                int kClose = body.IndexOf('"', kOpen + 1);
+                if (kClose < 0) { break; }
+                string key = body.Substring(kOpen + 1, kClose - kOpen - 1);
+                pos = kClose + 1;
+
+                int colon = body.IndexOf(':', pos);
+                if (colon < 0) { break; }
+                pos = colon + 1;
+
+                while (pos < len && (body[pos] == ' ' || body[pos] == '\t' || body[pos] == '\r' || body[pos] == '\n'))
+                {
+                    pos++;
+                }
+                if (pos >= len) { break; }
+
+                if (body[pos] == '"')
+                {
+                    int vClose = body.IndexOf('"', pos + 1);
+                    if (vClose < 0) { break; }
+                    result[key] = body.Substring(pos + 1, vClose - pos - 1);
+                    pos = vClose + 1;
+                }
+                else
+                {
+                    // Не строковое значение — пропускаем до следующего разделителя
+                    int nextSep = len;
+                    int c1 = body.IndexOf(',', pos);
+                    int c2 = body.IndexOf('}', pos);
+                    if (c1 >= 0 && c1 < nextSep) { nextSep = c1; }
+                    if (c2 >= 0 && c2 < nextSep) { nextSep = c2; }
+                    pos = nextSep + 1;
+                }
+            }
+
+            return result;
+        }
+
+        private static void HandleRunMenuItem(HttpListenerContext context)
+        {
+            var fields = ReadBodyFields(context);
+            if (!fields.TryGetValue("menu_path", out string menuPath) || string.IsNullOrEmpty(menuPath))
+            {
+                SendJsonRaw(context, "{\"success\":false,\"message\":\"menu_path required\"}");
+                return;
+            }
+
+            bool executed = EditorApplication.ExecuteMenuItem(menuPath);
+            if (executed)
+            {
+                SendJsonRaw(context, $"{{\"success\":true,\"message\":\"Executed: {EscapeJson(menuPath)}\"}}");
+            }
+            else
+            {
+                SendJsonRaw(context, $"{{\"success\":false,\"message\":\"MenuItem not found: {EscapeJson(menuPath)}\"}}");
+            }
+        }
+
+        private static void HandleFindAssets(HttpListenerContext context)
+        {
+            var fields = ReadBodyFields(context);
+            fields.TryGetValue("type", out string type);
+            fields.TryGetValue("name", out string name);
+
+            var filterParts = new List<string>();
+            if (!string.IsNullOrEmpty(type)) { filterParts.Add($"t:{type}"); }
+            if (!string.IsNullOrEmpty(name)) { filterParts.Add(name); }
+            string filter = string.Join(" ", filterParts);
+
+            string[] guids = AssetDatabase.FindAssets(filter);
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("{\"success\":true,\"assets\":[");
+            for (int i = 0; i < guids.Length; i++)
+            {
+                if (i > 0) { sb.Append(","); }
+                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+                sb.Append("\"");
+                sb.Append(EscapeJson(path));
+                sb.Append("\"");
+            }
+            sb.Append("]}");
+            SendJsonRaw(context, sb.ToString());
+        }
+
+        private static void HandleSetAssetField(HttpListenerContext context)
+        {
+            var fields = ReadBodyFields(context);
+
+            if (!fields.TryGetValue("asset_path", out string assetPath) || string.IsNullOrEmpty(assetPath))
+            {
+                SendJsonRaw(context, "{\"success\":false,\"message\":\"asset_path required\"}");
+                return;
+            }
+            if (!fields.TryGetValue("field_path", out string fieldPath) || string.IsNullOrEmpty(fieldPath))
+            {
+                SendJsonRaw(context, "{\"success\":false,\"message\":\"field_path required\"}");
+                return;
+            }
+            fields.TryGetValue("value_asset_path", out string valueAssetPath);
+            fields.TryGetValue("value_asset_name", out string valueAssetName);
+
+            UnityEngine.Object asset = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(assetPath);
+            if (asset == null)
+            {
+                SendJsonRaw(context, $"{{\"success\":false,\"message\":\"Asset not found: {EscapeJson(assetPath)}\"}}");
+                return;
+            }
+
+            SerializedObject so = new SerializedObject(asset);
+            SerializedProperty prop = so.FindProperty(fieldPath);
+            if (prop == null)
+            {
+                SendJsonRaw(context, $"{{\"success\":false,\"message\":\"Property not found: {EscapeJson(fieldPath)}\"}}");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(valueAssetPath))
+            {
+                prop.objectReferenceValue = null;
+            }
+            else
+            {
+                UnityEngine.Object valueObj = null;
+                if (!string.IsNullOrEmpty(valueAssetName))
+                {
+                    // Загружаем под-ассет по имени (например, спрайт из атласа)
+                    UnityEngine.Object[] all = AssetDatabase.LoadAllAssetsAtPath(valueAssetPath);
+                    foreach (var a in all)
+                    {
+                        if (a != null && a.name == valueAssetName)
+                        {
+                            valueObj = a;
+                            break;
+                        }
+                    }
+                    if (valueObj == null)
+                    {
+                        SendJsonRaw(context, $"{{\"success\":false,\"message\":\"Sub-asset '{EscapeJson(valueAssetName)}' not found in {EscapeJson(valueAssetPath)}\"}}");
+                        return;
+                    }
+                }
+                else
+                {
+                    valueObj = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(valueAssetPath);
+                    if (valueObj == null)
+                    {
+                        SendJsonRaw(context, $"{{\"success\":false,\"message\":\"Value asset not found: {EscapeJson(valueAssetPath)}\"}}");
+                        return;
+                    }
+                }
+                prop.objectReferenceValue = valueObj;
+            }
+
+            so.ApplyModifiedProperties();
+            AssetDatabase.SaveAssets();
+
+            SendJsonRaw(context, $"{{\"success\":true,\"message\":\"Set {EscapeJson(fieldPath)} on {EscapeJson(assetPath)}\"}}");
+        }
+
+        private static void HandleSetSceneObjectField(HttpListenerContext context)
+        {
+            var fields = ReadBodyFields(context);
+
+            if (!fields.TryGetValue("object_name", out string objectName) || string.IsNullOrEmpty(objectName))
+            {
+                SendJsonRaw(context, "{\"success\":false,\"message\":\"object_name required\"}");
+                return;
+            }
+            if (!fields.TryGetValue("component_type", out string componentTypeName) || string.IsNullOrEmpty(componentTypeName))
+            {
+                SendJsonRaw(context, "{\"success\":false,\"message\":\"component_type required\"}");
+                return;
+            }
+            if (!fields.TryGetValue("field_path", out string fieldPath) || string.IsNullOrEmpty(fieldPath))
+            {
+                SendJsonRaw(context, "{\"success\":false,\"message\":\"field_path required\"}");
+                return;
+            }
+            fields.TryGetValue("value_asset_path", out string valueAssetPath);
+            fields.TryGetValue("value_asset_name", out string valueAssetName);
+
+            GameObject go = GameObject.Find(objectName);
+            if (go == null)
+            {
+                SendJsonRaw(context, $"{{\"success\":false,\"message\":\"GameObject not found: {EscapeJson(objectName)}\"}}");
+                return;
+            }
+
+            Component component = null;
+            foreach (Component c in go.GetComponents<Component>())
+            {
+                if (c != null && c.GetType().Name == componentTypeName)
+                {
+                    component = c;
+                    break;
+                }
+            }
+            if (component == null)
+            {
+                SendJsonRaw(context, $"{{\"success\":false,\"message\":\"Component '{EscapeJson(componentTypeName)}' not found on '{EscapeJson(objectName)}'\"}}");
+                return;
+            }
+
+            SerializedObject so = new SerializedObject(component);
+            SerializedProperty prop = so.FindProperty(fieldPath);
+            if (prop == null)
+            {
+                SendJsonRaw(context, $"{{\"success\":false,\"message\":\"Property not found: {EscapeJson(fieldPath)}\"}}");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(valueAssetPath))
+            {
+                prop.objectReferenceValue = null;
+            }
+            else
+            {
+                UnityEngine.Object valueObj = null;
+                if (!string.IsNullOrEmpty(valueAssetName))
+                {
+                    UnityEngine.Object[] all = AssetDatabase.LoadAllAssetsAtPath(valueAssetPath);
+                    foreach (var a in all)
+                    {
+                        if (a != null && a.name == valueAssetName)
+                        {
+                            valueObj = a;
+                            break;
+                        }
+                    }
+                    if (valueObj == null)
+                    {
+                        SendJsonRaw(context, $"{{\"success\":false,\"message\":\"Sub-asset '{EscapeJson(valueAssetName)}' not found in {EscapeJson(valueAssetPath)}\"}}");
+                        return;
+                    }
+                }
+                else
+                {
+                    valueObj = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(valueAssetPath);
+                    if (valueObj == null)
+                    {
+                        SendJsonRaw(context, $"{{\"success\":false,\"message\":\"Value asset not found: {EscapeJson(valueAssetPath)}\"}}");
+                        return;
+                    }
+                }
+                prop.objectReferenceValue = valueObj;
+            }
+
+            so.ApplyModifiedProperties();
+
+            Scene activeScene = SceneManager.GetActiveScene();
+            EditorSceneManager.MarkSceneDirty(activeScene);
+            EditorSceneManager.SaveScene(activeScene);
+
+            SendJsonRaw(context, $"{{\"success\":true,\"message\":\"Set {EscapeJson(fieldPath)} on {EscapeJson(componentTypeName)} ({EscapeJson(objectName)})\"}}");
         }
 
         private static void SendJsonRaw(HttpListenerContext context, string json)
