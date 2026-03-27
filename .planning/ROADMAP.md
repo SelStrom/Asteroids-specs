@@ -10,7 +10,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: Project Foundation** — Unity проект, структура папок, пакеты, сцены, sprite atlas
+- [x] **Phase 1: Project Foundation** — Unity проект, структура папок, пакеты, сцены, sprite atlas (completed 2026-03-27)
 - [ ] **Phase 2: MCP Basic** — TypeScript MCP-сервер, Editor HTTP-мост, Editor tools (compile/play/stop/list_scenes/open_scene/import_asset)
 - [ ] **Phase 3: Core Mechanics** — движение корабля, стрельба, object pool, базовые коллизии
 - [ ] **Phase 4: Asteroids & Progression** — три размера астероидов, дробление, волны, очки, жизни, Game Over
@@ -35,12 +35,12 @@
   4. Сцены `Bootstrap`, `MainMenu`, `Game`, `Leaderboard` существуют в `Assets/Scenes/`
   5. Sprite Atlas содержит все игровые спрайты, в Inspector нет предупреждений о недостающих текстурах
 
-**Plans:** 3 планов
+**Plans:** 3/2 plans complete
 
 Plans:
 - [x] 01-01-PLAN.md — ProjectSettings, Physics2D, QualitySettings, Packages/manifest.json, .gitignore
 - [x] 01-02-PLAN.md — Структура папок Assets, три asmdef, embedded-пакет scaffold, сцена Main.unity
-- [ ] 01-03-PLAN.md — Sprite Atlas (GameAtlas.spriteAtlas) и инструкция для пользователя
+- [x] 01-03-PLAN.md — Sprite Atlas (GameAtlas.spriteAtlas) и инструкция для пользователя
 
 ---
 
@@ -158,7 +158,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Project Foundation | 1/3 | In progress | - |
+| 1. Project Foundation | 3/2 | Complete   | 2026-03-27 |
 | 2. MCP Basic | 0/? | Not started | - |
 | 3. Core Mechanics | 0/? | Not started | - |
 | 4. Asteroids & Progression | 0/? | Not started | - |
