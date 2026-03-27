@@ -18,13 +18,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Играбельный Asteroids в браузере, точно воспроизводящий геймплей оригинала
-**Current focus:** Phase 02 — mcp-basic
+**Current focus:** Phase 03 — core-mechanics
 
 ## Current Phase
 
 **Phase:** 3
-**Status:** Ready to plan
-**Next action:** /gsd:execute-phase 02
+**Status:** Context ready — ready to plan
+**Next action:** /gsd:plan-phase 03
 
 ## Decisions
 
@@ -36,6 +36,9 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - AsteroidsEditor.asmdef: autoReferenced=false, includePlatforms=[Editor] — Editor-сборки не попадают в build
 - [Phase 01-project-foundation]: GameAtlas.spriteAtlas: enableRotation=0, padding=4, generateMipMaps=0, maxTextureSize=2048, WebGL RGBA32
 - [Phase 01-project-foundation]: Sprite Atlas пустой (m_PackedSprites=[]) — PNG предоставит пользователь, атлас принимает спрайты после импорта
+- [Phase 03-core-mechanics]: Sprite Atlas не используется — PNG нарезан на sub-sprites, prefabs ссылаются на них напрямую (D-01)
+- [Phase 03-core-mechanics]: DATA_SCHEMA имеет приоритет над REQUIREMENTS для числовых значений (MaxShoots=5, BulletLifetime=2s)
+- [Phase 03-core-mechanics]: Лазер реализуется полностью в Phase 3; VfxBlowPrefab (взрыв корабля) — backlog Phase 6
 - [Phase 02-mcp-basic]: McpUnityBridge: ручная JSON-сериализация через StringBuilder — JsonUtility не поддерживает анонимные типы
 - [Phase 02-mcp-basic]: McpUnityBridge: EditorApplication.delayCall dispatching всех Unity API вызовов из фонового Thread
 
