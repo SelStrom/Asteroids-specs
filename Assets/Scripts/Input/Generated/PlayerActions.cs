@@ -44,8 +44,8 @@ namespace SelStrom.Asteroids
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
         public InputActionRebindingExtensions.RebindingOperation PerformInteractiveRebinding(InputAction action, int bindingIndex = -1) => action.PerformInteractiveRebinding(bindingIndex);
         public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false) => _asset.FindAction(actionNameOrId, throwIfNotFound);
-        public InputBinding? FindBinding(InputBinding mask, out InputAction action) => _asset.FindBinding(mask, out action);
-        public IReadOnlyList<InputBinding> bindings => _asset.bindings;
+        public int FindBinding(InputBinding mask, out InputAction action) => _asset.FindBinding(mask, out action);
+        public IEnumerable<InputBinding> bindings => _asset.bindings;
 
         public struct PlayerMap
         {
