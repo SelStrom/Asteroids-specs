@@ -32,7 +32,7 @@
   1. Проект открывается в Unity 2022.3 LTS без ошибок компиляции
   2. В Package Manager присутствуют `com.unity.services.authentication` и `com.unity.services.leaderboards`
   3. Embedded-пакет `com.shtl.mcp-unity` виден в Package Manager (embedded)
-  4. Сцены `Bootstrap`, `MainMenu`, `Game`, `Leaderboard` существуют в `Assets/Scenes/`
+  4. Единственная сцена `Assets/Scenes/Main.unity` существует; переключение экранов через `SetActive()` на Canvas-объектах
   5. Sprite Atlas содержит все игровые спрайты, в Inspector нет предупреждений о недостающих текстурах
 
 **Plans:** 3/2 plans complete
