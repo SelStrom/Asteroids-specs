@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GameAtlas
+  m_EditorData:
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      buildTarget: DefaultTexturePlatform
+      maxTextureSize: 2048
+      resizeAlgorithm: 0
+      textureFormat: -1
+      textureCompression: 0
+      compressionQuality: 50
+      crunchedCompression: 0
+      allowsAlphaSplitting: 0
+      overridden: 0
+      androidETC2FallbackOverride: 0
+      forceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      buildTarget: WebGL
+      maxTextureSize: 2048
+      resizeAlgorithm: 0
+      textureFormat: 5
+      textureCompression: 0
+      compressionQuality: 50
+      crunchedCompression: 0
+      allowsAlphaSplitting: 0
+      overridden: 1
+      androidETC2FallbackOverride: 0
+      forceMaximumCompressionQuality_BC6H_BC7: 0
+    packingParameters:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+      alphaDilationDistance: 0
+    atlasEditorData:
+      serializedVersion: 2
+      scaleFactor:
+      - buildTarget: DefaultTexturePlatform
+        value: 1
+      syncMode: 0
+  m_IsVariant: 0
+  m_Tag: GameAtlas
+  m_IncludeInBuild: 1
+  m_MasterAtlas: {fileID: 0}
+  m_BindAsDefault: 1
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
