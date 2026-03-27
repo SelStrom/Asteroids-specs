@@ -18,13 +18,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Играбельный Asteroids в браузере, точно воспроизводящий геймплей оригинала
-**Current focus:** Phase 01 — project-foundation COMPLETE (все 3 плана выполнены), переход к Phase 02
+**Current focus:** Phase 02 — MCP Basic (CONTEXT.md готов, ожидает планирования)
 
 ## Current Phase
 
-**Phase:** 1 — Project Foundation
-**Status:** COMPLETE — все 3 плана выполнены (01-01, 01-02, 01-03)
-**Next action:** Начать Phase 02 (MCP Basic)
+**Phase:** 2 — MCP Basic
+**Status:** CONTEXT ready — 2-CONTEXT.md создан (--auto mode), готов к plan-phase
+**Next action:** /gsd:plan-phase 02
 
 ## Decisions
 
