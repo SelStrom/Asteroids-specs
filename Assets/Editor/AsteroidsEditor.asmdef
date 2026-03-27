@@ -3,6 +3,7 @@
     "rootNamespace": "",
     "references": [
         "Asteroids",
+        "Conf",
         "Unity.TextMeshPro",
         "Shtl.Mvvm"
     ],
