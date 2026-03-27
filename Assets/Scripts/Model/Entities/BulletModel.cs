@@ -9,6 +9,7 @@ namespace SelStrom.Asteroids
         public MoveComponent Move { get; } = new();
         public LifeTimeComponent LifeTime { get; private set; }
         public bool IsEnemy { get; set; }
+        public GunComponent Gun; // ссылка на GunComponent для декремента CurrentShoots при уничтожении
 
         public void Setup(float lifeTime)
         {
