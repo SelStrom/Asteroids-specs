@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-27T18:35:41.920Z"
+last_updated: "2026-03-27T18:47:06.350Z"
 progress:
   total_phases: 8
   completed_phases: 2
   total_plans: 10
-  completed_plans: 7
+  completed_plans: 9
 ---
 
 # Project State
@@ -41,6 +41,8 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 03-core-mechanics]: Лазер реализуется полностью в Phase 3; VfxBlowPrefab (взрыв корабля) — backlog Phase 6
 - [Phase 02-mcp-basic]: McpUnityBridge: ручная JSON-сериализация через StringBuilder — JsonUtility не поддерживает анонимные типы
 - [Phase 02-mcp-basic]: McpUnityBridge: EditorApplication.delayCall dispatching всех Unity API вызовов из фонового Thread
+- [Phase 03-core-mechanics]: MoveToSystem/ShootToSystem регистрируются как заглушки в Model.cs — компилируются, но пусты до Phase 4
+- [Phase 03-core-mechanics]: ThrustSystem TNode — кортеж (ThrustComponent, MoveComponent, RotateComponent) без wrapper класса
 
 ## Milestone
 

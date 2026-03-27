@@ -79,11 +79,11 @@ Plans:
   4. При гибели корабля он скрывается, через 2 секунды корабль появляется в центре с 3-секундным миганием неуязвимости
   5. Визуальный индикатор сопла виден только при зажатом W
 
-**Plans:** 3 plans
+**Plans:** 2/3 plans executed
 
 Plans:
-- [ ] 03-01-PLAN.md — Инфраструктура: Utils, Configs C# классы, Model ECS core, Input Actions asset
-- [ ] 03-02-PLAN.md — Сущности + Системы ECS, Input layer (PlayerInput, PlayerActions)
+- [x] 03-01-PLAN.md — Инфраструктура: Utils, Configs C# классы, Model ECS core, Input Actions asset
+- [x] 03-02-PLAN.md — Сущности + Системы ECS, Input layer (PlayerInput, PlayerActions)
 - [ ] 03-03-PLAN.md — View layer, Application layer, Prefabs, Config assets, сцена Main.unity
 
 ---
@@ -171,7 +171,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Project Foundation | 3/2 | Complete   | 2026-03-27 |
 | 2. MCP Basic | 1/4 | In Progress|  |
-| 3. Core Mechanics | 0/3 | Planned | - |
+| 3. Core Mechanics | 2/3 | In Progress|  |
 | 4. Asteroids & Progression | 0/? | Not started | - |
 | 5. UFO & Progression Polish | 0/? | Not started | - |
 | 6. Audio & Visual Polish | 0/? | Not started | - |
