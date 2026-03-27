@@ -57,11 +57,11 @@ Plans:
   5. MCP tools `list_scenes`, `open_scene`, `import_asset` корректно работают с AssetDatabase
   6. `mcp.json` зарегистрирован в Claude Code, сервер отображается в списке MCP-инструментов
 
-**Plans:** 4 plans
+**Plans:** 1/4 plans executed
 
 Plans:
 - [ ] 02-01-PLAN.md — TypeScript scaffold (package.json, tsconfig.json, src/index.ts с 6 MCP tools)
-- [ ] 02-02-PLAN.md — C# HTTP bridge (McpUnityBridge.cs, McpUnityBridge.asmdef)
+- [x] 02-02-PLAN.md — C# HTTP bridge (McpUnityBridge.cs, McpUnityBridge.asmdef)
 - [ ] 02-03-PLAN.md — Конфигурация (.mcp.json, McpUnityRuntime.asmdef, mcp.json, README.md)
 - [ ] 02-04-PLAN.md — Верификация (smoke-тест сборки + ручная проверка всех 6 tools)
 
@@ -165,7 +165,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Project Foundation | 3/2 | Complete   | 2026-03-27 |
-| 2. MCP Basic | 0/4 | Planned | - |
+| 2. MCP Basic | 1/4 | In Progress|  |
 | 3. Core Mechanics | 0/? | Not started | - |
 | 4. Asteroids & Progression | 0/? | Not started | - |
 | 5. UFO & Progression Polish | 0/? | Not started | - |
