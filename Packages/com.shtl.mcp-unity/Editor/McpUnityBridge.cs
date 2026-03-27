@@ -25,7 +25,6 @@ namespace Shtl.McpUnity.Editor
 
         // Данные компиляции — заполняются через CompilationPipeline events
         private static readonly List<CompilerMessage> _compilationMessages = new List<CompilerMessage>();
-        private static volatile bool _compiling;
 
         static McpUnityBridge()
         {
@@ -40,16 +39,12 @@ namespace Shtl.McpUnity.Editor
             CompilationPipeline.compilationStarted += _ =>
             {
                 _compilationMessages.Clear();
-                _compiling = true;
             };
             CompilationPipeline.assemblyCompilationFinished += (assemblyName, messages) =>
             {
                 _compilationMessages.AddRange(messages);
             };
-            CompilationPipeline.compilationFinished += _ =>
-            {
-                _compiling = false;
-            };
+            CompilationPipeline.compilationFinished += _ => { };
         }
 
         private static void StartServer()
@@ -97,7 +92,17 @@ namespace Shtl.McpUnity.Editor
                 {
                     HttpListenerContext context = _listener.GetContext();
                     // Dispatching в главный поток Unity
-                    EditorApplication.delayCall += () => HandleRequest(context);
+                    EditorApplication.delayCall += () =>
+                    {
+                        if (_running)
+                        {
+                            HandleRequest(context);
+                        }
+                        else
+                        {
+                            context.Response.Abort();
+                        }
+                    };
                 }
                 catch (HttpListenerException)
                 {
@@ -299,11 +304,26 @@ namespace Shtl.McpUnity.Editor
 
         private static void SendJsonRaw(HttpListenerContext context, string json)
         {
-            byte[] bytes = Encoding.UTF8.GetBytes(json);
-            context.Response.ContentType = "application/json; charset=utf-8";
-            context.Response.ContentLength64 = bytes.Length;
-            context.Response.OutputStream.Write(bytes, 0, bytes.Length);
-            context.Response.OutputStream.Close();
+            try
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(json);
+                context.Response.ContentType = "application/json; charset=utf-8";
+                context.Response.ContentLength64 = bytes.Length;
+                context.Response.OutputStream.Write(bytes, 0, bytes.Length);
+                context.Response.OutputStream.Close();
+            }
+            catch (System.Net.Sockets.SocketException)
+            {
+                // Клиент отключился до получения ответа
+            }
+            catch (System.ObjectDisposedException)
+            {
+                // Соединение уже закрыто
+            }
+            catch (System.IO.IOException)
+            {
+                // Сетевая ошибка при записи ответа (например, socket shutdown)
+            }
         }
 
         /// <summary>
