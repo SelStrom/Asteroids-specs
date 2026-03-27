@@ -1,0 +1,396 @@
+fileFormatVersion: 2
+guid: cf467e92e508b5878eb24c5a126421e0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1
+    second: asteroid_big_1
+  - first:
+      213: 2
+    second: asteroid_big_2
+  - first:
+      213: 3
+    second: asteroid_big_3
+  - first:
+      213: 4
+    second: ufo_big
+  - first:
+      213: 5
+    second: asteroid_medium_1
+  - first:
+      213: 6
+    second: asteroid_medium_2
+  - first:
+      213: 7
+    second: asteroid_medium_3
+  - first:
+      213: 8
+    second: ship
+  - first:
+      213: 9
+    second: ufo_small_1
+  - first:
+      213: 10
+    second: ufo_small_2
+  - first:
+      213: 11
+    second: bullet
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 0
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePvrTextureImporter: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 5
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: asteroid_big_1
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 85
+        width: 69
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af0e4525721215e667046b3f773a92c9
+      internalID: 1
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+      secondaryTextures: []
+      nameFileIdTable: {}
+    - serializedVersion: 2
+      name: asteroid_big_2
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 86
+        width: 69
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79b72b35f38f52c1f19b751a29e569bb
+      internalID: 2
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+      secondaryTextures: []
+      nameFileIdTable: {}
+    - serializedVersion: 2
+      name: asteroid_big_3
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 85
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f968d6d613ec5c745cd68774e2c22ad5
+      internalID: 3
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+      secondaryTextures: []
+      nameFileIdTable: {}
+    - serializedVersion: 2
+      name: ufo_big
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 42
+        width: 48
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b294397a91b767e280074139a8706a0d
+      internalID: 4
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+      secondaryTextures: []
+      nameFileIdTable: {}
+    - serializedVersion: 2
+      name: asteroid_medium_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 35
+        width: 43
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c053eb457c279df5c9e9593dbc1859fd
+      internalID: 5
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+      secondaryTextures: []
+      nameFileIdTable: {}
+    - serializedVersion: 2
+      name: asteroid_medium_2
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 33
+        width: 43
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c89f3eeb25161913d287e33cd61c1265
+      internalID: 6
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+      secondaryTextures: []
+      nameFileIdTable: {}
+    - serializedVersion: 2
+      name: asteroid_medium_3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 33
+        width: 42
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ca7f30869e7a1891989294139a52bec
+      internalID: 7
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+      secondaryTextures: []
+      nameFileIdTable: {}
+    - serializedVersion: 2
+      name: ship
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 94
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82fbac73b500f9eed956a7fa9285fccc
+      internalID: 8
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+      secondaryTextures: []
+      nameFileIdTable: {}
+    - serializedVersion: 2
+      name: ufo_small_1
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 1
+        width: 39
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 494c9b46b86992c1a27732426eb32981
+      internalID: 9
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+      secondaryTextures: []
+      nameFileIdTable: {}
+    - serializedVersion: 2
+      name: ufo_small_2
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1
+        width: 39
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44f91b34fcaab0e490f986ed29dae25c
+      internalID: 10
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+      secondaryTextures: []
+      nameFileIdTable: {}
+    - serializedVersion: 2
+      name: bullet
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 0
+        width: 31
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b249ac8929a23de6fbc710ec448524e0
+      internalID: 11
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+      secondaryTextures: []
+      nameFileIdTable: {}
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

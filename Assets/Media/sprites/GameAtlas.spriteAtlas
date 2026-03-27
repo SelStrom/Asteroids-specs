@@ -64,5 +64,17 @@ SpriteAtlas:
   m_IncludeInBuild: 1
   m_MasterAtlas: {fileID: 0}
   m_BindAsDefault: 1
-  m_PackedSprites: []
-  m_PackedSpriteNamesToIndex: []
+  m_PackedSprites:
+  - {fileID: 2800000, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - asteroid_big_1
+  - asteroid_big_2
+  - asteroid_big_3
+  - ufo_big
+  - asteroid_medium_1
+  - asteroid_medium_2
+  - asteroid_medium_3
+  - ship
+  - ufo_small_1
+  - ufo_small_2
+  - bullet
