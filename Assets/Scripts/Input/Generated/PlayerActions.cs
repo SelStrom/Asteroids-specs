@@ -22,9 +22,12 @@ namespace SelStrom.Asteroids
 
         private static string LoadAssetJson()
         {
-            // Загружаем .inputactions из Resources или через AssetDatabase в Editor
             var asset = Resources.Load<InputActionAsset>("PlayerActions");
             if (asset != null) { return asset.ToJson(); }
+#if UNITY_EDITOR
+            var editorAsset = UnityEditor.AssetDatabase.LoadAssetAtPath<InputActionAsset>("Assets/Input/PlayerActions.inputactions");
+            if (editorAsset != null) { return editorAsset.ToJson(); }
+#endif
             // Fallback — пустой JSON
             return "{\"name\":\"PlayerActions\",\"maps\":[{\"name\":\"Player\",\"actions\":[],\"bindings\":[]}]}";
         }

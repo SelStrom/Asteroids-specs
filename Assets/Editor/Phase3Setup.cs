@@ -147,6 +147,10 @@ namespace SelStrom.Asteroids.Editor
             var oldUi = GameObject.Find("UI");
             if (oldUi != null) { Object.DestroyImmediate(oldUi); }
 
+            // Удалить старый EventSystem если есть
+            var oldEs = GameObject.Find("EventSystem");
+            if (oldEs != null) { Object.DestroyImmediate(oldEs); }
+
             // Создать ApplicationEntry GameObject
             var appEntryGo = new GameObject("ApplicationEntry");
             appEntryGo.AddComponent<ApplicationEntry>();
@@ -166,6 +170,9 @@ namespace SelStrom.Asteroids.Editor
             // EventSystem для UI
             var esGo = new GameObject("EventSystem");
             esGo.AddComponent<UnityEngine.EventSystems.EventSystem>();
+            // Unity автоматически добавляет StandaloneInputModule — удаляем его, т.к. проект использует новый Input System
+            var standalone = esGo.GetComponent<UnityEngine.EventSystems.StandaloneInputModule>();
+            if (standalone != null) { Object.DestroyImmediate(standalone); }
             esGo.AddComponent<InputSystemUIInputModule>();
 
             // TitleScreen — активен при старте
@@ -191,7 +198,7 @@ namespace SelStrom.Asteroids.Editor
             titleLabelRect.sizeDelta = new Vector2(600f, 80f);
 
             // Play button "PLAY"
-            var playGo = new GameObject("Play");
+            var playGo = new GameObject("Play", typeof(RectTransform));
             playGo.transform.SetParent(titleGo.transform, false);
             playGo.AddComponent<Button>();
             var playRect = playGo.GetComponent<RectTransform>();
@@ -208,7 +215,11 @@ namespace SelStrom.Asteroids.Editor
             playTextRect.anchorMin = Vector2.zero;
             playTextRect.anchorMax = Vector2.one;
             playTextRect.offsetMin = playTextRect.offsetMax = Vector2.zero;
-            titleGo.AddComponent<TitleScreenView>();
+            var titleScreenView = titleGo.AddComponent<TitleScreenView>();
+            // Назначить _playButton в TitleScreenView через SerializedObject
+            var serializedTsv = new SerializedObject(titleScreenView);
+            serializedTsv.FindProperty("_playButton").objectReferenceValue = playGo.GetComponent<Button>();
+            serializedTsv.ApplyModifiedProperties();
 
             // HUD — неактивен при старте (active=false)
             var hudGo = new GameObject("Hud");
