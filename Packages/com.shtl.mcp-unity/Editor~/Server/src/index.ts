@@ -11,10 +11,13 @@ async function callBridge(endpoint: string, body?: object, timeoutMs = 15000): P
   try {
     const response = await fetch(`${BRIDGE_URL}${endpoint}`, {
       method: "POST",
-      headers: body ? { "Content-Type": "application/json" } : {},
-      body: body ? JSON.stringify(body) : undefined,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body ?? {}),
       signal: AbortSignal.timeout(timeoutMs),
     });
+    if (!response.ok) {
+      return JSON.stringify({ success: false, message: `HTTP ${response.status} ${response.statusText}` });
+    }
     const data = await response.json();
     return JSON.stringify(data);
   } catch (err) {

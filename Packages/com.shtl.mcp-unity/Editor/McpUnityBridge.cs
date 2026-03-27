@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -15,6 +16,8 @@ namespace Shtl.McpUnity.Editor
     /// HTTP-bridge для взаимодействия TypeScript MCP-сервера с Unity Editor.
     /// Стартует автоматически при загрузке Editor через [InitializeOnLoad].
     /// Слушает запросы на localhost:8765.
+    /// Входящие запросы ставятся в ConcurrentQueue и обрабатываются в EditorApplication.update
+    /// (главный поток), что надёжнее чем EditorApplication.delayCall из фонового потока.
     /// </summary>
     [InitializeOnLoad]
     public static class McpUnityBridge
@@ -23,6 +26,10 @@ namespace Shtl.McpUnity.Editor
         private static Thread _listenerThread;
         private static volatile bool _running;
 
+        // Очередь входящих запросов — заполняется фоновым потоком, дренируется в главном
+        private static readonly ConcurrentQueue<HttpListenerContext> _pendingRequests
+            = new ConcurrentQueue<HttpListenerContext>();
+
         // Данные компиляции — заполняются через CompilationPipeline events
         private static readonly List<CompilerMessage> _compilationMessages = new List<CompilerMessage>();
 
@@ -30,6 +37,7 @@ namespace Shtl.McpUnity.Editor
         {
             AssemblyReloadEvents.beforeAssemblyReload += OnBeforeAssemblyReload;
             EditorApplication.quitting += OnEditorQuitting;
+            EditorApplication.update += DrainQueue;
             SubscribeCompilation();
             StartServer();
         }
@@ -45,6 +53,18 @@ namespace Shtl.McpUnity.Editor
                 _compilationMessages.AddRange(messages);
             };
             CompilationPipeline.compilationFinished += _ => { };
+        }
+
+        /// <summary>
+        /// Вызывается каждый кадр в главном потоке Unity Editor.
+        /// Обрабатывает все накопившиеся запросы из фонового потока.
+        /// </summary>
+        private static void DrainQueue()
+        {
+            while (_pendingRequests.TryDequeue(out HttpListenerContext ctx))
+            {
+                HandleRequest(ctx);
+            }
         }
 
         private static void StartServer()
@@ -72,6 +92,13 @@ namespace Shtl.McpUnity.Editor
         private static void StopServer()
         {
             _running = false;
+
+            // Сбрасываем очередь — все незавершённые запросы отменяем
+            while (_pendingRequests.TryDequeue(out HttpListenerContext ctx))
+            {
+                try { ctx.Response.Abort(); } catch (Exception) { }
+            }
+
             try
             {
                 _listener?.Stop();
@@ -91,18 +118,8 @@ namespace Shtl.McpUnity.Editor
                 try
                 {
                     HttpListenerContext context = _listener.GetContext();
-                    // Dispatching в главный поток Unity
-                    EditorApplication.delayCall += () =>
-                    {
-                        if (_running)
-                        {
-                            HandleRequest(context);
-                        }
-                        else
-                        {
-                            context.Response.Abort();
-                        }
-                    };
+                    // Ставим в очередь — DrainQueue обработает в главном потоке
+                    _pendingRequests.Enqueue(context);
                 }
                 catch (HttpListenerException)
                 {
