@@ -136,6 +136,20 @@ None — no external service configuration required.
 - Сцена Main.unity готова для добавления GameObjects в Phase 3+
 - Остался Plan 01-03 (спрайты/атлас) — зависит от получения PNG от пользователя
 
+## Self-Check: PASSED
+
+Все ключевые файлы найдены:
+- Assets/Asteroids.asmdef — FOUND
+- Assets/Scripts/Configs/Configs.asmdef — FOUND
+- Assets/Editor/AsteroidsEditor.asmdef — FOUND
+- Packages/com.shtl.mcp-unity/package.json — FOUND
+- Assets/Scenes/Main.unity — FOUND
+- .planning/phases/01-project-foundation/01-02-SUMMARY.md — FOUND
+
+Коммиты верифицированы:
+- b352b3b (Task 1) — FOUND
+- 30c32c9 (Task 2) — FOUND
+
 ---
 *Phase: 01-project-foundation*
 *Completed: 2026-03-27*
