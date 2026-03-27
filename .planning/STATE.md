@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-last_updated: "2026-03-27T16:16:16.366Z"
+status: planning
+last_updated: "2026-03-27T17:27:03.798Z"
 progress:
   total_phases: 8
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 7
-  completed_plans: 6
+  completed_plans: 7
 ---
 
 # Project State
@@ -22,8 +22,8 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 
 ## Current Phase
 
-**Phase:** 2 — MCP Basic
-**Status:** Executing Phase 02
+**Phase:** 3
+**Status:** Ready to plan
 **Next action:** /gsd:execute-phase 02
 
 ## Decisions
@@ -56,7 +56,8 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
-| 260327-or9 | Fix McpUnityBridge socket-shutdown error on list_scenes | 2026-03-27 | — | [260327-or9-fix-mcpunitybridge-socket-shutdown-error](./quick/260327-or9-fix-mcpunitybridge-socket-shutdown-error/) |
+| 260327-or9 | Fix McpUnityBridge socket-shutdown error on list_scenes | 2026-03-27 | c12d64e | [260327-or9-fix-mcpunitybridge-socket-shutdown-error](./quick/260327-or9-fix-mcpunitybridge-socket-shutdown-error/) |
+| 260327-p00 | Increase MCP server timeouts and add error handling | 2026-03-27 | 1a096f6 | [260327-p00-increase-mcp-server-timeouts-and-add-err](./quick/260327-p00-increase-mcp-server-timeouts-and-add-err/) | [260327-or9-fix-mcpunitybridge-socket-shutdown-error](./quick/260327-or9-fix-mcpunitybridge-socket-shutdown-error/) |
 
 ---
 *State initialized: 2026-03-27*
