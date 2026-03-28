@@ -27,6 +27,16 @@ namespace SelStrom.Asteroids
         private int _asteroidCount;     // сколько астероидов живо
         private int _nextBonusLifeScore; // порог для следующей экстра-жизни
 
+        // UFO состояние (UFO-06: не более одного одновременно)
+        private bool _ufoActive;
+        private UfoBigModel _activeUfo;
+        private bool _ufoStartedFromLeft;
+        private bool _activeUfoWrapped;
+
+        // Wave banner callbacks (PROG-06)
+        private Action<int> _onWaveBannerShow;  // вызывается с номером волны
+        private Action _onWaveBannerHide;
+
         // Публичные свойства для чтения состояния
         public int Score => _model.Score;
         public int Lives => _lives;
@@ -34,7 +44,8 @@ namespace SelStrom.Asteroids
         public int WaveNumber => _waveNumber;
 
         public void Connect(GameData configs, EntitiesCatalog catalog, Model model,
-                            PlayerInput input, Action onGameOver, Action<int, int> onScoreChanged = null)
+                            PlayerInput input, Action onGameOver, Action<int, int> onScoreChanged = null,
+                            Action<int> onWaveBannerShow = null, Action onWaveBannerHide = null)
         {
             _configs = configs;
             _catalog = catalog;
@@ -42,6 +53,8 @@ namespace SelStrom.Asteroids
             _input = input;
             _onGameOver = onGameOver;
             _onScoreChanged = onScoreChanged;
+            _onWaveBannerShow = onWaveBannerShow;
+            _onWaveBannerHide = onWaveBannerHide;
         }
 
         public void Start()
@@ -82,6 +95,9 @@ namespace SelStrom.Asteroids
 
             // Уведомить HUD
             _onScoreChanged?.Invoke(_model.Score, _lives);
+
+            // Запланировать первый спаун UFO
+            ScheduleUfoSpawn();
         }
 
         public void Stop()
@@ -93,6 +109,8 @@ namespace SelStrom.Asteroids
             _input.OnAttackAction -= OnAttack;
             _input.OnLaserAction  -= OnLaser;
             _model.OnEntityDestroyed -= OnEntityDestroyed;
+            _ufoActive = false;
+            _activeUfo = null;
         }
 
         public void Restart()
@@ -115,6 +133,8 @@ namespace SelStrom.Asteroids
         private void StartWave()
         {
             _waveNumber++;
+            // PROG-06: показать баннер волны
+            ShowWaveBanner();
             // D-14: первая волна = 4, каждая следующая +1, макс. 12
             var asteroidCount = Mathf.Min(3 + _waveNumber, 12); // wave 1 → 4, wave 2 → 5, ... wave 9+ → 12
             _asteroidCount = 0;
@@ -282,6 +302,23 @@ namespace SelStrom.Asteroids
                 }
             }
 
+            if (model is UfoBigModel ufoModel)
+            {
+                var data = (ufoModel is UfoModel) ? _configs.Ufo : _configs.UfoBig;
+                _model.Score += data.Score;
+
+                // Проверить экстра-жизнь
+                while (_model.Score >= _nextBonusLifeScore && _lives < 6)
+                {
+                    _lives++;
+                    _nextBonusLifeScore += 10000;
+                }
+
+                _ufoActive = false;
+                _activeUfo = null;
+                _onScoreChanged?.Invoke(_model.Score, _lives);
+            }
+
             if (model is ShipModel)
             {
                 _lives--;
@@ -350,6 +387,183 @@ namespace SelStrom.Asteroids
             }
 
             _model.ActionScheduler.Schedule(0.15f, () => StartBlink(blinksLeft - 1, !visible));
+        }
+
+        public void Update(float dt)
+        {
+            if (!_isRunning) { return; }
+            CheckUfoExit();
+            // Small UFO: обновлять цель (MoveTo.Target = позиция корабля)
+            UpdateUfoTarget();
+        }
+
+        private void ScheduleUfoSpawn()
+        {
+            var delay = UnityEngine.Random.Range(25f, 40f);
+            _model.ActionScheduler.Schedule(delay, TrySpawnUfo);
+        }
+
+        private void TrySpawnUfo()
+        {
+            if (!_isRunning || _ufoActive) { return; }
+            // Small UFO появляется при score >= 10000 (UFO-02)
+            if (_model.Score >= 10000)
+            {
+                SpawnUfoSmall();
+            }
+            else
+            {
+                SpawnUfoBig();
+            }
+            ScheduleUfoSpawn(); // запланировать следующий спаун
+        }
+
+        private void SpawnUfoBig()
+        {
+            var gameArea = _model.GameArea;
+            var fromLeft = UnityEngine.Random.value > 0.5f;
+            var x = fromLeft ? -gameArea.x / 2f : gameArea.x / 2f;
+            var y = UnityEngine.Random.Range(-gameArea.y / 2f, gameArea.y / 2f);
+            var pos = new Vector2(x, y);
+            var dir = fromLeft ? Vector2.right : Vector2.left;
+
+            var ufo = _catalog.CreateUfoBig(pos, dir, _configs.UfoBig.Speed);
+            if (ufo == null) { return; }
+
+            ufo.Gun.OnShooting = OnUfoGunShooting;
+            // Инициализировать случайную стрельбу Large UFO через GunSystem
+            ScheduleUfoShoot(ufo);
+
+            _activeUfo = ufo;
+            _ufoStartedFromLeft = fromLeft;
+            _activeUfoWrapped = false;
+            _ufoActive = true;
+
+            BindUfoCollision(ufo);
+        }
+
+        private void SpawnUfoSmall()
+        {
+            var gameArea = _model.GameArea;
+            var fromLeft = UnityEngine.Random.value > 0.5f;
+            var x = fromLeft ? -gameArea.x / 2f : gameArea.x / 2f;
+            var y = UnityEngine.Random.Range(-gameArea.y / 2f, gameArea.y / 2f);
+            var pos = new Vector2(x, y);
+            var dir = fromLeft ? Vector2.right : Vector2.left;
+
+            var ufo = _catalog.CreateUfoSmall(pos, dir, _configs.Ufo.Speed);
+            if (ufo == null) { return; }
+
+            // ShootToSystem вызовет OnShoot — назначить callback
+            ufo.ShootTo.OnShoot = OnUfoSmallShoot;
+
+            _activeUfo = ufo;
+            _ufoStartedFromLeft = fromLeft;
+            _activeUfoWrapped = false;
+            _ufoActive = true;
+
+            BindUfoCollision(ufo);
+        }
+
+        private void BindUfoCollision(UfoBigModel ufo)
+        {
+            if (_catalog.GetViewByModel(ufo) is UfoVisual ufoVisual)
+            {
+                ufoVisual.ViewModel.OnCollision = col => OnUfoCollided(ufo, col);
+            }
+        }
+
+        private void ScheduleUfoShoot(UfoBigModel ufo)
+        {
+            // Случайная стрельба Large UFO через GunSystem
+            var interval = _configs.UfoBig.ShootDurationSec > 0f ? _configs.UfoBig.ShootDurationSec : 1.5f;
+            _model.ActionScheduler.Schedule(interval, () => {
+                if (ufo == null || ufo.IsDead() || !_ufoActive) { return; }
+                ufo.Gun.Shooting = true;
+                ScheduleUfoShoot(ufo);
+            });
+        }
+
+        private void OnUfoGunShooting(GunComponent gun)
+        {
+            // Пуля Large UFO в случайном направлении (UFO-03)
+            if (_activeUfo == null || _activeUfo.IsDead()) { return; }
+            var pos = _activeUfo.Move.Position.Value;
+            var randomDir = UnityEngine.Random.insideUnitCircle.normalized;
+            var velocity = randomDir * _configs.Bullet.Speed;
+            _catalog.CreateBullet(pos, velocity, isEnemy: true);
+        }
+
+        private void OnUfoSmallShoot(UfoModel ufo)
+        {
+            // Пуля Small UFO точно в корабль (UFO-02)
+            if (ufo == null || ufo.IsDead() || _ship == null || _ship.IsDead()) { return; }
+            var ufoPos = ufo.Move.Position.Value;
+            var shipPos = _ship.Move.Position.Value;
+            var dir = (shipPos - ufoPos).normalized;
+            var velocity = dir * _configs.Bullet.Speed;
+            _catalog.CreateBullet(ufoPos, velocity, isEnemy: true);
+        }
+
+        private void OnUfoCollided(UfoBigModel ufo, Collision2D col)
+        {
+            if (!_isRunning || ufo.IsDead()) { return; }
+            // UFO уничтожается только от пули игрока
+            var hitModel = _catalog.GetModelByGo(col.gameObject);
+            if (hitModel is not BulletModel hitBullet || hitBullet.IsEnemy) { return; }
+
+            hitBullet.Kill();
+            ufo.Kill();
+            // Очки и UFO cleanup — обрабатываются в OnEntityDestroyed
+        }
+
+        private void CheckUfoExit()
+        {
+            if (_activeUfo == null || _activeUfo.IsDead()) { return; }
+            var pos = _activeUfo.Move.Position.Value;
+            var halfW = _model.GameArea.x / 2f;
+
+            // Отслеживать первый wrap-around (UFO пересёк экран и оказался с другой стороны)
+            if (!_activeUfoWrapped)
+            {
+                // Если UFO вышел за противоположный от старта край → wrap произошёл
+                var crossedOpposite = _ufoStartedFromLeft ? pos.x >= halfW - 0.1f : pos.x <= -halfW + 0.1f;
+                if (crossedOpposite)
+                {
+                    _activeUfoWrapped = true;
+                }
+                return;
+            }
+
+            // После wrap: UFO дошёл до края с которого стартовал → уничтожить без очков (UFO-05)
+            var reachedStart = _ufoStartedFromLeft ? pos.x <= -halfW + 0.5f : pos.x >= halfW - 0.5f;
+            if (reachedStart)
+            {
+                _activeUfo.Kill();
+                _ufoActive = false;
+                _activeUfo = null;
+            }
+        }
+
+        private void UpdateUfoTarget()
+        {
+            // Обновить Target для Small UFO (MoveToSystem будет использовать его)
+            if (_activeUfo is UfoModel ufoSmall && !ufoSmall.IsDead() && _ship != null && !_ship.IsDead())
+            {
+                ufoSmall.MoveTo.Target = _ship.Move.Position.Value;
+            }
+        }
+
+        private void ShowWaveBanner()
+        {
+            _onWaveBannerShow?.Invoke(_waveNumber);
+            _model.ActionScheduler.Schedule(2.5f, HideWaveBanner);
+        }
+
+        private void HideWaveBanner()
+        {
+            if (!_isRunning) { return; }
+            _onWaveBannerHide?.Invoke();
         }
 
         public void Dispose()
