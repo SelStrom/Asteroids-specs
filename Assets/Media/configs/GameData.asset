@@ -32,9 +32,9 @@ MonoBehaviour:
     LaserUpdateDurationSec: 10
     LaserMaxShoots: 3
   Ship:
-    Prefab: {fileID: 0}
-    MainSprite: {fileID: 0}
-    ThrustSprite: {fileID: 0}
+    Prefab: {fileID: 7022788921575207073, guid: 7c93738e9fdcc4b2f82fb9b8c3b7d12e, type: 3}
+    MainSprite: {fileID: 8, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}
+    ThrustSprite: {fileID: 9, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}
     ThrustUnitsPerSecond: 6
     MaxSpeed: 15
     Gun: {fileID: 0}

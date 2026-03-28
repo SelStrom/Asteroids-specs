@@ -82,6 +82,7 @@ namespace SelStrom.Asteroids
 
         public void Stop()
         {
+            if (_input == null) { return; }
             _isRunning = false;
             _input.OnRotateAction -= OnRotate;
             _input.OnTrustAction  -= OnThrust;
