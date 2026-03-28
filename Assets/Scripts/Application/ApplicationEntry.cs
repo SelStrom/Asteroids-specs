@@ -11,6 +11,8 @@ namespace SelStrom.Asteroids
         [SerializeField] private TitleScreenView _titleScreenView;
         [SerializeField] private GameObject _titleScreenGo;
         [SerializeField] private GameObject _hudGo;
+        [SerializeField] private GameOverView _gameOverView;
+        [SerializeField] private GameObject _gameOverGo;
 
         public event Action<float> OnUpdate;
         public event Action OnPause;
@@ -21,7 +23,8 @@ namespace SelStrom.Asteroids
         private void Awake()
         {
             _application = new Application();
-            _application.Connect(this, _configs, _hudVisual, _titleScreenView, _titleScreenGo, _hudGo);
+            _application.Connect(this, _configs, _hudVisual, _titleScreenView, _titleScreenGo, _hudGo,
+                _gameOverView, _gameOverGo);
         }
 
         private void Start()

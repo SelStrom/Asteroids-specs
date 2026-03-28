@@ -19,8 +19,14 @@ namespace SelStrom.Asteroids
         private GameObject _titleScreenGo;
         private GameObject _hudGo;
 
+        private GameOverView _gameOverView;
+        private GameObject _gameOverGo;
+        private GameOverScreen _gameOverScreen;
+        private GameScreen _gameScreen;
+
         public void Connect(IApplicationComponent entry, GameData configs, HudVisual hudVisual,
-            TitleScreenView titleScreenView, GameObject titleScreenGo, GameObject hudGo)
+            TitleScreenView titleScreenView, GameObject titleScreenGo, GameObject hudGo,
+            GameOverView gameOverView, GameObject gameOverGo)
         {
             _entry = entry;
             _configs = configs;
@@ -28,12 +34,22 @@ namespace SelStrom.Asteroids
             _titleScreenView = titleScreenView;
             _titleScreenGo = titleScreenGo;
             _hudGo = hudGo;
+            _gameOverView = gameOverView;
+            _gameOverGo = gameOverGo;
 
             _entry.OnUpdate += OnUpdate;
 
             // TitleScreen экран
             var titleScreen = new TitleScreen();
             titleScreen.Connect(_titleScreenView, OnGameStart);
+
+            // GameOver экран — скрыт при старте
+            if (_gameOverGo != null) { _gameOverGo.SetActive(false); }
+            _gameOverScreen = new GameOverScreen();
+            if (_gameOverView != null)
+            {
+                _gameOverScreen.Connect(_gameOverView, OnPlayAgain);
+            }
         }
 
         public void Start()
@@ -60,20 +76,50 @@ namespace SelStrom.Asteroids
             _input.Connect();
 
             _game = new Game();
-            _game.Connect(_configs, _catalog, _model, _input, OnGameOver);
+
+            _gameScreen = new GameScreen();
         }
 
         private void OnGameStart()
         {
             if (_titleScreenGo != null) { _titleScreenGo.SetActive(false); }
             if (_hudGo != null) { _hudGo.SetActive(true); }
+
+            // Подключить Game с callback для HUD
+            _game.Connect(_configs, _catalog, _model, _input, OnGameOver, OnScoreChanged);
             _game.Start();
+
+            // Подключить GameScreen к HUD (ShipViewModel null — HUD обновляется через UpdateHud)
+            _gameScreen.Connect(_hudVisual, null);
+
+            // Показать начальный HUD (3 жизни, счёт 0)
+            _gameScreen.UpdateHud(0, 3, 0);
         }
 
         private void OnGameOver()
         {
-            // Phase 4 — пока только лог
-            Debug.Log("[Application] Game Over");
+            // Показать Game Over экран (D-11)
+            if (_gameOverGo != null) { _gameOverGo.SetActive(true); }
+            _gameOverScreen.Show(_game.Score, _game.HighScore);
+        }
+
+        private void OnPlayAgain()
+        {
+            // Скрыть Game Over экран (D-12)
+            if (_gameOverGo != null) { _gameOverGo.SetActive(false); }
+            _gameOverScreen.Hide();
+
+            // Сбросить и перезапустить игру
+            _game.Restart();
+
+            // Показать HUD
+            if (_hudGo != null) { _hudGo.SetActive(true); }
+            _gameScreen.UpdateHud(0, 3, _game.HighScore);
+        }
+
+        private void OnScoreChanged(int score, int lives)
+        {
+            _gameScreen.UpdateHud(score, lives, _game.HighScore);
         }
 
         private void OnUpdate(float deltaTime)
