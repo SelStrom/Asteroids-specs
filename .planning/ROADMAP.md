@@ -80,12 +80,13 @@ Plans:
   4. При гибели корабля он скрывается, через 2 секунды корабль появляется в центре с 3-секундным миганием неуязвимости
   5. Визуальный индикатор сопла виден только при зажатом W
 
-**Plans:** 2/3 plans executed
+**Status:** ✓ Complete
+**Plans:** 3/3 plans executed
 
 Plans:
 - [x] 03-01-PLAN.md — Инфраструктура: Utils, Configs C# классы, Model ECS core, Input Actions asset
 - [x] 03-02-PLAN.md — Сущности + Системы ECS, Input layer (PlayerInput, PlayerActions)
-- [ ] 03-03-PLAN.md — View layer, Application layer, Prefabs, Config assets, сцена Main.unity
+- [x] 03-03-PLAN.md — View layer, Application layer, Prefabs, Config assets, сцена Main.unity
 
 ---
 
