@@ -29,6 +29,9 @@ namespace SelStrom.Asteroids.Configs
         [Space]
         public string LeaderboardId = "asteroids_highscores";
 
+        [Space]
+        public AudioData Audio; // Phase 6: ссылка на AudioData ScriptableObject
+
         [Serializable]
         public struct BulletData
         {

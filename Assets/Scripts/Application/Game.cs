@@ -37,6 +37,14 @@ namespace SelStrom.Asteroids
         private Action<int> _onWaveBannerShow;  // вызывается с номером волны
         private Action _onWaveBannerHide;
 
+        // Audio callbacks (Phase 6)
+        private Action<bool> _onThrust;         // AUD-02
+        private Action _onShoot;                // AUD-01
+        private Action _onExplodeShip;          // AUD-03
+        private Action<int> _onExplodeAsteroid; // AUD-04 (int = asteroid size)
+        private Action<bool> _onUfoTone;        // AUD-05
+        private Action<int> _onAsteroidCount;   // AUD-06 (для пульса)
+
         // Публичные свойства для чтения состояния
         public int Score => _model.Score;
         public int Lives => _lives;
@@ -45,7 +53,10 @@ namespace SelStrom.Asteroids
 
         public void Connect(GameData configs, EntitiesCatalog catalog, Model model,
                             PlayerInput input, Action onGameOver, Action<int, int> onScoreChanged = null,
-                            Action<int> onWaveBannerShow = null, Action onWaveBannerHide = null)
+                            Action<int> onWaveBannerShow = null, Action onWaveBannerHide = null,
+                            Action<bool> onThrust = null, Action onShoot = null,
+                            Action onExplodeShip = null, Action<int> onExplodeAsteroid = null,
+                            Action<bool> onUfoTone = null, Action<int> onAsteroidCount = null)
         {
             _configs = configs;
             _catalog = catalog;
@@ -55,6 +66,12 @@ namespace SelStrom.Asteroids
             _onScoreChanged = onScoreChanged;
             _onWaveBannerShow = onWaveBannerShow;
             _onWaveBannerHide = onWaveBannerHide;
+            _onThrust = onThrust;
+            _onShoot = onShoot;
+            _onExplodeShip = onExplodeShip;
+            _onExplodeAsteroid = onExplodeAsteroid;
+            _onUfoTone = onUfoTone;
+            _onAsteroidCount = onAsteroidCount;
         }
 
         public void Start()
@@ -156,6 +173,8 @@ namespace SelStrom.Asteroids
                 BindAsteroidCollision(asteroid);
                 _asteroidCount++;
             }
+
+            _onAsteroidCount?.Invoke(_asteroidCount); // AUD-06: начальное число астероидов волны
         }
 
         private void BindAsteroidCollision(AsteroidModel asteroid)
@@ -176,6 +195,7 @@ namespace SelStrom.Asteroids
         {
             if (_ship == null || _ship.IsDead()) { return; }
             _ship.Thrust.IsActive.Value = isActive;
+            _onThrust?.Invoke(isActive); // AUD-02
         }
 
         private void OnAttack()
@@ -201,6 +221,7 @@ namespace SelStrom.Asteroids
 
             var bullet = _catalog.CreateBullet(bulletPos, bulletVelocity);
             bullet.Gun = gun; // сохраняем ссылку на GunComponent для декремента CurrentShoots
+            _onShoot?.Invoke(); // AUD-01
         }
 
         private void OnUserLaserFired(LaserComponent laser)
@@ -291,6 +312,10 @@ namespace SelStrom.Asteroids
 
             if (model is AsteroidModel asteroid)
             {
+                _onExplodeAsteroid?.Invoke(asteroid.Size); // AUD-04
+                _catalog.SpawnEffect(asteroid.Move.Position.Value, asteroid.Size * 0.5f); // VIS-04
+                _onAsteroidCount?.Invoke(_asteroidCount - 1); // AUD-06 (передаём до декремента)
+
                 // Дробление (D-04, D-05)
                 SpawnFragments(asteroid);
                 _asteroidCount--;
@@ -304,6 +329,8 @@ namespace SelStrom.Asteroids
 
             if (model is UfoBigModel ufoModel)
             {
+                _onUfoTone?.Invoke(false); // AUD-05: UFO уничтожен
+
                 var data = (ufoModel is UfoModel) ? _configs.Ufo : _configs.UfoBig;
                 _model.Score += data.Score;
 
@@ -321,6 +348,9 @@ namespace SelStrom.Asteroids
 
             if (model is ShipModel)
             {
+                _onExplodeShip?.Invoke(); // AUD-03
+                var shipPos = _ship != null ? _ship.Move.Position.Value : Vector2.zero;
+                _catalog.SpawnEffect(shipPos, 1.5f); // VIS-03
                 _lives--;
 
                 if (_lives <= 0)
@@ -438,6 +468,7 @@ namespace SelStrom.Asteroids
             _ufoStartedFromLeft = fromLeft;
             _activeUfoWrapped = false;
             _ufoActive = true;
+            _onUfoTone?.Invoke(true); // AUD-05: UFO появился
 
             BindUfoCollision(ufo);
         }
@@ -461,6 +492,7 @@ namespace SelStrom.Asteroids
             _ufoStartedFromLeft = fromLeft;
             _activeUfoWrapped = false;
             _ufoActive = true;
+            _onUfoTone?.Invoke(true); // AUD-05: UFO появился
 
             BindUfoCollision(ufo);
         }
@@ -540,6 +572,7 @@ namespace SelStrom.Asteroids
             if (reachedStart)
             {
                 _activeUfo.Kill();
+                _onUfoTone?.Invoke(false); // AUD-05: UFO ушёл за край (Pitfall 6 из RESEARCH)
                 _ufoActive = false;
                 _activeUfo = null;
             }
