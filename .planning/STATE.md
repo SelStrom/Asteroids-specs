@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-28T20:13:38.107Z"
+last_updated: "2026-03-28T20:59:58.135Z"
 progress:
   total_phases: 8
   completed_phases: 5
-  total_plans: 20
-  completed_plans: 20
+  total_plans: 25
+  completed_plans: 21
 ---
 
 # Project State
@@ -18,12 +18,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Играбельный Asteroids в браузере, точно воспроизводящий геймплей оригинала
-**Current focus:** Phase 05 — ufo-progression-polish
+**Current focus:** Phase 06 — audio-visual-polish
 
 ## Current Phase
 
 **Phase:** 5
-**Status:** Executing Phase 05
+**Status:** Executing Phase 06
 **Next action:** Continue Phase 04 — Plan 03
 
 ## Decisions
@@ -53,6 +53,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 05]: UfoVisual не содержит Update/rotation — UFO движется по прямой без вращения спрайта
 - [Phase 05-ufo-progression-polish]: _ufoActive флаг + CheckUfoExit wrap-around detection для UFO-05
 - [Phase 05-ufo-progression-polish]: Phase5Setup создаёт UFO assets через Editor script — не вручную
+- [Phase 06]: AudioManager: отдельный AudioSource на каждый звук, null-guard в PlayOneShot, BeatLoop Lerp(0.25f, 1.0f, count/12f)
 
 ## Milestone
 
