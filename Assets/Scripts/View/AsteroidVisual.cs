@@ -17,6 +17,11 @@ namespace SelStrom.Asteroids
         private int _prefabInstanceId;
         private float _angularSpeed;
 
+        private void Awake()
+        {
+            if (_spriteRenderer == null) { _spriteRenderer = GetComponent<SpriteRenderer>(); }
+        }
+
         public int PrefabInstanceId => _prefabInstanceId;
 
         public void SetPrefabId(int id)
