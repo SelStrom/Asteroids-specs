@@ -26,6 +26,7 @@ MonoBehaviour:
     EnemyPrefab: {fileID: 7492674777510713939, guid: 51a2bb93030984f54aeaa8b00844904d, type: 3}
     LifeTimeSeconds: 2
     Speed: 20
+    BulletSprite: {fileID: 11, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}
   Laser:
     Prefab: {fileID: 0}
     BeamEffectLifetimeSec: 0.5

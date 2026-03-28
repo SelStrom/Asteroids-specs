@@ -36,6 +36,7 @@ namespace SelStrom.Asteroids.Configs
             public GameObject EnemyPrefab;
             public int LifeTimeSeconds;  // int как в DATA_SCHEMA: значение 2
             public float Speed;          // 20 ед/с
+            public Sprite BulletSprite;
         }
 
         [Serializable]

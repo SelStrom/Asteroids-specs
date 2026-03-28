@@ -104,6 +104,7 @@ namespace SelStrom.Asteroids
             var vm = new BulletViewModel();
             var bind = new EventBindingContext();
             bind.From(model.Move.Position).To(vm.Position);
+            vm.Sprite.Value = _configs.Bullet.BulletSprite;
 
             view.Connect(vm);
 

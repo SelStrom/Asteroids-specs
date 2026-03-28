@@ -183,6 +183,17 @@ namespace SelStrom.Asteroids.Editor
                 }
             }
 
+            // Назначить BulletSprite если не задан
+            var bulletProp = serializedGameData.FindProperty("Bullet");
+            if (bulletProp != null)
+            {
+                var bulletSpriteProp = bulletProp.FindPropertyRelative("BulletSprite");
+                if (bulletSpriteProp != null && bulletSpriteProp.objectReferenceValue == null)
+                {
+                    bulletSpriteProp.objectReferenceValue = LoadSprite("bullet");
+                }
+            }
+
             serializedGameData.ApplyModifiedProperties();
 
             UnityEngine.Debug.Log("[Phase4Setup] GameData.asset обновлён с ссылками на asteroid configs.");
