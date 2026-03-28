@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-28T21:10:54.780Z"
+last_updated: "2026-03-28T21:16:56.320Z"
 progress:
   total_phases: 8
-  completed_phases: 5
+  completed_phases: 6
   total_plans: 25
-  completed_plans: 23
+  completed_plans: 25
 ---
 
 # Project State
@@ -57,6 +57,8 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 06-audio-visual-polish]: LeaderboardScreen наследует AbstractScreen, _leaderboardButton отключается в OnConnected View до Phase 7
 - [Phase 06]: Audio callbacks передаются через Game.Connect() как опциональные Action параметры — Game не зависит от AudioManager напрямую
 - [Phase 06]: AudioManager lifecycle: StartBeat() при старте, StopBeat()+StopAll() при GameOver, StopAll() при Restart — защита от зависших loop-звуков
+- [Phase 06]: Phase6Setup следует конвенции Phase3/4/5: один MenuItem вызывает все методы настройки
+- [Phase 06]: vfx_blow.prefab ParticleSystem.stopAction=Callback — критично для OnParticleSystemStopped возврата в пул
 
 ## Milestone
 

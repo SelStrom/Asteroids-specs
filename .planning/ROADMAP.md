@@ -15,7 +15,7 @@
 - [ ] **Phase 3: Core Mechanics** — движение корабля, стрельба, object pool, базовые коллизии
 - [ ] **Phase 4: Asteroids & Progression** — три размера астероидов, дробление, волны, очки, жизни, Game Over
 - [x] **Phase 5: UFO & Progression Polish** — Large/Small UFO, стрельба UFO, HUD-баннер волны, экстра-жизни (completed 2026-03-28)
-- [ ] **Phase 6: Audio & Visual Polish** — все спрайты из атласа, particle effects, все SFX, фоновый пульс, UI экраны
+- [x] **Phase 6: Audio & Visual Polish** — все спрайты из атласа, particle effects, все SFX, фоновый пульс, UI экраны (completed 2026-03-28)
 - [ ] **Phase 7: UGS Leaderboards** — guest auth, отправка счёта, экран лидерборда, обработка ошибок
 - [ ] **Phase 8: MCP Runtime** — RuntimeBridgeProxy, get_game_state, интеграция игрового состояния в MCP
 
@@ -147,14 +147,14 @@ Plans:
   4. Фоновый пульс ускоряется при уменьшении числа астероидов на экране
   5. Экраны Main Menu, Game Over и Leaderboard имеют полноценный layout с кнопками навигации
 
-**Plans:** 3/5 plans executed
+**Plans:** 5/5 plans complete
 
 Plans:
 - [x] 06-01-PLAN.md — EffectVisual ParticleSystem + EntitiesCatalog.SpawnEffect
 - [x] 06-02-PLAN.md — AudioData ScriptableObject + AudioManager MonoBehaviour
 - [x] 06-03-PLAN.md — TitleScreen расширение (title + Leaderboard кнопка) + LeaderboardView/Screen stub
-- [ ] 06-04-PLAN.md — Audio callbacks wire-up в Game.cs и Application.cs
-- [ ] 06-05-PLAN.md — Phase6Setup Editor script + Unity assets + Human verify checkpoint
+- [x] 06-04-PLAN.md — Audio callbacks wire-up в Game.cs и Application.cs
+- [x] 06-05-PLAN.md — Phase6Setup Editor script + Unity assets + Human verify checkpoint
 
 ---
 
@@ -197,7 +197,7 @@ Plans:
 | 3. Core Mechanics | 2/3 | In Progress|  |
 | 4. Asteroids & Progression | 1/4 | In Progress|  |
 | 5. UFO & Progression Polish | 5/5 | Complete   | 2026-03-28 |
-| 6. Audio & Visual Polish | 3/5 | In Progress|  |
+| 6. Audio & Visual Polish | 5/5 | Complete   | 2026-03-28 |
 | 7. UGS Leaderboards | 0/? | Not started | - |
 | 8. MCP Runtime | 0/? | Not started | - |
 
