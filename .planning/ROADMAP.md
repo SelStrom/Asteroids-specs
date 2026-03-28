@@ -147,7 +147,14 @@ Plans:
   4. Фоновый пульс ускоряется при уменьшении числа астероидов на экране
   5. Экраны Main Menu, Game Over и Leaderboard имеют полноценный layout с кнопками навигации
 
-**Plans:** TBD
+**Plans:** 5 plans
+
+Plans:
+- [ ] 06-01-PLAN.md — EffectVisual ParticleSystem + EntitiesCatalog.SpawnEffect
+- [ ] 06-02-PLAN.md — AudioData ScriptableObject + AudioManager MonoBehaviour
+- [ ] 06-03-PLAN.md — TitleScreen расширение (title + Leaderboard кнопка) + LeaderboardView/Screen stub
+- [ ] 06-04-PLAN.md — Audio callbacks wire-up в Game.cs и Application.cs
+- [ ] 06-05-PLAN.md — Phase6Setup Editor script + Unity assets + Human verify checkpoint
 
 ---
 
@@ -190,7 +197,7 @@ Plans:
 | 3. Core Mechanics | 2/3 | In Progress|  |
 | 4. Asteroids & Progression | 1/4 | In Progress|  |
 | 5. UFO & Progression Polish | 5/5 | Complete   | 2026-03-28 |
-| 6. Audio & Visual Polish | 0/? | Not started | - |
+| 6. Audio & Visual Polish | 0/5 | Not started | - |
 | 7. UGS Leaderboards | 0/? | Not started | - |
 | 8. MCP Runtime | 0/? | Not started | - |
 
@@ -243,21 +250,21 @@ Plans:
 | PROG-06 | Phase 5 | Pending (05-02, 05-04) |
 | PROG-07 | Phase 4 | Pending (04-03) |
 | PROG-08 | Phase 4 | Pending (04-04) |
-| VIS-01 | Phase 6 | Pending |
-| VIS-02 | Phase 6 | Pending |
-| VIS-03 | Phase 6 | Pending |
-| VIS-04 | Phase 6 | Pending |
-| VIS-05 | Phase 6 | Pending |
-| VIS-06 | Phase 6 | Pending |
-| VIS-07 | Phase 6 | Pending |
-| VIS-08 | Phase 6 | Pending |
-| AUD-01 | Phase 6 | Pending |
-| AUD-02 | Phase 6 | Pending |
-| AUD-03 | Phase 6 | Pending |
-| AUD-04 | Phase 6 | Pending |
-| AUD-05 | Phase 6 | Pending |
-| AUD-06 | Phase 6 | Pending |
-| AUD-07 | Phase 6 | Pending |
+| VIS-01 | Phase 6 | Pending (06-04, 06-05) |
+| VIS-02 | Phase 6 | Pending (06-03, 06-05) |
+| VIS-03 | Phase 6 | Pending (06-01, 06-05) |
+| VIS-04 | Phase 6 | Pending (06-01, 06-05) |
+| VIS-05 | Phase 6 | Pending (06-03, 06-05) |
+| VIS-06 | Phase 6 | Pending (06-03, 06-05) |
+| VIS-07 | Phase 6 | Pending (06-03, 06-05) |
+| VIS-08 | Phase 6 | Pending (06-03, 06-05) |
+| AUD-01 | Phase 6 | Pending (06-02, 06-04) |
+| AUD-02 | Phase 6 | Pending (06-02, 06-04) |
+| AUD-03 | Phase 6 | Pending (06-02, 06-04) |
+| AUD-04 | Phase 6 | Pending (06-02, 06-04) |
+| AUD-05 | Phase 6 | Pending (06-02, 06-04) |
+| AUD-06 | Phase 6 | Pending (06-02, 06-04) |
+| AUD-07 | Phase 6 | Pending (06-02, 06-05) |
 | LEAD-01 | Phase 7 | Pending |
 | LEAD-02 | Phase 7 | Pending |
 | LEAD-03 | Phase 7 | Pending |
@@ -283,4 +290,4 @@ Plans:
 ---
 
 *Roadmap created: 2026-03-27*
-*Last updated: 2026-03-28 — Phase 5 plans created (5 plans, 4 waves)*
+*Last updated: 2026-03-28 — Phase 6 plans created (5 plans, 3 waves)*
