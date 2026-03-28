@@ -105,8 +105,8 @@ Plans:
 Plans:
 - [x] 04-01-PLAN.md — ECS+View слой: AsteroidModel расширение, AsteroidVisual/ViewModel, EntitiesCatalog.CreateAsteroid, Model.GroupCreator
 - [x] 04-02-PLAN.md — Game логика: StartWave, SpawnFragments, счёт/жизни/экстра-жизни, Game Over, Play Again (Restart)
-- [ ] 04-03-PLAN.md — HUD расширение (Score/Lives/HighScore) + GameOverView/GameOverScreen
-- [ ] 04-04-PLAN.md — Интеграция: Application wire-up, Unity assets (prefabs + configs), checkpoint верификация
+- [x] 04-03-PLAN.md — HUD расширение (Score/Lives/HighScore) + GameOverView/GameOverScreen
+- [x] 04-04-PLAN.md — Интеграция: Application wire-up, Unity assets (prefabs + configs), checkpoint верификация
 
 ---
 

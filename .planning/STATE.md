@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-28T00:40:00.000Z"
+last_updated: "2026-03-28T00:40:55.457Z"
 progress:
   total_phases: 8
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 14
-  completed_plans: 12
+  completed_plans: 14
 ---
 
 # Project State
@@ -47,6 +47,8 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 04-02]: _model.GameArea используется вместо GetSystem<MoveSystem>().GameArea — MoveSystem не имеет публичного геттера
 - [Phase 04-02]: onScoreChanged параметр Connect() опциональный — обратная совместимость с Application.cs
 - [Phase 04-02]: EntitiesCatalog.Reset() очищает только словари, не трогает pool/prefabRegistry
+- [Phase 04]: Game.Connect перенесён в OnGameStart() — чтобы onScoreChanged callback передавался при каждом запуске включая Restart
+- [Phase 04]: AsteroidSmall использует medium-спрайты — PNG не содержит small-вариантов
 
 ## Milestone
 
