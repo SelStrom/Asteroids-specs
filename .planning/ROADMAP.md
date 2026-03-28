@@ -14,7 +14,7 @@
 - [ ] **Phase 2: MCP Basic** — TypeScript MCP-сервер, Editor HTTP-мост, Editor tools (compile/play/stop/list_scenes/open_scene/import_asset)
 - [ ] **Phase 3: Core Mechanics** — движение корабля, стрельба, object pool, базовые коллизии
 - [ ] **Phase 4: Asteroids & Progression** — три размера астероидов, дробление, волны, очки, жизни, Game Over
-- [ ] **Phase 5: UFO & Progression Polish** — Large/Small UFO, стрельба UFO, HUD-баннер волны, экстра-жизни
+- [x] **Phase 5: UFO & Progression Polish** — Large/Small UFO, стрельба UFO, HUD-баннер волны, экстра-жизни (completed 2026-03-28)
 - [ ] **Phase 6: Audio & Visual Polish** — все спрайты из атласа, particle effects, все SFX, фоновый пульс, UI экраны
 - [ ] **Phase 7: UGS Leaderboards** — guest auth, отправка счёта, экран лидерборда, обработка ошибок
 - [ ] **Phase 8: MCP Runtime** — RuntimeBridgeProxy, get_game_state, интеграция игрового состояния в MCP
@@ -124,14 +124,14 @@ Plans:
   3. На экране не более одного UFO одновременно; UFO проходит wrap-around
   4. В HUD кратковременно появляется баннер «Wave N» при старте каждой новой волны
 
-**Plans:** 4/5 plans executed
+**Plans:** 5/5 plans complete
 
 Plans:
 - [x] 05-01-PLAN.md — View слой: UfoVisual + UfoViewModel, расширение ShootToComponent
 - [x] 05-02-PLAN.md — Unity assets: Phase5Setup.cs, UFO prefabs/configs, HUD wave banner
 - [x] 05-03-PLAN.md — Model слой: MoveToSystem, ShootToSystem, GroupCreator.Visit, EntitiesCatalog.CreateUfo
 - [x] 05-04-PLAN.md — Game wire-up: UFO логика в Game.cs, Application.cs update
-- [ ] 05-05-PLAN.md — Setup runner + Human verify checkpoint
+- [x] 05-05-PLAN.md — Setup runner + Human verify checkpoint
 
 ---
 
@@ -189,7 +189,7 @@ Plans:
 | 2. MCP Basic | 1/4 | In Progress|  |
 | 3. Core Mechanics | 2/3 | In Progress|  |
 | 4. Asteroids & Progression | 1/4 | In Progress|  |
-| 5. UFO & Progression Polish | 4/5 | In Progress|  |
+| 5. UFO & Progression Polish | 5/5 | Complete   | 2026-03-28 |
 | 6. Audio & Visual Polish | 0/? | Not started | - |
 | 7. UGS Leaderboards | 0/? | Not started | - |
 | 8. MCP Runtime | 0/? | Not started | - |
