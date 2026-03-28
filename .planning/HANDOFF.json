@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-03-28T21:26:02.788Z",
+  "phase": "06",
+  "phase_name": "audio-visual-polish",
+  "phase_dir": ".planning/phases/06-audio-visual-polish",
+  "plan": 5,
+  "task": 3,
+  "total_tasks": 3,
+  "status": "paused",
+  "completed_tasks": [
+    {"id": "06-01", "name": "EffectVisual + SpawnEffect", "status": "done", "commit": "eca5aca"},
+    {"id": "06-02", "name": "AudioData + AudioManager", "status": "done", "commit": "572aa61"},
+    {"id": "06-03", "name": "TitleScreenView + LeaderboardView stub", "status": "done", "commit": "83024d1"},
+    {"id": "06-04", "name": "Audio callbacks wire-up", "status": "done", "commit": "cb3e3d6"},
+    {"id": "06-05-t1", "name": "Phase6Setup.cs создан", "status": "done", "commit": "0ad1679"},
+    {"id": "06-05-t2", "name": "Phase6Setup запущен через MCP", "status": "done", "commit": "b406af0"},
+    {"id": "fix", "name": "TitleScreen дубль + bullet_particle текстура", "status": "done", "commit": "9bd1a67"}
+  ],
+  "remaining_tasks": [
+    {"id": "re-run", "name": "Re-run Phase6Setup после фиксов", "status": "human_action"},
+    {"id": "06-05-t3", "name": "checkpoint:human-verify в Play Mode", "status": "awaiting_user"},
+    {"id": "verify", "name": "gsd-verifier → VERIFICATION.md", "status": "not_started"},
+    {"id": "complete", "name": "Отметить Phase 6 complete", "status": "not_started"}
+  ],
+  "blockers": [],
+  "human_actions_pending": [
+    {
+      "action": "Unity Editor → Asteroids/Setup Phase 6 Assets → запустить",
+      "context": "Два фикса применены после первого запуска — нужен re-run",
+      "blocking": true
+    },
+    {
+      "action": "Play Mode визуальная верификация: TitleScreen, взрывы, Game Over экран",
+      "context": "checkpoint:human-verify плана 06-05",
+      "blocking": true
+    }
+  ],
+  "decisions": [
+    {"decision": "ParticleSystem + TextureSheetAnimation для взрывов", "rationale": "Правильный Unity способ использовать конкретный спрайт из атласа", "phase": "06"},
+    {"decision": "AudioClip поля пустые — игра работает без звука", "rationale": "Пользователь назначит .wav/.ogg файлы в Inspector", "phase": "06"}
+  ],
+  "uncommitted_files": [],
+  "next_action": "Unity Editor → Asteroids/Setup Phase 6 Assets → Play Mode → написать 'approved'",
+  "context_notes": "Phase 6 code complete. Phase6Setup запущен, потом применены 2 фикса (TitleScreen дубль + TextureSheetAnimation). Нужен re-run setup + visual verify."
+}
