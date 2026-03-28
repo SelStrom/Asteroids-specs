@@ -154,6 +154,9 @@ namespace SelStrom.Asteroids
 
             view.Connect(vm);
 
+            // Принудительно применить начальные значения (position задана до биндинга)
+            bind.InvokeAll();
+
             // 5. Register
             _modelToView[model] = view;
             _modelToBind[model] = bind;
@@ -207,8 +210,15 @@ namespace SelStrom.Asteroids
 
         public void Reset()
         {
-            // Очистить словари от мёртвых ключей предыдущей сессии.
-            // Pool и prefabRegistry НЕ трогать — объекты возвращены в pool через Release() или CleanUp().
+            // Возвращаем все отслеживаемые GO в пул перед сбросом.
+            // Иначе GO предыдущей игры (астероиды, не убитые пулями) остаются активными
+            // в сцене при Restart как orphaned объекты.
+            var models = new List<IGameEntityModel>(_modelToView.Keys);
+            foreach (var model in models)
+            {
+                Release(model);
+            }
+            // Release() уже очищает все словари по одному — дополнительный Clear() на случай edge cases
             _modelToView.Clear();
             _modelToBind.Clear();
             _modelToGo.Clear();
