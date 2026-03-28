@@ -71,6 +71,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 | 260327-p00 | Increase MCP server timeouts and add error handling | 2026-03-27 | 1a096f6 | [260327-p00-increase-mcp-server-timeouts-and-add-err](./quick/260327-p00-increase-mcp-server-timeouts-and-add-err/) |
 | 260328-3p1 | Fix GameOverScreen duplication and NullReference in GunSystem | 2026-03-28 | e84c711 | [260328-3p1-fix-gameoverscreen-duplication-and-nullr](./quick/260328-3p1-fix-gameoverscreen-duplication-and-nullr/) |
 | 260328-jmk | Fix sprite PPU 100→16 and asteroid splitting bug (bullet-only) | 2026-03-28 | b9a45ff | [260328-jmk-fix-sprite-pixels-per-unit-to-16-and-ast](./quick/260328-jmk-fix-sprite-pixels-per-unit-to-16-and-ast/) |
+| 260328-jv0 | Rescale world for PPU=16: colliders ×6.25, Canvas Overlay, HUD pivot fix | 2026-03-28 | 6b3d110 | [260328-jv0-rescale-world-for-ppu-16-fix-prefab-scal](./quick/260328-jv0-rescale-world-for-ppu-16-fix-prefab-scal/) |
 
 ---
 *State initialized: 2026-03-27*
