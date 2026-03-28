@@ -124,13 +124,13 @@ Plans:
   3. На экране не более одного UFO одновременно; UFO проходит wrap-around
   4. В HUD кратковременно появляется баннер «Wave N» при старте каждой новой волны
 
-**Plans:** 1/5 plans executed
+**Plans:** 4/5 plans executed
 
 Plans:
 - [x] 05-01-PLAN.md — View слой: UfoVisual + UfoViewModel, расширение ShootToComponent
-- [ ] 05-02-PLAN.md — Unity assets: Phase5Setup.cs, UFO prefabs/configs, HUD wave banner
-- [ ] 05-03-PLAN.md — Model слой: MoveToSystem, ShootToSystem, GroupCreator.Visit, EntitiesCatalog.CreateUfo
-- [ ] 05-04-PLAN.md — Game wire-up: UFO логика в Game.cs, Application.cs update
+- [x] 05-02-PLAN.md — Unity assets: Phase5Setup.cs, UFO prefabs/configs, HUD wave banner
+- [x] 05-03-PLAN.md — Model слой: MoveToSystem, ShootToSystem, GroupCreator.Visit, EntitiesCatalog.CreateUfo
+- [x] 05-04-PLAN.md — Game wire-up: UFO логика в Game.cs, Application.cs update
 - [ ] 05-05-PLAN.md — Setup runner + Human verify checkpoint
 
 ---
@@ -189,7 +189,7 @@ Plans:
 | 2. MCP Basic | 1/4 | In Progress|  |
 | 3. Core Mechanics | 2/3 | In Progress|  |
 | 4. Asteroids & Progression | 1/4 | In Progress|  |
-| 5. UFO & Progression Polish | 1/5 | In Progress|  |
+| 5. UFO & Progression Polish | 4/5 | In Progress|  |
 | 6. Audio & Visual Polish | 0/? | Not started | - |
 | 7. UGS Leaderboards | 0/? | Not started | - |
 | 8. MCP Runtime | 0/? | Not started | - |

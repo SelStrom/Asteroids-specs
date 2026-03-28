@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-28T19:47:39.792Z"
+last_updated: "2026-03-28T20:01:11.530Z"
 progress:
   total_phases: 8
   completed_phases: 4
   total_plans: 20
-  completed_plans: 16
+  completed_plans: 19
 ---
 
 # Project State
@@ -51,6 +51,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 04]: AsteroidSmall использует собственные small-спрайты (asteroid_small_1/2/3) — нарезаны вручную в asteroids.png, rect 32×32
 - [Phase 05]: ShootToComponent использует using SelStrom.Asteroids для доступа к UfoModel — cross-namespace reference
 - [Phase 05]: UfoVisual не содержит Update/rotation — UFO движется по прямой без вращения спрайта
+- [Phase 05-ufo-progression-polish]: _ufoActive флаг + CheckUfoExit wrap-around detection для UFO-05
 
 ## Milestone
 
