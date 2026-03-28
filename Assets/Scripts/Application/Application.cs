@@ -85,15 +85,12 @@ namespace SelStrom.Asteroids
             if (_titleScreenGo != null) { _titleScreenGo.SetActive(false); }
             if (_hudGo != null) { _hudGo.SetActive(true); }
 
-            // Подключить Game с callback для HUD
-            _game.Connect(_configs, _catalog, _model, _input, OnGameOver, OnScoreChanged);
-            _game.Start();
-
-            // Подключить GameScreen к HUD (ShipViewModel null — HUD обновляется через UpdateHud)
+            // Подключить GameScreen к HUD до старта — иначе начальный onScoreChanged теряется
             _gameScreen.Connect(_hudVisual, null);
 
-            // Показать начальный HUD (3 жизни, счёт 0)
-            _gameScreen.UpdateHud(0, 3, 0);
+            // Подключить Game с callback для HUD и запустить
+            _game.Connect(_configs, _catalog, _model, _input, OnGameOver, OnScoreChanged);
+            _game.Start();
         }
 
         private void OnGameOver()

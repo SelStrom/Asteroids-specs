@@ -387,19 +387,26 @@ namespace SelStrom.Asteroids.Editor
 
         private static void SetupHud(UnityEngine.SceneManagement.Scene scene)
         {
-            var hudGo = GameObject.Find("Hud");
+            // GameObject.Find не ищет неактивные объекты — используем Resources.FindObjectsOfTypeAll
+            var hudVisuals = Resources.FindObjectsOfTypeAll<HudVisual>();
+            var hudVisual = System.Array.Find(hudVisuals, v => v.gameObject.scene == scene);
+            var hudGo = hudVisual != null ? hudVisual.gameObject : null;
             if (hudGo == null)
             {
                 UnityEngine.Debug.LogWarning("[Phase4Setup] Hud GameObject не найден в сцене.");
                 return;
             }
 
-            var hudVisual = hudGo.GetComponent<HudVisual>();
-            if (hudVisual == null) { return; }
-
             UnityEngine.Debug.Log($"[Phase4Setup] Найден HudVisual на '{hudGo.name}'. Настраиваем поля...");
 
-            // Проверить есть ли уже score_text
+            // Растянуть Hud на весь экран — иначе дочерние элементы не могут использовать разные углы Canvas
+            var hudRect = hudGo.GetComponent<RectTransform>();
+            hudRect.anchorMin = Vector2.zero;
+            hudRect.anchorMax = Vector2.one;
+            hudRect.offsetMin = Vector2.zero;
+            hudRect.offsetMax = Vector2.zero;
+
+            // Удалить существующие элементы
             var existingScore = hudGo.transform.Find("score_text");
             if (existingScore != null) { Object.DestroyImmediate(existingScore.gameObject); }
 
@@ -409,41 +416,48 @@ namespace SelStrom.Asteroids.Editor
             var existingLives = hudGo.transform.Find("lives_container");
             if (existingLives != null) { Object.DestroyImmediate(existingLives.gameObject); }
 
-            // Score label (верх-лево, первая позиция в HUD)
+            // Score (верх-лево): anchor (0,1), pivot (0,1) — left top-aligned
             var scoreGo = new GameObject("score_text");
             scoreGo.transform.SetParent(hudGo.transform, false);
             var scoreRect = scoreGo.AddComponent<RectTransform>();
+            scoreRect.pivot = new Vector2(0f, 1f);
             scoreRect.anchorMin = scoreRect.anchorMax = new Vector2(0f, 1f);
-            scoreRect.anchoredPosition = new Vector2(0f, -120f); // ниже debug info
-            scoreRect.sizeDelta = new Vector2(200f, 32f);
+            scoreRect.anchoredPosition = new Vector2(16f, -16f);
+            scoreRect.sizeDelta = new Vector2(160f, 36f);
             var scoreTmp = scoreGo.AddComponent<TextMeshProUGUI>();
             scoreTmp.text = "0";
-            scoreTmp.fontSize = 28f;
+            scoreTmp.fontSize = 30f;
             scoreTmp.fontStyle = FontStyles.Bold;
             scoreTmp.alignment = TextAlignmentOptions.Left;
             scoreTmp.color = Color.white;
 
-            // HighScore label (привязываем к правому краю canvas)
-            // Создаём как дочерний HUD элемент с отрицательной X для правого края
-            var highScoreGo = new GameObject("high_score_text");
-            highScoreGo.transform.SetParent(hudGo.transform, false);
-            var highScoreRect = highScoreGo.AddComponent<RectTransform>();
-            highScoreRect.anchorMin = highScoreRect.anchorMax = new Vector2(0f, 1f);
-            highScoreRect.anchoredPosition = new Vector2(0f, -152f);
-            highScoreRect.sizeDelta = new Vector2(200f, 28f);
-            var highScoreTmp = highScoreGo.AddComponent<TextMeshProUGUI>();
-            highScoreTmp.text = "BEST: 0";
-            highScoreTmp.fontSize = 20f;
-            highScoreTmp.alignment = TextAlignmentOptions.Left;
-            highScoreTmp.color = Color.yellow;
-
-            // Lives container (HorizontalLayoutGroup для иконок)
+            // Lives (под Score, верх-лево)
             var livesGo = new GameObject("lives_container");
             livesGo.transform.SetParent(hudGo.transform, false);
             var livesRect = livesGo.AddComponent<RectTransform>();
+            livesRect.pivot = new Vector2(0f, 1f);
             livesRect.anchorMin = livesRect.anchorMax = new Vector2(0f, 1f);
-            livesRect.anchoredPosition = new Vector2(0f, -184f);
-            livesRect.sizeDelta = new Vector2(100f, 24f);
+            livesRect.anchoredPosition = new Vector2(16f, -58f);
+            livesRect.sizeDelta = new Vector2(120f, 28f);
+            var hlg = livesGo.AddComponent<HorizontalLayoutGroup>();
+            hlg.spacing = 4f;
+            hlg.childAlignment = TextAnchor.MiddleLeft;
+            hlg.childForceExpandWidth = false;
+            hlg.childForceExpandHeight = false;
+
+            // HighScore (верх-право): anchor (1,1), pivot (1,1) — right top-aligned
+            var highScoreGo = new GameObject("high_score_text");
+            highScoreGo.transform.SetParent(hudGo.transform, false);
+            var highScoreRect = highScoreGo.AddComponent<RectTransform>();
+            highScoreRect.pivot = new Vector2(1f, 1f);
+            highScoreRect.anchorMin = highScoreRect.anchorMax = new Vector2(1f, 1f);
+            highScoreRect.anchoredPosition = new Vector2(-16f, -16f);
+            highScoreRect.sizeDelta = new Vector2(180f, 30f);
+            var highScoreTmp = highScoreGo.AddComponent<TextMeshProUGUI>();
+            highScoreTmp.text = "BEST: 0";
+            highScoreTmp.fontSize = 22f;
+            highScoreTmp.alignment = TextAlignmentOptions.Right;
+            highScoreTmp.color = Color.yellow;
             var hlg = livesGo.AddComponent<HorizontalLayoutGroup>();
             hlg.spacing = 4f;
             hlg.childAlignment = TextAnchor.MiddleLeft;
