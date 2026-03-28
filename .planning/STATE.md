@@ -78,4 +78,12 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 | 260328-mxz | Assign small sprites (asteroid_small_1/2/3) to AsteroidSmallData.asset | 2026-03-28 | 71ad1e3 | [260328-mxz-small-asteroidsmalldata](./quick/260328-mxz-small-asteroidsmalldata/) |
 
 ---
+
+### Pending Todos
+
+| File | Title | Area |
+|------|-------|------|
+| [2026-03-28-destroy-bullet-on-asteroid-ufo-collision.md](./todos/pending/2026-03-28-destroy-bullet-on-asteroid-ufo-collision.md) | Уничтожать пулю при коллайде с астероидом или НЛО | gameplay |
+
+---
 *State initialized: 2026-03-27*
