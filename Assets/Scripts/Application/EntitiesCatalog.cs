@@ -65,6 +65,10 @@ namespace SelStrom.Asteroids
             // Биндинг Model.Direction → ViewModel.Rotation (угол в градусах)
             bind.From(model.Move.Direction).To(val =>
                 vm.Rotation.Value = Mathf.Atan2(val.y, val.x) * Mathf.Rad2Deg);
+            // Биндинг скорости и лазера для HUD
+            bind.From(model.Move.Speed).To(vm.Speed);
+            bind.From(model.Laser.CurrentShoots).To(vm.LaserCount);
+            bind.From(model.Laser.ReloadTimeLeft).To(vm.LaserReloadTime);
 
             vm.IsVisible.Value = true;
 

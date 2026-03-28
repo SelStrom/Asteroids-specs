@@ -10,6 +10,9 @@ namespace SelStrom.Asteroids
         public ReactiveValue<bool> IsThrusting = new();
         public ReactiveValue<bool> IsVisible = new(true);
         public ReactiveValue<float> Rotation = new();
+        public ReactiveValue<float> Speed = new();
+        public ReactiveValue<int> LaserCount = new();
+        public ReactiveValue<float> LaserReloadTime = new();
         public Action<Collision2D> OnCollision;
     }
 

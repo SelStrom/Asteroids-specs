@@ -69,6 +69,10 @@ namespace SelStrom.Asteroids
             if (_ship == null) { return; }
             var pos = _ship.Position.Value;
             if (_coordinates != null) { _coordinates.text = $"X: {pos.x:F1}  Y: {pos.y:F1}"; }
+            if (_rotationAngle != null) { _rotationAngle.text = $"{_ship.Rotation.Value:F1}°"; }
+            if (_speedText != null) { _speedText.text = $"{_ship.Speed.Value:F1}"; }
+            if (_laserShootCount != null) { _laserShootCount.text = $"{_ship.LaserCount.Value}"; }
+            if (_laserReloadTime != null) { _laserReloadTime.text = $"{_ship.LaserReloadTime.Value:F2}s"; }
         }
     }
 }
