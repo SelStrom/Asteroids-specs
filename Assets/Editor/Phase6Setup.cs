@@ -85,33 +85,21 @@ namespace SelStrom.Asteroids.Editor
             main.loop = false;
             main.stopAction = ParticleSystemStopAction.Callback; // критично для OnParticleSystemStopped
             main.startLifetime = 0.5f;
-            main.startSpeed = 3f;
-            main.startSize = 0.3f;
+            main.startSpeed = 5f;
+            main.startSize = 0.8f;
             main.maxParticles = 20;
 
             // Burst: 15 частиц при старте
             var emission = ps.emission;
             emission.SetBurst(0, new ParticleSystem.Burst(0f, 15));
 
-            // Настроить Renderer — создать/загрузить материал как сохранённый ассет
+            // Настроить Renderer — использовать встроенный Default-Particle материал (гарантированно работает)
             var psr = go.GetComponent<ParticleSystemRenderer>();
             if (psr != null)
             {
                 psr.renderMode = ParticleSystemRenderMode.Billboard;
-                // Загрузить или создать материал как ассет (не transient) чтобы не потерялся при сохранении prefab
-                if (!AssetDatabase.IsValidFolder("Assets/Media/effects"))
-                {
-                    AssetDatabase.CreateFolder("Assets/Media", "effects");
-                }
-                var mat = AssetDatabase.LoadAssetAtPath<Material>(VfxBlowMatPath);
-                if (mat == null)
-                {
-                    mat = new Material(Shader.Find("Sprites/Default"));
-                    var bulletSprite = LoadSprite("bullet_particle") ?? LoadSprite("bullet");
-                    if (bulletSprite != null) { mat.mainTexture = bulletSprite.texture; }
-                    AssetDatabase.CreateAsset(mat, VfxBlowMatPath);
-                }
-                psr.material = mat;
+                var mat = Resources.GetBuiltinResource<Material>("Default-Particle.mat");
+                psr.sharedMaterial = mat;
             }
 
             // Добавить EffectVisual компонент
