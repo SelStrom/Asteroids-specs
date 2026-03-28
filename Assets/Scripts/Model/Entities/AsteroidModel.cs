@@ -7,7 +7,8 @@ namespace SelStrom.Asteroids
         private bool _killed;
 
         public MoveComponent Move { get; } = new();
-        public int Size { get; set; } // 1=Small, 2=Medium, 3=Big
+        public int Size { get; set; }            // 1=Small, 2=Medium, 3=Big
+        public float AngularSpeed { get; set; }  // °/с, диапазон 30–120
 
         public bool IsDead() => _killed;
 
