@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
-last_updated: "2026-03-28T19:23:59.006Z"
+status: executing
+last_updated: "2026-03-28T19:47:39.792Z"
 progress:
   total_phases: 8
   completed_phases: 4
-  total_plans: 15
-  completed_plans: 15
+  total_plans: 20
+  completed_plans: 16
 ---
 
 # Project State
@@ -18,12 +18,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Играбельный Asteroids в браузере, точно воспроизводящий геймплей оригинала
-**Current focus:** Phase 04 — asteroids-progression
+**Current focus:** Phase 05 — ufo-progression-polish
 
 ## Current Phase
 
 **Phase:** 5
-**Status:** Ready to plan
+**Status:** Executing Phase 05
 **Next action:** Continue Phase 04 — Plan 03
 
 ## Decisions
@@ -49,6 +49,8 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 04-02]: EntitiesCatalog.Reset() очищает только словари, не трогает pool/prefabRegistry
 - [Phase 04]: Game.Connect перенесён в OnGameStart() — чтобы onScoreChanged callback передавался при каждом запуске включая Restart
 - [Phase 04]: AsteroidSmall использует собственные small-спрайты (asteroid_small_1/2/3) — нарезаны вручную в asteroids.png, rect 32×32
+- [Phase 05]: ShootToComponent использует using SelStrom.Asteroids для доступа к UfoModel — cross-namespace reference
+- [Phase 05]: UfoVisual не содержит Update/rotation — UFO движется по прямой без вращения спрайта
 
 ## Milestone
 
