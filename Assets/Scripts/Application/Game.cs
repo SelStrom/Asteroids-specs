@@ -124,7 +124,7 @@ namespace SelStrom.Asteroids
                     shipPos, _configs.SpawnAllowedRadius, gameArea);
 
                 // Случайное направление и скорость Large (2 ед/с)
-                var dir = Random.insideUnitCircle.normalized;
+                var dir = UnityEngine.Random.insideUnitCircle.normalized;
                 var velocity = dir * 2f; // Large: скорость 2 ед/с (Claude's Discretion)
 
                 var asteroid = _catalog.CreateAsteroid(_configs.AsteroidBig, pos, velocity);
@@ -238,7 +238,7 @@ namespace SelStrom.Asteroids
             for (var i = 0; i < 2; i++)
             {
                 // D-05: случайные направления осколков
-                var dir = Random.insideUnitCircle.normalized;
+                var dir = UnityEngine.Random.insideUnitCircle.normalized;
                 var vel = dir * childSpeed;
                 var child = _catalog.CreateAsteroid(childData, parentPos, vel);
                 BindAsteroidCollision(child);

@@ -48,9 +48,9 @@ namespace SelStrom.Asteroids
             ViewModel?.OnCollision?.Invoke(col);
         }
 
-        public void Dispose()
+        public new void Dispose()
         {
-            Disconnect();
+            base.Dispose();
         }
     }
 }
