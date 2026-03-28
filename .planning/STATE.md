@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-28T20:13:38.107Z"
+last_updated: "2026-03-28T20:56:44.656Z"
 progress:
   total_phases: 8
   completed_phases: 5
-  total_plans: 20
-  completed_plans: 20
+  total_plans: 25
+  completed_plans: 21
 ---
 
 # Project State
@@ -53,6 +53,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 05]: UfoVisual не содержит Update/rotation — UFO движется по прямой без вращения спрайта
 - [Phase 05-ufo-progression-polish]: _ufoActive флаг + CheckUfoExit wrap-around detection для UFO-05
 - [Phase 05-ufo-progression-polish]: Phase5Setup создаёт UFO assets через Editor script — не вручную
+- [Phase 06-audio-visual-polish]: [06-01]: ReturnEffect использует _configs.VfxBlowPrefab напрямую — API GameObjectPool.Release(go, prefab) требует prefab GameObject
 
 ## Milestone
 
