@@ -86,6 +86,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 | 260328-m7s | Fix gun shooting: cooldown timer after MaxShoots, CurrentShoots reset after ReloadDurationSec | 2026-03-28 | a574c0a | [260328-m7s-space-max-cooldown](./quick/260328-m7s-space-max-cooldown/) |
 | 260328-me1 | Fix bullet sprite missing + small asteroids invisible | 2026-03-28 | a06b585 | [260328-me1-fix-small](./quick/260328-me1-fix-small/) |
 | 260328-mxz | Assign small sprites (asteroid_small_1/2/3) to AsteroidSmallData.asset | 2026-03-28 | 71ad1e3 | [260328-mxz-small-asteroidsmalldata](./quick/260328-mxz-small-asteroidsmalldata/) |
+| 260328-v8q | Fix TitleScreen double ASTEROIDS text and ParticleSystem noninit error | 2026-03-28 | 684dd33 | [260328-v8q-fix-titlescreen-double-asteroids-text-an](./quick/260328-v8q-fix-titlescreen-double-asteroids-text-an/) |
 
 ---
 
