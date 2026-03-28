@@ -16,6 +16,11 @@ namespace SelStrom.Asteroids
             _killed = true;
         }
 
+        public void SetGun(GunComponent gun)
+        {
+            Gun = gun;
+        }
+
         public virtual void AcceptWith(IGroupVisitor visitor)
         {
             visitor.Visit(this);

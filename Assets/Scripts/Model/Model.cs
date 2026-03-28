@@ -114,7 +114,17 @@ namespace SelStrom.Asteroids
             {
                 _owner.GetSystem<MoveSystem>().Add(model, model.Move);
             }
-            public void Visit(UfoBigModel model) { /* Phase 4-5 */ }
+            public void Visit(UfoBigModel model)
+            {
+                _owner.GetSystem<MoveSystem>().Add(model, model.Move);
+                _owner.GetSystem<GunSystem>().Add(model, model.Gun);
+                // UfoModel (Small) дополнительно подключает ShootToSystem и MoveToSystem
+                if (model is UfoModel ufo)
+                {
+                    _owner.GetSystem<ShootToSystem>().Add(ufo, ufo.ShootTo);
+                    _owner.GetSystem<MoveToSystem>().Add(ufo, ufo.MoveTo);
+                }
+            }
         }
     }
 }

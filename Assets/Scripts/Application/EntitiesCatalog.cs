@@ -35,6 +35,8 @@ namespace SelStrom.Asteroids
             RegisterPrefab(_configs.AsteroidBig.Prefab);
             RegisterPrefab(_configs.AsteroidMedium.Prefab);
             RegisterPrefab(_configs.AsteroidSmall.Prefab);
+            RegisterPrefab(_configs.UfoBig.Prefab);
+            RegisterPrefab(_configs.Ufo.Prefab);
         }
 
         private void RegisterPrefab(GameObject prefab)
@@ -166,6 +168,78 @@ namespace SelStrom.Asteroids
             return model;
         }
 
+        public UfoBigModel CreateUfoBig(Vector2 position, Vector2 direction, float speed)
+        {
+            if (_configs.UfoBig == null || _configs.UfoBig.Prefab == null)
+            {
+                UnityEngine.Debug.LogError("[EntitiesCatalog] UfoBig config или prefab не назначен!");
+                return null;
+            }
+
+            // 1. Model
+            var model = _modelFactory.Create<UfoBigModel>();
+            model.SetGun(new GunComponent(_configs.UfoBig.Gun));
+            model.Move.Position.Value = position;
+            model.Move.Direction.Value = direction;
+            model.Move.Speed.Value = speed;
+
+            // 2. View
+            var view = _pool.Get<UfoVisual>(_configs.UfoBig.Prefab);
+            view.SetPrefabId(_configs.UfoBig.Prefab.GetInstanceID());
+
+            // 3. ViewModel + Bindings
+            var vm = new UfoViewModel();
+            var bind = new EventBindingContext();
+            bind.From(model.Move.Position).To(vm.Position);
+            view.Connect(vm);
+            bind.InvokeAll();
+
+            // 4. Register
+            _modelToView[model] = view;
+            _modelToBind[model] = bind;
+            _modelToGo[model] = view.gameObject;
+            _goToModel[view.gameObject] = model;
+
+            return model;
+        }
+
+        public UfoModel CreateUfoSmall(Vector2 position, Vector2 direction, float speed)
+        {
+            if (_configs.Ufo == null || _configs.Ufo.Prefab == null)
+            {
+                UnityEngine.Debug.LogError("[EntitiesCatalog] Ufo (Small) config или prefab не назначен!");
+                return null;
+            }
+
+            // 1. Model
+            var model = _modelFactory.Create<UfoModel>();
+            model.SetGun(new GunComponent(_configs.Ufo.Gun));
+            model.Move.Position.Value = position;
+            model.Move.Direction.Value = direction;
+            model.Move.Speed.Value = speed;
+            model.ShootTo.ShootInterval = _configs.Ufo.ShootDurationSec;
+            model.ShootTo.Timer = _configs.Ufo.ShootDurationSec;
+
+            // 2. View
+            var view = _pool.Get<UfoVisual>(_configs.Ufo.Prefab);
+            view.SetPrefabId(_configs.Ufo.Prefab.GetInstanceID());
+
+            // 3. ViewModel + Bindings
+            var vm = new UfoViewModel();
+            var bind = new EventBindingContext();
+            bind.From(model.Move.Position).To(vm.Position);
+            view.Connect(vm);
+            bind.InvokeAll();
+
+            // 4. Register
+            _modelToView[model] = view;
+            _modelToBind[model] = bind;
+            _modelToGo[model] = view.gameObject;
+            _goToModel[view.gameObject] = model;
+
+            return model;
+        }
+
         public void Release(IGameEntityModel model)
         {
             if (_modelToBind.TryGetValue(model, out var bind))
@@ -183,6 +257,7 @@ namespace SelStrom.Asteroids
                 if (view is ShipVisual sv) { sv.Dispose(); }
                 else if (view is BulletVisual bv) { bv.Dispose(); }
                 else if (view is AsteroidVisual av) { av.Dispose(); }
+                else if (view is UfoVisual uv) { uv.Dispose(); }
 
                 if (_prefabRegistry.TryGetValue(prefabId, out var prefab))
                 {
