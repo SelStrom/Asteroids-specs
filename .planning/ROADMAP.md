@@ -57,13 +57,14 @@ Plans:
   5. MCP tools `list_scenes`, `open_scene`, `import_asset` корректно работают с AssetDatabase
   6. `mcp.json` зарегистрирован в Claude Code, сервер отображается в списке MCP-инструментов
 
-**Plans:** 1/4 plans executed
+**Status:** ✓ Complete
+**Plans:** 4/4 plans executed
 
 Plans:
-- [ ] 02-01-PLAN.md — TypeScript scaffold (package.json, tsconfig.json, src/index.ts с 6 MCP tools)
+- [x] 02-01-PLAN.md — TypeScript scaffold (package.json, tsconfig.json, src/index.ts с 6 MCP tools)
 - [x] 02-02-PLAN.md — C# HTTP bridge (McpUnityBridge.cs, McpUnityBridge.asmdef)
-- [ ] 02-03-PLAN.md — Конфигурация (.mcp.json, McpUnityRuntime.asmdef, mcp.json, README.md)
-- [ ] 02-04-PLAN.md — Верификация (smoke-тест сборки + ручная проверка всех 6 tools)
+- [x] 02-03-PLAN.md — Конфигурация (.mcp.json, McpUnityRuntime.asmdef, mcp.json, README.md)
+- [x] 02-04-PLAN.md — Верификация (smoke-тест сборки + ручная проверка всех 6 tools)
 
 ---
 
