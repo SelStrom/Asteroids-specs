@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646d8459c496c49a987ef49f0a0ef255, type: 3}
+  m_Name: UfoSmallData
+  m_EditorClassIdentifier: 
+  Score: 1000
+  Prefab: {fileID: 5455360431364665509, guid: 7a353733eb0d14c0fb864d068cefb4e1, type: 3}
+  Speed: 10
+  Gun: {fileID: 11400000, guid: 2e9329a3505cb4f4798404e00c29b402, type: 2}
+  ShootDurationSec: 2

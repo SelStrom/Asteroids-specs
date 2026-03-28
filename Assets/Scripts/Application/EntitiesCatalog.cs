@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Shtl.Mvvm;
+using Model.Components;
 using SelStrom.Asteroids.Configs;
 using UnityEngine;
 
