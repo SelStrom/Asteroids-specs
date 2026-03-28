@@ -9,6 +9,8 @@ namespace Model.Components
         public int CurrentShoots;
         public GunData Config;
         public Action<GunComponent> OnShooting;
+        public float ReloadTimer;
+        public bool IsReloading => ReloadTimer > 0f;
 
         public GunComponent(GunData config)
         {
