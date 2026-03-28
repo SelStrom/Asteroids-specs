@@ -216,6 +216,12 @@ namespace SelStrom.Asteroids
             // Уничтожить астероид
             asteroid.Kill();
 
+            // Уничтожить пулю (gap fix: пуля возвращается в пул при первом попадании)
+            if (hitModel is BulletModel hitBullet)
+            {
+                hitBullet.Kill();
+            }
+
             // Уведомить HUD
             _onScoreChanged?.Invoke(_model.Score, _lives);
         }
