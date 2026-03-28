@@ -13,6 +13,9 @@ namespace SelStrom.Asteroids
         [SerializeField] private GameObject _hudGo;
         [SerializeField] private GameOverView _gameOverView;
         [SerializeField] private GameObject _gameOverGo;
+        [SerializeField] private AudioManager _audioManager;
+        [SerializeField] private LeaderboardView _leaderboardView;
+        [SerializeField] private GameObject _leaderboardGo;
 
         public event Action<float> OnUpdate;
         public event Action OnPause;
@@ -24,7 +27,8 @@ namespace SelStrom.Asteroids
         {
             _application = new Application();
             _application.Connect(this, _configs, _hudVisual, _titleScreenView, _titleScreenGo, _hudGo,
-                _gameOverView, _gameOverGo);
+                _gameOverView, _gameOverGo,
+                _audioManager, _leaderboardView, _leaderboardGo);
         }
 
         private void Start()

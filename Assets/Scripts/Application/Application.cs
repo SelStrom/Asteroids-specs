@@ -24,9 +24,16 @@ namespace SelStrom.Asteroids
         private GameOverScreen _gameOverScreen;
         private GameScreen _gameScreen;
 
+        private AudioManager _audioManager;
+        private LeaderboardScreen _leaderboardScreen;
+        private LeaderboardView _leaderboardView;
+        private GameObject _leaderboardGo;
+
         public void Connect(IApplicationComponent entry, GameData configs, HudVisual hudVisual,
             TitleScreenView titleScreenView, GameObject titleScreenGo, GameObject hudGo,
-            GameOverView gameOverView, GameObject gameOverGo)
+            GameOverView gameOverView, GameObject gameOverGo,
+            AudioManager audioManager = null,
+            LeaderboardView leaderboardView = null, GameObject leaderboardGo = null)
         {
             _entry = entry;
             _configs = configs;
@@ -36,6 +43,9 @@ namespace SelStrom.Asteroids
             _hudGo = hudGo;
             _gameOverView = gameOverView;
             _gameOverGo = gameOverGo;
+            _audioManager = audioManager;
+            _leaderboardView = leaderboardView;
+            _leaderboardGo = leaderboardGo;
 
             _entry.OnUpdate += OnUpdate;
 
@@ -49,6 +59,14 @@ namespace SelStrom.Asteroids
             if (_gameOverView != null)
             {
                 _gameOverScreen.Connect(_gameOverView, OnPlayAgain);
+            }
+
+            // LeaderboardScreen — скрыт при старте
+            if (_leaderboardGo != null) { _leaderboardGo.SetActive(false); }
+            _leaderboardScreen = new LeaderboardScreen();
+            if (_leaderboardView != null)
+            {
+                _leaderboardScreen.Connect(_leaderboardView, OnLeaderboardBack);
             }
         }
 
@@ -91,7 +109,21 @@ namespace SelStrom.Asteroids
             // Подключить Game с callback для HUD и запустить
             _game.Connect(_configs, _catalog, _model, _input, OnGameOver, OnScoreChanged,
                 onWaveBannerShow: wave => _hudVisual?.ShowWaveBanner(wave),
-                onWaveBannerHide: () => _hudVisual?.HideWaveBanner());
+                onWaveBannerHide: () => _hudVisual?.HideWaveBanner(),
+                onThrust: isActive => _audioManager?.PlayThrust(isActive),
+                onShoot: () => _audioManager?.PlayShoot(),
+                onExplodeShip: () => _audioManager?.PlayExplodeShip(),
+                onExplodeAsteroid: size => _audioManager?.PlayExplodeAsteroid(size),
+                onUfoTone: active => _audioManager?.SetUfoTone(active),
+                onAsteroidCount: count => _audioManager?.SetAsteroidCount(count));
+
+            if (_audioManager != null)
+            {
+                _audioManager.StopAll(); // сброс состояния при повторном старте
+                _audioManager.SetAsteroidCount(12);
+                _audioManager.StartBeat();
+            }
+
             _game.Start();
 
             // Переподключить HUD с реальным ShipViewModel (создаётся внутри Start)
@@ -100,6 +132,11 @@ namespace SelStrom.Asteroids
 
         private void OnGameOver()
         {
+            if (_audioManager != null)
+            {
+                _audioManager.StopBeat();  // AUD-06: пульс стоп
+                _audioManager.StopAll();   // AUD-02/05: тяга/UFO стоп (Pitfall 4)
+            }
             // Показать Game Over экран (D-11)
             if (_gameOverGo != null) { _gameOverGo.SetActive(true); }
             _gameOverScreen.Show(_game.Score, _game.HighScore);
@@ -110,6 +147,8 @@ namespace SelStrom.Asteroids
             // Скрыть Game Over экран (D-12)
             if (_gameOverGo != null) { _gameOverGo.SetActive(false); }
             _gameOverScreen.Hide();
+
+            _audioManager?.StopAll(); // Pitfall 2: thrust loop стоп при Restart
 
             // Сбросить и перезапустить игру
             _game.Restart();
@@ -122,6 +161,12 @@ namespace SelStrom.Asteroids
         private void OnScoreChanged(int score, int lives)
         {
             _gameScreen.UpdateHud(score, lives, _game.HighScore);
+        }
+
+        private void OnLeaderboardBack()
+        {
+            _leaderboardScreen?.Hide();
+            if (_titleScreenGo != null) { _titleScreenGo.SetActive(true); }
         }
 
         private void OnUpdate(float deltaTime)
