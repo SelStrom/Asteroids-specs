@@ -92,23 +92,21 @@ namespace SelStrom.Asteroids.Editor
             var emission = ps.emission;
             emission.SetBurst(0, new ParticleSystem.Burst(0f, 15));
 
-            // Настроить Renderer — назначить спрайт bullet_particle
+            // Настроить Renderer и TextureSheetAnimation — конкретный спрайт bullet_particle
             var psr = go.GetComponent<ParticleSystemRenderer>();
-            if (psr != null)
+            var bulletSprite = LoadSprite("bullet_particle") ?? LoadSprite("bullet");
+            if (psr != null && bulletSprite != null)
             {
                 psr.renderMode = ParticleSystemRenderMode.Billboard;
-                var sprite = LoadSprite("bullet_particle");
-                if (sprite == null)
-                {
-                    // bullet_particle может не существовать — пробуем bullet
-                    sprite = LoadSprite("bullet");
-                }
-                if (sprite != null)
-                {
-                    var mat = new Material(Shader.Find("Sprites/Default"));
-                    mat.mainTexture = sprite.texture;
-                    psr.material = mat;
-                }
+                var mat = new Material(Shader.Find("Sprites/Default"));
+                mat.mainTexture = bulletSprite.texture;
+                psr.material = mat;
+
+                // TextureSheetAnimation — правильный способ использовать конкретный спрайт
+                var tsa = ps.textureSheetAnimation;
+                tsa.enabled = true;
+                tsa.mode = ParticleSystemAnimationMode.Sprites;
+                tsa.AddSprite(bulletSprite);
             }
 
             // Добавить EffectVisual компонент
@@ -342,7 +340,13 @@ namespace SelStrom.Asteroids.Editor
 
             var titleGo = titleView.gameObject;
 
-            // Удалить существующие дочерние элементы title_text и leaderboard_button если есть
+            // Удалить существующий _titleText (по ссылке из SerializedObject), затем по имени
+            var soTitleClean = new SerializedObject(titleView);
+            var existingTitleRef = soTitleClean.FindProperty("_titleText")?.objectReferenceValue as TextMeshProUGUI;
+            if (existingTitleRef != null && existingTitleRef.gameObject != null)
+            {
+                Object.DestroyImmediate(existingTitleRef.gameObject);
+            }
             var existingTitle = titleGo.transform.Find("title_text");
             if (existingTitle != null) { Object.DestroyImmediate(existingTitle.gameObject); }
             var existingLbBtn = titleGo.transform.Find("leaderboard_button");
