@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-28T20:59:58.135Z"
+last_updated: "2026-03-28T21:03:43.415Z"
 progress:
   total_phases: 8
   completed_phases: 5
   total_plans: 25
-  completed_plans: 21
+  completed_plans: 22
 ---
 
 # Project State
@@ -54,6 +54,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 05-ufo-progression-polish]: _ufoActive флаг + CheckUfoExit wrap-around detection для UFO-05
 - [Phase 05-ufo-progression-polish]: Phase5Setup создаёт UFO assets через Editor script — не вручную
 - [Phase 06]: AudioManager: отдельный AudioSource на каждый звук, null-guard в PlayOneShot, BeatLoop Lerp(0.25f, 1.0f, count/12f)
+- [Phase 06-audio-visual-polish]: LeaderboardScreen наследует AbstractScreen, _leaderboardButton отключается в OnConnected View до Phase 7
 
 ## Milestone
 

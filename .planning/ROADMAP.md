@@ -147,12 +147,12 @@ Plans:
   4. Фоновый пульс ускоряется при уменьшении числа астероидов на экране
   5. Экраны Main Menu, Game Over и Leaderboard имеют полноценный layout с кнопками навигации
 
-**Plans:** 1/5 plans executed
+**Plans:** 2/5 plans executed
 
 Plans:
 - [ ] 06-01-PLAN.md — EffectVisual ParticleSystem + EntitiesCatalog.SpawnEffect
 - [x] 06-02-PLAN.md — AudioData ScriptableObject + AudioManager MonoBehaviour
-- [ ] 06-03-PLAN.md — TitleScreen расширение (title + Leaderboard кнопка) + LeaderboardView/Screen stub
+- [x] 06-03-PLAN.md — TitleScreen расширение (title + Leaderboard кнопка) + LeaderboardView/Screen stub
 - [ ] 06-04-PLAN.md — Audio callbacks wire-up в Game.cs и Application.cs
 - [ ] 06-05-PLAN.md — Phase6Setup Editor script + Unity assets + Human verify checkpoint
 
@@ -197,7 +197,7 @@ Plans:
 | 3. Core Mechanics | 2/3 | In Progress|  |
 | 4. Asteroids & Progression | 1/4 | In Progress|  |
 | 5. UFO & Progression Polish | 5/5 | Complete   | 2026-03-28 |
-| 6. Audio & Visual Polish | 1/5 | In Progress|  |
+| 6. Audio & Visual Polish | 2/5 | In Progress|  |
 | 7. UGS Leaderboards | 0/? | Not started | - |
 | 8. MCP Runtime | 0/? | Not started | - |
 
