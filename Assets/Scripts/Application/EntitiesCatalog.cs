@@ -71,6 +71,9 @@ namespace SelStrom.Asteroids
             // Соединить view с viewmodel
             view.Connect(vm);
 
+            // Принудительно применить начальные значения (Reset() вызывается до биндинга)
+            bind.InvokeAll();
+
             // 4. Register
             _modelToView[model] = view;
             _modelToBind[model] = bind;
