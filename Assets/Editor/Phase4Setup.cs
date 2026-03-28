@@ -84,12 +84,13 @@ namespace SelStrom.Asteroids.Editor
         {
             // Prefabs уже могут существовать как YAML-файлы — обновить компоненты через PrefabUtility
             // Если prefab уже есть — пересохранить с правильными параметрами; если нет — создать
+            // Радиусы рассчитаны для PPU=16 (старые значения × 6.25 = 100/16)
             CreateOrUpdateAsteroidPrefab("asteroid_big", "Assets/Media/prefabs/asteroid_big.prefab",
-                layer: 8, colliderRadius: 0.4f);
+                layer: 8, colliderRadius: 2.5f);
             CreateOrUpdateAsteroidPrefab("asteroid_medium", "Assets/Media/prefabs/asteroid_medium.prefab",
-                layer: 8, colliderRadius: 0.22f);
+                layer: 8, colliderRadius: 1.375f);
             CreateOrUpdateAsteroidPrefab("asteroid_small", "Assets/Media/prefabs/asteroid_small.prefab",
-                layer: 8, colliderRadius: 0.15f);
+                layer: 8, colliderRadius: 0.9375f);
 
             UnityEngine.Debug.Log("[Phase4Setup] Asteroid prefabs обновлены.");
         }
