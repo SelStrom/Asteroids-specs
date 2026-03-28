@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9332a7db3295844f1be2445a1ec6fea6, type: 3}
+  m_Name: AudioData
+  m_EditorClassIdentifier: 
+  Shoot: {fileID: 0}
+  Thrust: {fileID: 0}
+  ExplodeShip: {fileID: 0}
+  ExplodeAsteroidBig: {fileID: 0}
+  ExplodeAsteroidMedium: {fileID: 0}
+  ExplodeAsteroidSmall: {fileID: 0}
+  UfoTone: {fileID: 0}
+  BeatLow: {fileID: 0}
+  BeatHigh: {fileID: 0}

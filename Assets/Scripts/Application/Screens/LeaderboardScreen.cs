@@ -24,7 +24,7 @@ namespace SelStrom.Asteroids
         public void Hide()
         {
             if (_view == null) { return; }
-            _view.Disconnect();
+            _view.Dispose();
             _view.gameObject.SetActive(false);
         }
 
