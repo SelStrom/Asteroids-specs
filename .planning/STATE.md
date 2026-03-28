@@ -48,7 +48,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 04-02]: onScoreChanged параметр Connect() опциональный — обратная совместимость с Application.cs
 - [Phase 04-02]: EntitiesCatalog.Reset() очищает только словари, не трогает pool/prefabRegistry
 - [Phase 04]: Game.Connect перенесён в OnGameStart() — чтобы onScoreChanged callback передавался при каждом запуске включая Restart
-- [Phase 04]: AsteroidSmall использует medium-спрайты — PNG не содержит small-вариантов
+- [Phase 04]: AsteroidSmall использует собственные small-спрайты (asteroid_small_1/2/3) — нарезаны вручную в asteroids.png, rect 32×32
 
 ## Milestone
 
@@ -75,6 +75,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 | 260328-kk4 | Fix ship sprite rotation: MoveComponent.Direction → ObservableValue, MVVM binding | 2026-03-28 | 714ea30 | [260328-kk4-fix-ship-sprite-rotation](./quick/260328-kk4-fix-ship-sprite-rotation/) |
 | 260328-m7s | Fix gun shooting: cooldown timer after MaxShoots, CurrentShoots reset after ReloadDurationSec | 2026-03-28 | a574c0a | [260328-m7s-space-max-cooldown](./quick/260328-m7s-space-max-cooldown/) |
 | 260328-me1 | Fix bullet sprite missing + small asteroids invisible | 2026-03-28 | a06b585 | [260328-me1-fix-small](./quick/260328-me1-fix-small/) |
+| 260328-mxz | Assign small sprites (asteroid_small_1/2/3) to AsteroidSmallData.asset | 2026-03-28 | 71ad1e3 | [260328-mxz-small-asteroidsmalldata](./quick/260328-mxz-small-asteroidsmalldata/) |
 
 ---
 *State initialized: 2026-03-27*
