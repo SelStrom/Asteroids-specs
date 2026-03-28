@@ -56,11 +56,11 @@ namespace SelStrom.Asteroids.Editor
                 sprites: new[] { "asteroid_medium_1", "asteroid_medium_2", "asteroid_medium_3" }
             );
 
-            // Обновить или создать AsteroidSmallData.asset — Score=3, используем medium-спрайты (PNG не содержит small)
+            // Обновить или создать AsteroidSmallData.asset — Score=3, 3 small-спрайта
             UpdateOrCreateAsteroidConfig(
                 "Assets/Media/configs/AsteroidSmallData.asset",
                 score: 3,
-                sprites: new[] { "asteroid_medium_1", "asteroid_medium_2", "asteroid_medium_3" }
+                sprites: new[] { "asteroid_small_1", "asteroid_small_2", "asteroid_small_3" }
             );
 
             UnityEngine.Debug.Log("[Phase4Setup] AsteroidData конфиги обновлены.");
