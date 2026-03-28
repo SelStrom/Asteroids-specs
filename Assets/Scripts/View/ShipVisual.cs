@@ -43,7 +43,7 @@ namespace SelStrom.Asteroids
 
             // Биндинг поворота: Rotation (градусы) → Transform.rotation
             ViewModel.Rotation.Connect(angleDeg =>
-                transform.rotation = Quaternion.Euler(0f, 0f, angleDeg - 90f));
+                transform.rotation = Quaternion.Euler(0f, 0f, angleDeg));
         }
 
         private void OnCollisionEnter2D(Collision2D col)
