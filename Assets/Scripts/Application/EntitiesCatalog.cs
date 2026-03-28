@@ -38,6 +38,10 @@ namespace SelStrom.Asteroids
             RegisterPrefab(_configs.AsteroidSmall.Prefab);
             RegisterPrefab(_configs.UfoBig.Prefab);
             RegisterPrefab(_configs.Ufo.Prefab);
+            if (_configs.VfxBlowPrefab != null)
+            {
+                RegisterPrefab(_configs.VfxBlowPrefab);
+            }
         }
 
         private void RegisterPrefab(GameObject prefab)
@@ -239,6 +243,30 @@ namespace SelStrom.Asteroids
             _goToModel[view.gameObject] = model;
 
             return model;
+        }
+
+        public void SpawnEffect(Vector2 position, float scale = 1f)
+        {
+            if (_configs.VfxBlowPrefab == null)
+            {
+                Debug.LogWarning("[EntitiesCatalog] VfxBlowPrefab не назначен в GameData");
+                return;
+            }
+            var view = _pool.Get<EffectVisual>(_configs.VfxBlowPrefab);
+            if (view == null)
+            {
+                Debug.LogWarning("[EntitiesCatalog] EffectVisual компонент не найден на VfxBlowPrefab");
+                return;
+            }
+            view.SetPrefabId(_configs.VfxBlowPrefab.GetInstanceID());
+            view.Initialize(ReturnEffect);
+            view.Play(position, scale);
+        }
+
+        private void ReturnEffect(EffectVisual effect)
+        {
+            if (_configs.VfxBlowPrefab == null) { return; }
+            _pool.Release(effect.gameObject, _configs.VfxBlowPrefab);
         }
 
         public void Release(IGameEntityModel model)
