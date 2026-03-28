@@ -7,6 +7,6 @@ namespace Model.Components
     {
         public ObservableValue<Vector2> Position = new();
         public ObservableValue<float> Speed = new();
-        public Vector2 Direction;
+        public ObservableValue<Vector2> Direction = new();
     }
 }

@@ -11,8 +11,8 @@ namespace SelStrom.Asteroids
             if (node.Thrust.IsActive.Value)
             {
                 // Добавить скорость в направлении носа (D-07: ThrustUnitsPerSecond = 6 ед/с²)
-                var addedVelocity = node.Move.Direction * node.Thrust.ThrustUnitsPerSecond * deltaTime;
-                var currentVelocity = node.Move.Direction * node.Move.Speed.Value;
+                var addedVelocity = node.Move.Direction.Value * node.Thrust.ThrustUnitsPerSecond * deltaTime;
+                var currentVelocity = node.Move.Direction.Value * node.Move.Speed.Value;
                 var newVelocity = currentVelocity + addedVelocity;
 
                 // Ограничение максимальной скорости (D-07: MaxSpeed = 15 ед/с)
@@ -21,7 +21,7 @@ namespace SelStrom.Asteroids
                 node.Move.Speed.Value = newVelocity.magnitude;
                 if (newVelocity.magnitude > 0.001f)
                 {
-                    node.Move.Direction = newVelocity.normalized;
+                    node.Move.Direction.Value = newVelocity.normalized;
                 }
             }
             else if (node.Move.Speed.Value > 0f && node.Thrust.Damping > 0f)

@@ -14,9 +14,9 @@ namespace SelStrom.Asteroids
             if (entity is ShipModel ship)
             {
                 var angleDelta = -rotate.RotateDirection * rotate.RotateSpeed * deltaTime;
-                var currentAngle = Mathf.Atan2(ship.Move.Direction.y, ship.Move.Direction.x) * Mathf.Rad2Deg;
+                var currentAngle = Mathf.Atan2(ship.Move.Direction.Value.y, ship.Move.Direction.Value.x) * Mathf.Rad2Deg;
                 var newAngle = (currentAngle + angleDelta) * Mathf.Deg2Rad;
-                ship.Move.Direction = new Vector2(Mathf.Cos(newAngle), Mathf.Sin(newAngle)).normalized;
+                ship.Move.Direction.Value = new Vector2(Mathf.Cos(newAngle), Mathf.Sin(newAngle)).normalized;
             }
         }
     }

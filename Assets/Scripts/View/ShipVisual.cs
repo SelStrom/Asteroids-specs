@@ -9,6 +9,7 @@ namespace SelStrom.Asteroids
         public ReactiveValue<Vector2> Position = new();
         public ReactiveValue<bool> IsThrusting = new();
         public ReactiveValue<bool> IsVisible = new(true);
+        public ReactiveValue<float> Rotation = new();
         public Action<Collision2D> OnCollision;
     }
 
@@ -39,6 +40,10 @@ namespace SelStrom.Asteroids
             // Биндинг видимости: IsVisible → SpriteRenderer.enabled (мигание SHIP-07)
             ViewModel.IsVisible.Connect(val =>
                 _spriteRenderer.enabled = val);
+
+            // Биндинг поворота: Rotation (градусы) → Transform.rotation
+            ViewModel.Rotation.Connect(angleDeg =>
+                transform.rotation = Quaternion.Euler(0f, 0f, angleDeg - 90f));
         }
 
         private void OnCollisionEnter2D(Collision2D col)

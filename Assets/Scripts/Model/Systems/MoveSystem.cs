@@ -14,9 +14,9 @@ namespace SelStrom.Asteroids
 
         protected override void UpdateNode(IGameEntityModel entity, MoveComponent move, float deltaTime)
         {
-            if (move.Speed.Value == 0f && move.Direction == Vector2.zero) { return; }
+            if (move.Speed.Value == 0f && move.Direction.Value == Vector2.zero) { return; }
 
-            var velocity = move.Direction * move.Speed.Value;
+            var velocity = move.Direction.Value * move.Speed.Value;
             var newPos = move.Position.Value + velocity * deltaTime;
 
             // Wrap-around: _gameArea.x = ширина (80 ед), _gameArea.y = высота (45 ед)

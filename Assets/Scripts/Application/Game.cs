@@ -170,7 +170,7 @@ namespace SelStrom.Asteroids
         {
             // Вычислить позицию и скорость пули из носа корабля (SHOT-02)
             var shipPos = _ship.Move.Position.Value;
-            var shipDir = _ship.Move.Direction;
+            var shipDir = _ship.Move.Direction.Value;
             var bulletPos = shipPos + shipDir * 0.5f; // небольшое смещение вперёд от носа
             var shipVelocity = shipDir * _ship.Move.Speed.Value;
             var bulletVelocity = shipDir * _configs.Bullet.Speed + shipVelocity; // SHOT-02

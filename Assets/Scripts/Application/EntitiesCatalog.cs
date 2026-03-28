@@ -62,6 +62,9 @@ namespace SelStrom.Asteroids
             bind.From(model.Move.Position).To(vm.Position);
             // Биндинг Model.Thrust.IsActive → ViewModel.IsThrusting
             bind.From(model.Thrust.IsActive).To(vm.IsThrusting);
+            // Биндинг Model.Direction → ViewModel.Rotation (угол в градусах)
+            bind.From(model.Move.Direction).To(val =>
+                vm.Rotation.Value = Mathf.Atan2(val.y, val.x) * Mathf.Rad2Deg);
 
             vm.IsVisible.Value = true;
 
@@ -87,7 +90,7 @@ namespace SelStrom.Asteroids
             model.IsEnemy = isEnemy;
             model.Setup(_configs.Bullet.LifeTimeSeconds);
             model.Move.Position.Value = position;
-            model.Move.Direction = velocity.normalized;
+            model.Move.Direction.Value = velocity.normalized;
             model.Move.Speed.Value = velocity.magnitude;
 
             // 2. View
@@ -121,7 +124,7 @@ namespace SelStrom.Asteroids
             model.AngularSpeed = UnityEngine.Random.Range(30f, 120f)
                                * (UnityEngine.Random.value > 0.5f ? 1f : -1f);
             model.Move.Position.Value = position;
-            model.Move.Direction = velocity.normalized;
+            model.Move.Direction.Value = velocity.normalized;
             model.Move.Speed.Value = velocity.magnitude;
 
             // 2. View

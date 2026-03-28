@@ -39,7 +39,7 @@ namespace SelStrom.Asteroids
             IsInvulnerable = false;
             Move.Position.Value = Vector2.zero;
             Move.Speed.Value = 0f;
-            Move.Direction = Vector2.up;
+            Move.Direction.Value = Vector2.up;
             Rotate.RotateDirection = 0f;
             Thrust.IsActive.Value = false;
             Gun.CurrentShoots = 0;
