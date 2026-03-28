@@ -6,7 +6,12 @@ namespace SelStrom.Asteroids
     {
         protected override void UpdateNode(IGameEntityModel entity, ShootToComponent shootTo, float deltaTime)
         {
-            //empty — Phase 4
+            shootTo.Timer -= deltaTime;
+            if (shootTo.Timer > 0f) { return; }
+            shootTo.Timer = shootTo.ShootInterval;
+
+            if (!(entity is UfoModel ufo)) { return; }
+            shootTo.OnShoot?.Invoke(ufo);
         }
     }
 }
