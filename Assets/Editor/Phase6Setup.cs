@@ -14,6 +14,7 @@ namespace SelStrom.Asteroids.Editor
         private const string AtlasGuid = "cf467e92e508b5878eb24c5a126421e0";
         private const string AudioDataPath = "Assets/Media/configs/AudioData.asset";
         private const string VfxBlowPrefabPath = "Assets/Media/prefabs/vfx_blow.prefab";
+        private const string VfxBlowMatPath = "Assets/Media/effects/vfx_blow_mat.mat";
         private const string ScenePath = "Assets/Scenes/Main.unity";
 
         [MenuItem("Asteroids/Setup Phase 6 Assets")]
@@ -92,14 +93,24 @@ namespace SelStrom.Asteroids.Editor
             var emission = ps.emission;
             emission.SetBurst(0, new ParticleSystem.Burst(0f, 15));
 
-            // Настроить Renderer и TextureSheetAnimation — конкретный спрайт bullet_particle
+            // Настроить Renderer — создать/загрузить материал как сохранённый ассет
             var psr = go.GetComponent<ParticleSystemRenderer>();
-            var bulletSprite = LoadSprite("bullet_particle") ?? LoadSprite("bullet");
-            if (psr != null && bulletSprite != null)
+            if (psr != null)
             {
                 psr.renderMode = ParticleSystemRenderMode.Billboard;
-                var mat = new Material(Shader.Find("Sprites/Default"));
-                mat.mainTexture = bulletSprite.texture;
+                // Загрузить или создать материал как ассет (не transient) чтобы не потерялся при сохранении prefab
+                if (!AssetDatabase.IsValidFolder("Assets/Media/effects"))
+                {
+                    AssetDatabase.CreateFolder("Assets/Media", "effects");
+                }
+                var mat = AssetDatabase.LoadAssetAtPath<Material>(VfxBlowMatPath);
+                if (mat == null)
+                {
+                    mat = new Material(Shader.Find("Sprites/Default"));
+                    var bulletSprite = LoadSprite("bullet_particle") ?? LoadSprite("bullet");
+                    if (bulletSprite != null) { mat.mainTexture = bulletSprite.texture; }
+                    AssetDatabase.CreateAsset(mat, VfxBlowMatPath);
+                }
                 psr.material = mat;
             }
 
