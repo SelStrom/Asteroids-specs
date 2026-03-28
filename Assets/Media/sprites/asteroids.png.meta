@@ -9,7 +9,7 @@ TextureImporter:
       213: 2
     second: asteroid_big_2
   - first:
-      213: 3
+      213: 13
     second: asteroid_big_3
   - first:
       213: 4
@@ -28,15 +28,18 @@ TextureImporter:
     second: ship
   - first:
       213: 9
-    second: ufo_small_1
+    second: ship_idle
   - first:
       213: 10
-    second: ufo_small_2
+    second: ship_throttle
   - first:
       213: 11
     second: bullet
+  - first:
+      213: 12
+    second: bullet_particle
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -53,11 +56,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -80,7 +84,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -94,8 +98,9 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  ignorePvrTextureImporter: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -108,6 +113,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -120,6 +126,46 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -143,11 +189,9 @@ TextureImporter:
       spriteID: af0e4525721215e667046b3f773a92c9
       internalID: 1
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
-      secondaryTextures: []
-      nameFileIdTable: {}
     - serializedVersion: 2
       name: asteroid_big_2
       rect:
@@ -166,11 +210,9 @@ TextureImporter:
       spriteID: 79b72b35f38f52c1f19b751a29e569bb
       internalID: 2
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
-      secondaryTextures: []
-      nameFileIdTable: {}
     - serializedVersion: 2
       name: asteroid_big_3
       rect:
@@ -187,13 +229,11 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: f968d6d613ec5c745cd68774e2c22ad5
-      internalID: 3
+      internalID: 13
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
-      secondaryTextures: []
-      nameFileIdTable: {}
     - serializedVersion: 2
       name: ufo_big
       rect:
@@ -212,11 +252,9 @@ TextureImporter:
       spriteID: b294397a91b767e280074139a8706a0d
       internalID: 4
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
-      secondaryTextures: []
-      nameFileIdTable: {}
     - serializedVersion: 2
       name: asteroid_medium_1
       rect:
@@ -235,11 +273,9 @@ TextureImporter:
       spriteID: c053eb457c279df5c9e9593dbc1859fd
       internalID: 5
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
-      secondaryTextures: []
-      nameFileIdTable: {}
     - serializedVersion: 2
       name: asteroid_medium_2
       rect:
@@ -258,11 +294,9 @@ TextureImporter:
       spriteID: c89f3eeb25161913d287e33cd61c1265
       internalID: 6
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
-      secondaryTextures: []
-      nameFileIdTable: {}
     - serializedVersion: 2
       name: asteroid_medium_3
       rect:
@@ -281,11 +315,9 @@ TextureImporter:
       spriteID: 3ca7f30869e7a1891989294139a52bec
       internalID: 7
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
-      secondaryTextures: []
-      nameFileIdTable: {}
     - serializedVersion: 2
       name: ship
       rect:
@@ -304,13 +336,11 @@ TextureImporter:
       spriteID: 82fbac73b500f9eed956a7fa9285fccc
       internalID: 8
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
-      secondaryTextures: []
-      nameFileIdTable: {}
     - serializedVersion: 2
-      name: ufo_small_1
+      name: ship_idle
       rect:
         serializedVersion: 2
         x: 105
@@ -327,13 +357,11 @@ TextureImporter:
       spriteID: 494c9b46b86992c1a27732426eb32981
       internalID: 9
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
-      secondaryTextures: []
-      nameFileIdTable: {}
     - serializedVersion: 2
-      name: ufo_small_2
+      name: ship_throttle
       rect:
         serializedVersion: 2
         x: 153
@@ -350,19 +378,17 @@ TextureImporter:
       spriteID: 44f91b34fcaab0e490f986ed29dae25c
       internalID: 10
       vertices: []
-      indices:
+      indices: 
       edges: []
       weights: []
-      secondaryTextures: []
-      nameFileIdTable: {}
     - serializedVersion: 2
       name: bullet
       rect:
         serializedVersion: 2
-        x: 225
-        y: 0
-        width: 31
-        height: 16
+        x: 241
+        y: 1
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -373,24 +399,55 @@ TextureImporter:
       spriteID: b249ac8929a23de6fbc710ec448524e0
       internalID: 11
       vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bullet_particle
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 1
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6
+      internalID: 12
+      vertices: []
       indices:
       edges: []
       weights: []
-      secondaryTextures: []
-      nameFileIdTable: {}
     outline: []
     physicsShape: []
     bones: []
     spriteID:
     internalID: 0
     vertices: []
-    indices:
+    indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
-  mipmapLimitGroupName:
+    nameFileIdTable:
+      asteroid_big_1: 1
+      asteroid_big_2: 2
+      asteroid_big_3: 13
+      asteroid_medium_1: 5
+      asteroid_medium_2: 6
+      asteroid_medium_3: 7
+      bullet: 11
+      bullet_particle: 12
+      ship: 8
+      ufo_big: 4
+      ship_idle: 9
+      ship_throttle: 10
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
