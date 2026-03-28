@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf9abb24e43d94bf59a428af3735fcb3, type: 3}
   m_Name: AsteroidSmallData
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   Score: 3
-  Prefab: {fileID: 3000000001, guid: 338a9c7a069a4fcfb96bfd2d48d7a42e, type: 3}
+  Prefab: {fileID: 8559196877985232690, guid: 338a9c7a069a4fcfb96bfd2d48d7a42e, type: 3}
   SpriteVariants:
-  - {fileID: 5, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}
-  - {fileID: 6, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}
-  - {fileID: 7, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}
+  - {fileID: -166148694, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}
+  - {fileID: 32597434, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}
+  - {fileID: 1187889473, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}
