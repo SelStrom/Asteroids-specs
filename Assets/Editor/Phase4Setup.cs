@@ -168,9 +168,12 @@ namespace SelStrom.Asteroids.Editor
                 return;
             }
 
-            // Удалить старый GameOverScreen если есть
-            var oldGameOver = GameObject.Find("GameOverScreen");
-            if (oldGameOver != null) { Object.DestroyImmediate(oldGameOver); }
+            // Удалить все существующие GameOverScreen включая неактивные
+            var existingGameOverScreens = Object.FindObjectsOfType<GameOverView>(true);
+            foreach (var existing in existingGameOverScreens)
+            {
+                Object.DestroyImmediate(existing.gameObject);
+            }
 
             // GameOverScreen — скрыт при старте (SetActive=false)
             var gameOverGo = new GameObject("GameOverScreen");
