@@ -108,11 +108,11 @@ namespace SelStrom.Asteroids.Editor
         {
             // ufo_big.prefab — layer 8 (Enemies), collider radius 0.75
             CreateOrUpdateUfoPrefab("ufo_big", "Assets/Media/prefabs/ufo_big.prefab",
-                layer: 8, colliderRadius: 0.75f, spriteName: "ufo_big");
+                layer: 8, colliderRadius: 0.75f, spriteName: "ufo_big", scale: 1f);
 
-            // ufo_small.prefab — layer 8 (Enemies), collider radius 0.4
+            // ufo_small.prefab — layer 8 (Enemies), collider radius 0.4, использует спрайт ufo_big уменьшенный
             CreateOrUpdateUfoPrefab("ufo_small", "Assets/Media/prefabs/ufo_small.prefab",
-                layer: 8, colliderRadius: 0.4f, spriteName: "ufo_small");
+                layer: 8, colliderRadius: 0.4f, spriteName: "ufo_big", scale: 0.5f);
 
             // Назначить prefabs в UfoData configs
             var bigData = AssetDatabase.LoadAssetAtPath<UfoData>("Assets/Media/configs/UfoBigData.asset");
@@ -126,10 +126,11 @@ namespace SelStrom.Asteroids.Editor
             UnityEngine.Debug.Log("[Phase5Setup] UFO prefabs созданы/обновлены.");
         }
 
-        private static void CreateOrUpdateUfoPrefab(string name, string path, int layer, float colliderRadius, string spriteName)
+        private static void CreateOrUpdateUfoPrefab(string name, string path, int layer, float colliderRadius, string spriteName, float scale = 1f)
         {
             var go = new GameObject(name);
             go.layer = layer;
+            go.transform.localScale = Vector3.one * scale;
 
             var sr = go.AddComponent<SpriteRenderer>();
             var sprite = LoadSprite(spriteName);
