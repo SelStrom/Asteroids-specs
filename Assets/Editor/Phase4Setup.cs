@@ -106,7 +106,15 @@ namespace SelStrom.Asteroids.Editor
             rb.useFullKinematicContacts = true;
             var col = go.AddComponent<CircleCollider2D>();
             col.radius = colliderRadius;
-            go.AddComponent<AsteroidVisual>();
+            var asteroidVisual = go.AddComponent<AsteroidVisual>();
+            // Назначить _spriteRenderer сериализованно — чтобы prefab содержал правильную ссылку
+            var sr = go.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                var so = new UnityEditor.SerializedObject(asteroidVisual);
+                var srProp = so.FindProperty("_spriteRenderer");
+                if (srProp != null) { srProp.objectReferenceValue = sr; so.ApplyModifiedProperties(); }
+            }
             SaveOrReplacePrefab(go, path);
             Object.DestroyImmediate(go);
         }

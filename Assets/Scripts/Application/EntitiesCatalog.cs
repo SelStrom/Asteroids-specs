@@ -140,6 +140,7 @@ namespace SelStrom.Asteroids
             var sprite = data.SpriteVariants != null && data.SpriteVariants.Length > 0
                 ? data.SpriteVariants[UnityEngine.Random.Range(0, data.SpriteVariants.Length)]
                 : null;
+            if (sprite == null) { Debug.LogWarning($"[EntitiesCatalog] AsteroidData размера {model.Size} не имеет SpriteVariants!"); }
 
             // 4. ViewModel + Bindings
             var vm = new AsteroidViewModel();

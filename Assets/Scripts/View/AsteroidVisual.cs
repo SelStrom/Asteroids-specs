@@ -36,6 +36,8 @@ namespace SelStrom.Asteroids
 
         protected override void OnConnected()
         {
+            // Защита: если Awake не успел назначить (редко, но при реиспользовании объектов пула)
+            if (_spriteRenderer == null) { _spriteRenderer = GetComponent<SpriteRenderer>(); }
             ViewModel.Position.Connect(val =>
                 transform.position = new Vector3(val.x, val.y, transform.position.z));
             ViewModel.Sprite.Connect(val => {
