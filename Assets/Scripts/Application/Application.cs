@@ -89,7 +89,9 @@ namespace SelStrom.Asteroids
             _gameScreen.Connect(_hudVisual, null);
 
             // Подключить Game с callback для HUD и запустить
-            _game.Connect(_configs, _catalog, _model, _input, OnGameOver, OnScoreChanged);
+            _game.Connect(_configs, _catalog, _model, _input, OnGameOver, OnScoreChanged,
+                onWaveBannerShow: wave => _hudVisual?.ShowWaveBanner(wave),
+                onWaveBannerHide: () => _hudVisual?.HideWaveBanner());
             _game.Start();
 
             // Переподключить HUD с реальным ShipViewModel (создаётся внутри Start)
@@ -125,6 +127,7 @@ namespace SelStrom.Asteroids
         private void OnUpdate(float deltaTime)
         {
             _model?.Update(deltaTime);
+            _game?.Update(deltaTime);
         }
 
         public void Dispose()
