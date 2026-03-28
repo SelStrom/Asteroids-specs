@@ -87,6 +87,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 | 260328-me1 | Fix bullet sprite missing + small asteroids invisible | 2026-03-28 | a06b585 | [260328-me1-fix-small](./quick/260328-me1-fix-small/) |
 | 260328-mxz | Assign small sprites (asteroid_small_1/2/3) to AsteroidSmallData.asset | 2026-03-28 | 71ad1e3 | [260328-mxz-small-asteroidsmalldata](./quick/260328-mxz-small-asteroidsmalldata/) |
 | 260328-v8q | Fix TitleScreen double ASTEROIDS text and ParticleSystem noninit error | 2026-03-28 | 684dd33 | [260328-v8q-fix-titlescreen-double-asteroids-text-an](./quick/260328-v8q-fix-titlescreen-double-asteroids-text-an/) |
+| 260328-xag | Fix vfx_blow effect not visible — Default-Particle material + startSize 0.8 | 2026-03-29 | 06382c7 | [260328-xag-fix-vfx-blow-effect-not-visible-at-all-p](./quick/260328-xag-fix-vfx-blow-effect-not-visible-at-all-p/) |
 
 ---
 
