@@ -340,6 +340,13 @@ namespace SelStrom.Asteroids.Editor
 
             var titleGo = titleView.gameObject;
 
+            // Удалить старый Title (Phase3Setup legacy)
+            var oldTitle = titleGo.transform.Find("Title");
+            if (oldTitle != null)
+            {
+                Object.DestroyImmediate(oldTitle.gameObject);
+            }
+
             // Удалить существующий _titleText (по ссылке из SerializedObject), затем по имени
             var soTitleClean = new SerializedObject(titleView);
             var existingTitleRef = soTitleClean.FindProperty("_titleText")?.objectReferenceValue as TextMeshProUGUI;
