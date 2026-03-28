@@ -73,6 +73,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 | 260328-jmk | Fix sprite PPU 100→16 and asteroid splitting bug (bullet-only) | 2026-03-28 | b9a45ff | [260328-jmk-fix-sprite-pixels-per-unit-to-16-and-ast](./quick/260328-jmk-fix-sprite-pixels-per-unit-to-16-and-ast/) |
 | 260328-jv0 | Rescale world for PPU=16: colliders ×6.25, Canvas Overlay, HUD pivot fix | 2026-03-28 | 6b3d110 | [260328-jv0-rescale-world-for-ppu-16-fix-prefab-scal](./quick/260328-jv0-rescale-world-for-ppu-16-fix-prefab-scal/) |
 | 260328-kk4 | Fix ship sprite rotation: MoveComponent.Direction → ObservableValue, MVVM binding | 2026-03-28 | 714ea30 | [260328-kk4-fix-ship-sprite-rotation](./quick/260328-kk4-fix-ship-sprite-rotation/) |
+| 260328-m7s | Fix gun shooting: cooldown timer after MaxShoots, CurrentShoots reset after ReloadDurationSec | 2026-03-28 | a574c0a | [260328-m7s-space-max-cooldown](./quick/260328-m7s-space-max-cooldown/) |
 
 ---
 *State initialized: 2026-03-27*
