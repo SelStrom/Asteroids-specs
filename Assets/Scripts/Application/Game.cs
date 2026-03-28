@@ -198,6 +198,10 @@ namespace SelStrom.Asteroids
         {
             if (!_isRunning || asteroid.IsDead()) { return; }
 
+            // Дробить только при попадании пули (не при столкновении с кораблём)
+            var hitModel = _catalog.GetModelByGo(col.gameObject);
+            if (hitModel is not BulletModel) { return; }
+
             // Начислить очки (D-01: DATA_SCHEMA значения)
             var data = GetAsteroidData(asteroid.Size);
             _model.Score += data.Score; // Big=1, Medium=2, Small=3
