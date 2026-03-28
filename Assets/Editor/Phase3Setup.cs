@@ -63,6 +63,25 @@ namespace SelStrom.Asteroids.Editor
             };
             CreateOrReplaceAsset(gameData, "Assets/Media/configs/GameData.asset");
 
+            // Назначить UserGunData в GameData.Ship.Gun через SerializedObject
+            // (GunData — ScriptableObject-ссылка внутри struct, требует загрузки сохранённых ассетов)
+            var savedGameData = AssetDatabase.LoadAssetAtPath<GameData>("Assets/Media/configs/GameData.asset");
+            var savedUserGun = AssetDatabase.LoadAssetAtPath<GunData>("Assets/Media/configs/UserGunData.asset");
+            if (savedGameData != null && savedUserGun != null)
+            {
+                var serializedGameData = new SerializedObject(savedGameData);
+                var shipProp = serializedGameData.FindProperty("Ship");
+                if (shipProp != null)
+                {
+                    var gunProp = shipProp.FindPropertyRelative("Gun");
+                    if (gunProp != null)
+                    {
+                        gunProp.objectReferenceValue = savedUserGun;
+                    }
+                }
+                serializedGameData.ApplyModifiedProperties();
+            }
+
             UnityEngine.Debug.Log("[Phase3Setup] Config assets created.");
         }
 
