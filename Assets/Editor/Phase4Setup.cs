@@ -150,6 +150,38 @@ namespace SelStrom.Asteroids.Editor
             serializedGameData.FindProperty("AsteroidBig").objectReferenceValue = bigData;
             serializedGameData.FindProperty("AsteroidMedium").objectReferenceValue = medData;
             serializedGameData.FindProperty("AsteroidSmall").objectReferenceValue = smallData;
+
+            // Назначить UserGunData → GameData.Ship.Gun (если ещё не назначен)
+            var userGunData = AssetDatabase.LoadAssetAtPath<GunData>("Assets/Media/configs/UserGunData.asset");
+            var shipProp = serializedGameData.FindProperty("Ship");
+            if (shipProp != null && userGunData != null)
+            {
+                var gunProp = shipProp.FindPropertyRelative("Gun");
+                if (gunProp != null && gunProp.objectReferenceValue == null)
+                {
+                    gunProp.objectReferenceValue = userGunData;
+                }
+
+                // Назначить спрайты корабля
+                var mainSpriteProp = shipProp.FindPropertyRelative("MainSprite");
+                var thrustSpriteProp = shipProp.FindPropertyRelative("ThrustSprite");
+                if (mainSpriteProp != null && mainSpriteProp.objectReferenceValue == null)
+                {
+                    mainSpriteProp.objectReferenceValue = LoadSprite("ship_idle");
+                }
+                if (thrustSpriteProp != null && thrustSpriteProp.objectReferenceValue == null)
+                {
+                    thrustSpriteProp.objectReferenceValue = LoadSprite("ship_throttle");
+                }
+
+                // Назначить Damping если не задан
+                var dampingProp = shipProp.FindPropertyRelative("Damping");
+                if (dampingProp != null && dampingProp.floatValue == 0f)
+                {
+                    dampingProp.floatValue = 2f; // 2 ед/с² — плавное торможение
+                }
+            }
+
             serializedGameData.ApplyModifiedProperties();
 
             UnityEngine.Debug.Log("[Phase4Setup] GameData.asset обновлён с ссылками на asteroid configs.");

@@ -55,6 +55,7 @@ namespace SelStrom.Asteroids.Configs
             public Sprite ThrustSprite;
             public float ThrustUnitsPerSecond;   // 6 ед/с²
             public float MaxSpeed;               // 15 ед/с
+            public float Damping;                // затухание скорости без тяги, ед/с²
             public GunData Gun;
         }
     }

@@ -8,20 +8,26 @@ namespace SelStrom.Asteroids
     {
         protected override void UpdateNode(IGameEntityModel entity, (ThrustComponent Thrust, MoveComponent Move, RotateComponent Rotate) node, float deltaTime)
         {
-            if (!node.Thrust.IsActive.Value) { return; }
-
-            // Добавить скорость в направлении носа (D-07: ThrustUnitsPerSecond = 6 ед/с²)
-            var addedVelocity = node.Move.Direction * node.Thrust.ThrustUnitsPerSecond * deltaTime;
-            var currentVelocity = node.Move.Direction * node.Move.Speed.Value;
-            var newVelocity = currentVelocity + addedVelocity;
-
-            // Ограничение максимальной скорости (D-07: MaxSpeed = 15 ед/с)
-            newVelocity = Vector2.ClampMagnitude(newVelocity, node.Thrust.MaxSpeed);
-
-            node.Move.Speed.Value = newVelocity.magnitude;
-            if (newVelocity.magnitude > 0.001f)
+            if (node.Thrust.IsActive.Value)
             {
-                node.Move.Direction = newVelocity.normalized;
+                // Добавить скорость в направлении носа (D-07: ThrustUnitsPerSecond = 6 ед/с²)
+                var addedVelocity = node.Move.Direction * node.Thrust.ThrustUnitsPerSecond * deltaTime;
+                var currentVelocity = node.Move.Direction * node.Move.Speed.Value;
+                var newVelocity = currentVelocity + addedVelocity;
+
+                // Ограничение максимальной скорости (D-07: MaxSpeed = 15 ед/с)
+                newVelocity = Vector2.ClampMagnitude(newVelocity, node.Thrust.MaxSpeed);
+
+                node.Move.Speed.Value = newVelocity.magnitude;
+                if (newVelocity.magnitude > 0.001f)
+                {
+                    node.Move.Direction = newVelocity.normalized;
+                }
+            }
+            else if (node.Move.Speed.Value > 0f && node.Thrust.Damping > 0f)
+            {
+                // Затухание скорости без тяги (линейное, ед/с²)
+                node.Move.Speed.Value = Mathf.Max(0f, node.Move.Speed.Value - node.Thrust.Damping * deltaTime);
             }
         }
     }

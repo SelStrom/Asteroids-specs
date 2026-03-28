@@ -175,5 +175,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 1039023731184451328}
-  _mainSprite: {fileID: 8, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}
-  _thrustSprite: {fileID: 9, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}
+  _mainSprite: {fileID: 9, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}
+  _thrustSprite: {fileID: 10, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}

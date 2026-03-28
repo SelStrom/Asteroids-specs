@@ -6,6 +6,7 @@ namespace SelStrom.Asteroids
     {
         protected override void UpdateNode(IGameEntityModel entity, GunComponent gun, float deltaTime)
         {
+            if (gun.Config == null) { return; }
             if (gun.Shooting && gun.CurrentShoots < gun.Config.MaxShoots)
             {
                 gun.CurrentShoots++;

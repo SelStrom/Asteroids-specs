@@ -18,7 +18,7 @@ namespace SelStrom.Asteroids
 
         public void Setup(GameData configs)
         {
-            Thrust = new ThrustComponent(configs.Ship.ThrustUnitsPerSecond, configs.Ship.MaxSpeed);
+            Thrust = new ThrustComponent(configs.Ship.ThrustUnitsPerSecond, configs.Ship.MaxSpeed, configs.Ship.Damping);
             Gun = new GunComponent(configs.Ship.Gun);
             Laser.MaxShoots = configs.Laser.LaserMaxShoots;
             Laser.LaserUpdateDurationSec = configs.Laser.LaserUpdateDurationSec;

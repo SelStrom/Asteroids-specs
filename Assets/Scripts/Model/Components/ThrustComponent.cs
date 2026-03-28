@@ -7,11 +7,13 @@ namespace Model.Components
         public ObservableValue<bool> IsActive = new();
         public float ThrustUnitsPerSecond;
         public float MaxSpeed;
+        public float Damping;
 
-        public ThrustComponent(float thrustUnitsPerSecond, float maxSpeed)
+        public ThrustComponent(float thrustUnitsPerSecond, float maxSpeed, float damping)
         {
             ThrustUnitsPerSecond = thrustUnitsPerSecond;
             MaxSpeed = maxSpeed;
+            Damping = damping;
         }
     }
 }
