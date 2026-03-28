@@ -91,6 +91,9 @@ namespace SelStrom.Asteroids
             // Подключить Game с callback для HUD и запустить
             _game.Connect(_configs, _catalog, _model, _input, OnGameOver, OnScoreChanged);
             _game.Start();
+
+            // Переподключить HUD с реальным ShipViewModel (создаётся внутри Start)
+            _gameScreen.Connect(_hudVisual, _game.ShipViewModel);
         }
 
         private void OnGameOver()

@@ -15,7 +15,10 @@ namespace SelStrom.Asteroids
         private Action<int, int> _onScoreChanged; // (score, lives) → HUD
 
         private ShipModel _ship;
+        private ShipViewModel _shipViewModel;
         private bool _isRunning;
+
+        public ShipViewModel ShipViewModel => _shipViewModel;
 
         // Поля прогрессии (волны, жизни, счёт)
         private int _waveNumber;        // текущая волна (1, 2, 3...)
@@ -63,7 +66,8 @@ namespace SelStrom.Asteroids
             // Подписаться на коллизии корабля
             if (_catalog.GetViewByModel(_ship) is ShipVisual shipVisual)
             {
-                shipVisual.ViewModel.OnCollision = OnShipCollided;
+                _shipViewModel = shipVisual.ViewModel;
+                _shipViewModel.OnCollision = OnShipCollided;
             }
 
             // Подписаться на уничтожение сущностей
@@ -314,7 +318,8 @@ namespace SelStrom.Asteroids
             _ship = _catalog.CreateShip();
             if (_catalog.GetViewByModel(_ship) is ShipVisual shipVisual)
             {
-                shipVisual.ViewModel.OnCollision = OnShipCollided;
+                _shipViewModel = shipVisual.ViewModel;
+                _shipViewModel.OnCollision = OnShipCollided;
             }
             _ship.Gun.OnShooting = OnUserGunShooting;
             _ship.Laser.OnLaserFired = OnUserLaserFired;
