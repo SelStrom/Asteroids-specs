@@ -124,7 +124,14 @@ Plans:
   3. На экране не более одного UFO одновременно; UFO проходит wrap-around
   4. В HUD кратковременно появляется баннер «Wave N» при старте каждой новой волны
 
-**Plans:** TBD
+**Plans:** 5 plans
+
+Plans:
+- [ ] 05-01-PLAN.md — View слой: UfoVisual + UfoViewModel, расширение ShootToComponent
+- [ ] 05-02-PLAN.md — Unity assets: Phase5Setup.cs, UFO prefabs/configs, HUD wave banner
+- [ ] 05-03-PLAN.md — Model слой: MoveToSystem, ShootToSystem, GroupCreator.Visit, EntitiesCatalog.CreateUfo
+- [ ] 05-04-PLAN.md — Game wire-up: UFO логика в Game.cs, Application.cs update
+- [ ] 05-05-PLAN.md — Setup runner + Human verify checkpoint
 
 ---
 
@@ -182,7 +189,7 @@ Plans:
 | 2. MCP Basic | 1/4 | In Progress|  |
 | 3. Core Mechanics | 2/3 | In Progress|  |
 | 4. Asteroids & Progression | 1/4 | In Progress|  |
-| 5. UFO & Progression Polish | 0/? | Not started | - |
+| 5. UFO & Progression Polish | 0/5 | Not started | - |
 | 6. Audio & Visual Polish | 0/? | Not started | - |
 | 7. UGS Leaderboards | 0/? | Not started | - |
 | 8. MCP Runtime | 0/? | Not started | - |
@@ -222,18 +229,18 @@ Plans:
 | AST-08 | Phase 4 | Pending (04-02) |
 | AST-09 | Phase 4 | Pending (04-04) |
 | AST-10 | Phase 4 | Pending (04-04) |
-| UFO-01 | Phase 5 | Pending |
-| UFO-02 | Phase 5 | Pending |
-| UFO-03 | Phase 5 | Pending |
-| UFO-04 | Phase 5 | Pending |
-| UFO-05 | Phase 5 | Pending |
-| UFO-06 | Phase 5 | Pending |
+| UFO-01 | Phase 5 | Pending (05-02, 05-04) |
+| UFO-02 | Phase 5 | Pending (05-03, 05-04) |
+| UFO-03 | Phase 5 | Pending (05-01, 05-04) |
+| UFO-04 | Phase 5 | Pending (05-03) |
+| UFO-05 | Phase 5 | Pending (05-04) |
+| UFO-06 | Phase 5 | Pending (05-03, 05-04) |
 | PROG-01 | Phase 4 | Pending (04-02) |
 | PROG-02 | Phase 4 | Pending (04-03) |
 | PROG-03 | Phase 4 | Pending (04-03) |
 | PROG-04 | Phase 4 | Pending (04-02) |
 | PROG-05 | Phase 4 | Pending (04-04) |
-| PROG-06 | Phase 5 | Pending |
+| PROG-06 | Phase 5 | Pending (05-02, 05-04) |
 | PROG-07 | Phase 4 | Pending (04-03) |
 | PROG-08 | Phase 4 | Pending (04-04) |
 | VIS-01 | Phase 6 | Pending |
@@ -276,4 +283,4 @@ Plans:
 ---
 
 *Roadmap created: 2026-03-27*
-*Last updated: 2026-03-28 — Phase 4 gap closure plan 04-05 added (bullet destroy + HUD fix)*
+*Last updated: 2026-03-28 — Phase 5 plans created (5 plans, 4 waves)*
