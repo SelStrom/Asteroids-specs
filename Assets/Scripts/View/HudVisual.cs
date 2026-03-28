@@ -22,6 +22,7 @@ namespace SelStrom.Asteroids
         [SerializeField] private TextMeshProUGUI _highScoreText;    // HighScore верх-право (PROG-07)
         [SerializeField] private Transform _livesContainer;         // контейнер для иконок жизней (D-08)
         [SerializeField] private Sprite _lifeIconSprite;            // Ship спрайт для иконок (D-08)
+        [SerializeField] private TextMeshProUGUI _waveBannerText;   // Wave banner по центру экрана
 
         private ShipViewModel _ship;
         private readonly List<GameObject> _lifeIcons = new();
@@ -62,6 +63,19 @@ namespace SelStrom.Asteroids
                 rt.sizeDelta = new Vector2(20f, 20f);
                 _lifeIcons.Add(iconGo);
             }
+        }
+
+        public void ShowWaveBanner(int wave)
+        {
+            if (_waveBannerText == null) { return; }
+            _waveBannerText.text = $"WAVE {wave}";
+            _waveBannerText.gameObject.SetActive(true);
+        }
+
+        public void HideWaveBanner()
+        {
+            if (_waveBannerText == null) { return; }
+            _waveBannerText.gameObject.SetActive(false);
         }
 
         private void Update()
