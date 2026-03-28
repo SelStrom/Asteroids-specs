@@ -22,8 +22,8 @@ MonoBehaviour:
   AsteroidMedium: {fileID: 11400000, guid: 095a04132c124afeb831fdd5a4a2ff5f, type: 2}
   AsteroidSmall: {fileID: 11400000, guid: 0e5adb2040c647f2b0e9877b00cce339, type: 2}
   Bullet:
-    Prefab: {fileID: 0}
-    EnemyPrefab: {fileID: 0}
+    Prefab: {fileID: 8327398860651991163, guid: 6d83e2e1198b043569307ddcefee6227, type: 3}
+    EnemyPrefab: {fileID: 7492674777510713939, guid: 51a2bb93030984f54aeaa8b00844904d, type: 3}
     LifeTimeSeconds: 2
     Speed: 20
   Laser:
@@ -37,5 +37,6 @@ MonoBehaviour:
     ThrustSprite: {fileID: 9, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}
     ThrustUnitsPerSecond: 6
     MaxSpeed: 15
-    Gun: {fileID: 0}
+    Damping: 2
+    Gun: {fileID: 11400000, guid: 68e420fe736cf45dcb2248e5df3b0a81, type: 2}
   LeaderboardId: asteroids_highscores
