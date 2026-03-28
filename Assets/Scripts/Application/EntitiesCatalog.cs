@@ -32,6 +32,9 @@ namespace SelStrom.Asteroids
             RegisterPrefab(_configs.Ship.Prefab);
             RegisterPrefab(_configs.Bullet.Prefab);
             RegisterPrefab(_configs.Bullet.EnemyPrefab);
+            RegisterPrefab(_configs.AsteroidBig.Prefab);
+            RegisterPrefab(_configs.AsteroidMedium.Prefab);
+            RegisterPrefab(_configs.AsteroidSmall.Prefab);
         }
 
         private void RegisterPrefab(GameObject prefab)
@@ -108,6 +111,46 @@ namespace SelStrom.Asteroids
             return model;
         }
 
+        public AsteroidModel CreateAsteroid(AsteroidData data, Vector2 position, Vector2 velocity)
+        {
+            // 1. Model
+            var model = _modelFactory.Create<AsteroidModel>();
+            model.Size = data == _configs.AsteroidBig ? 3
+                       : data == _configs.AsteroidMedium ? 2
+                       : 1;
+            model.AngularSpeed = UnityEngine.Random.Range(30f, 120f)
+                               * (UnityEngine.Random.value > 0.5f ? 1f : -1f);
+            model.Move.Position.Value = position;
+            model.Move.Direction = velocity.normalized;
+            model.Move.Speed.Value = velocity.magnitude;
+
+            // 2. View
+            var view = _pool.Get<AsteroidVisual>(data.Prefab);
+            view.SetPrefabId(data.Prefab.GetInstanceID());
+            view.SetAngularSpeed(model.AngularSpeed);
+
+            // 3. Выбрать случайный спрайт из SpriteVariants
+            var sprite = data.SpriteVariants != null && data.SpriteVariants.Length > 0
+                ? data.SpriteVariants[UnityEngine.Random.Range(0, data.SpriteVariants.Length)]
+                : null;
+
+            // 4. ViewModel + Bindings
+            var vm = new AsteroidViewModel();
+            var bind = new EventBindingContext();
+            bind.From(model.Move.Position).To(vm.Position);
+            vm.Sprite.Value = sprite;
+
+            view.Connect(vm);
+
+            // 5. Register
+            _modelToView[model] = view;
+            _modelToBind[model] = bind;
+            _modelToGo[model] = view.gameObject;
+            _goToModel[view.gameObject] = model;
+
+            return model;
+        }
+
         public void Release(IGameEntityModel model)
         {
             if (_modelToBind.TryGetValue(model, out var bind))
@@ -124,6 +167,7 @@ namespace SelStrom.Asteroids
                 // Снять биндинги vm→view и отсоединить ViewModel
                 if (view is ShipVisual sv) { sv.Dispose(); }
                 else if (view is BulletVisual bv) { bv.Dispose(); }
+                else if (view is AsteroidVisual av) { av.Dispose(); }
 
                 if (_prefabRegistry.TryGetValue(prefabId, out var prefab))
                 {

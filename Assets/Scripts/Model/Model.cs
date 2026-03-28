@@ -110,7 +110,10 @@ namespace SelStrom.Asteroids
                 _owner.GetSystem<LifeTimeSystem>().Add(model, model.LifeTime);
             }
 
-            public void Visit(AsteroidModel model) { /* Phase 4 */ }
+            public void Visit(AsteroidModel model)
+            {
+                _owner.GetSystem<MoveSystem>().Add(model, model.Move);
+            }
             public void Visit(UfoBigModel model) { /* Phase 4-5 */ }
         }
     }
