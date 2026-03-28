@@ -397,6 +397,8 @@ namespace SelStrom.Asteroids.Editor
             var hudVisual = hudGo.GetComponent<HudVisual>();
             if (hudVisual == null) { return; }
 
+            UnityEngine.Debug.Log($"[Phase4Setup] Найден HudVisual на '{hudGo.name}'. Настраиваем поля...");
+
             // Проверить есть ли уже score_text
             var existingScore = hudGo.transform.Find("score_text");
             if (existingScore != null) { Object.DestroyImmediate(existingScore.gameObject); }
@@ -462,7 +464,19 @@ namespace SelStrom.Asteroids.Editor
             }
 
             serializedHud.ApplyModifiedProperties();
-            UnityEngine.Debug.Log("[Phase4Setup] HUD обновлён: Score, HighScore, LivesContainer добавлены.");
+
+            // Диагностика: проверить что поля назначены
+            var checkScore = serializedHud.FindProperty("_scoreText").objectReferenceValue;
+            var checkHighScore = serializedHud.FindProperty("_highScoreText").objectReferenceValue;
+            var checkLives = serializedHud.FindProperty("_livesContainer").objectReferenceValue;
+            var checkIcon = serializedHud.FindProperty("_lifeIconSprite").objectReferenceValue;
+
+            UnityEngine.Debug.Log($"[Phase4Setup] HUD обновлён:" +
+                $"\n  _scoreText={checkScore?.name ?? "NULL (проверить Hud объект в сцене)"}" +
+                $"\n  _highScoreText={checkHighScore?.name ?? "NULL"}" +
+                $"\n  _livesContainer={checkLives?.name ?? "NULL"}" +
+                $"\n  _lifeIconSprite={checkIcon?.name ?? "NULL (ship_idle спрайт не найден в PNG)"}");
+
         }
 
         private static void AssignConfigsToEntry()
