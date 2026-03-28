@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-28T00:31:28.806Z"
+last_updated: "2026-03-28T00:40:00.000Z"
 progress:
   total_phases: 8
   completed_phases: 3
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Phase:** 3
 **Status:** Executing Phase 04
-**Next action:** /gsd:plan-phase 03
+**Next action:** Continue Phase 04 — Plan 03
 
 ## Decisions
 
@@ -44,8 +44,9 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 03-core-mechanics]: MoveToSystem/ShootToSystem регистрируются как заглушки в Model.cs — компилируются, но пусты до Phase 4
 - [Phase 03-core-mechanics]: ThrustSystem TNode — кортеж (ThrustComponent, MoveComponent, RotateComponent) без wrapper класса
 - [Phase 04]: AsteroidData ScriptableObject — ссылочное сравнение data == _configs.AsteroidBig корректно
-- [Phase 04-03]: OnDisposed() вместо OnDisconnected() — фактический override в AbstractWidgetView (план содержал неверное имя метода)
-- [Phase 04-03]: Submit Score и Leaderboard кнопки disabled (D-11) — подключатся в Phase 7 к UGS Leaderboards
+- [Phase 04-02]: _model.GameArea используется вместо GetSystem<MoveSystem>().GameArea — MoveSystem не имеет публичного геттера
+- [Phase 04-02]: onScoreChanged параметр Connect() опциональный — обратная совместимость с Application.cs
+- [Phase 04-02]: EntitiesCatalog.Reset() очищает только словари, не трогает pool/prefabRegistry
 
 ## Milestone
 

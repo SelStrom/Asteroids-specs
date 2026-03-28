@@ -193,6 +193,16 @@ namespace SelStrom.Asteroids
             return view;
         }
 
+        public void Reset()
+        {
+            // Очистить словари от мёртвых ключей предыдущей сессии.
+            // Pool и prefabRegistry НЕ трогать — объекты возвращены в pool через Release() или CleanUp().
+            _modelToView.Clear();
+            _modelToBind.Clear();
+            _modelToGo.Clear();
+            _goToModel.Clear();
+        }
+
         public void Dispose()
         {
             foreach (var bind in _modelToBind.Values) { bind.CleanUp(); }

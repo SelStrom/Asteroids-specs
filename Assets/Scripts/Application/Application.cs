@@ -47,6 +47,7 @@ namespace SelStrom.Asteroids
             // Создать слои
             _pool = new GameObjectPool();
             _model = new Model();
+            _model.GameArea = gameArea;
             _model.GetSystem<MoveSystem>().SetGameArea(gameArea);
 
             _modelFactory = new ModelFactory();
