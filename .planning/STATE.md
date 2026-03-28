@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-27T18:47:06.350Z"
+last_updated: "2026-03-28T00:20:59.962Z"
 progress:
   total_phases: 8
-  completed_phases: 2
-  total_plans: 10
-  completed_plans: 9
+  completed_phases: 3
+  total_plans: 14
+  completed_plans: 11
 ---
 
 # Project State
@@ -18,12 +18,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Играбельный Asteroids в браузере, точно воспроизводящий геймплей оригинала
-**Current focus:** Phase 03 — core-mechanics
+**Current focus:** Phase 04 — asteroids-progression
 
 ## Current Phase
 
 **Phase:** 3
-**Status:** Executing Phase 03
+**Status:** Executing Phase 04
 **Next action:** /gsd:plan-phase 03
 
 ## Decisions
@@ -43,6 +43,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 02-mcp-basic]: McpUnityBridge: EditorApplication.delayCall dispatching всех Unity API вызовов из фонового Thread
 - [Phase 03-core-mechanics]: MoveToSystem/ShootToSystem регистрируются как заглушки в Model.cs — компилируются, но пусты до Phase 4
 - [Phase 03-core-mechanics]: ThrustSystem TNode — кортеж (ThrustComponent, MoveComponent, RotateComponent) без wrapper класса
+- [Phase 04]: AsteroidData ScriptableObject — ссылочное сравнение data == _configs.AsteroidBig корректно
 
 ## Milestone
 

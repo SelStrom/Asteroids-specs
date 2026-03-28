@@ -100,10 +100,10 @@ Plans:
   4. HUD показывает 3 жизни-иконки при старте; каждые 10 000 очков добавляется жизнь (макс. 6)
   5. При 0 жизнях открывается экран Game Over с финальным счётом и кнопками «Play Again» и «Submit Score»
 
-**Plans:** 4 plans
+**Plans:** 1/4 plans executed
 
 Plans:
-- [ ] 04-01-PLAN.md — ECS+View слой: AsteroidModel расширение, AsteroidVisual/ViewModel, EntitiesCatalog.CreateAsteroid, Model.GroupCreator
+- [x] 04-01-PLAN.md — ECS+View слой: AsteroidModel расширение, AsteroidVisual/ViewModel, EntitiesCatalog.CreateAsteroid, Model.GroupCreator
 - [ ] 04-02-PLAN.md — Game логика: StartWave, SpawnFragments, счёт/жизни/экстра-жизни, Game Over, Play Again (Restart)
 - [ ] 04-03-PLAN.md — HUD расширение (Score/Lives/HighScore) + GameOverView/GameOverScreen
 - [ ] 04-04-PLAN.md — Интеграция: Application wire-up, Unity assets (prefabs + configs), checkpoint верификация
@@ -178,7 +178,7 @@ Plans:
 | 1. Project Foundation | 3/2 | Complete   | 2026-03-27 |
 | 2. MCP Basic | 1/4 | In Progress|  |
 | 3. Core Mechanics | 2/3 | In Progress|  |
-| 4. Asteroids & Progression | 0/4 | Planned | - |
+| 4. Asteroids & Progression | 1/4 | In Progress|  |
 | 5. UFO & Progression Polish | 0/? | Not started | - |
 | 6. Audio & Visual Polish | 0/? | Not started | - |
 | 7. UGS Leaderboards | 0/? | Not started | - |
