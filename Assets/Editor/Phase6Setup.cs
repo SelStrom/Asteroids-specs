@@ -101,12 +101,6 @@ namespace SelStrom.Asteroids.Editor
                 var mat = new Material(Shader.Find("Sprites/Default"));
                 mat.mainTexture = bulletSprite.texture;
                 psr.material = mat;
-
-                // TextureSheetAnimation — правильный способ использовать конкретный спрайт
-                var tsa = ps.textureSheetAnimation;
-                tsa.enabled = true;
-                tsa.mode = ParticleSystemAnimationMode.Sprites;
-                tsa.AddSprite(bulletSprite);
             }
 
             // Добавить EffectVisual компонент
