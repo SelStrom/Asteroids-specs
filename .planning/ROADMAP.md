@@ -4,7 +4,7 @@
 **Total Phases:** 8
 **Requirements:** 68 v1 requirements
 **Granularity:** Standard
-**Last updated:** 2026-03-27
+**Last updated:** 2026-03-28
 
 ---
 
@@ -96,11 +96,17 @@ Plans:
 **Success Criteria** (что должно быть ПРАВДОЙ):
   1. Уничтожение Large порождает 2 Medium, Medium — 2 Small, Small — исчезает; у осколков скорость выше родителя
   2. Первая волна содержит 4 Large астероида, каждая следующая +1 (макс. 12); астероиды появляются вдали от корабля
-  3. Счёт в HUD обновляется в реальном времени: Large 20, Medium 50, Small 100
+  3. Счёт в HUD обновляется в реальном времени: Large +1, Medium +2, Small +3 (DATA_SCHEMA)
   4. HUD показывает 3 жизни-иконки при старте; каждые 10 000 очков добавляется жизнь (макс. 6)
   5. При 0 жизнях открывается экран Game Over с финальным счётом и кнопками «Play Again» и «Submit Score»
 
-**Plans:** TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — ECS+View слой: AsteroidModel расширение, AsteroidVisual/ViewModel, EntitiesCatalog.CreateAsteroid, Model.GroupCreator
+- [ ] 04-02-PLAN.md — Game логика: StartWave, SpawnFragments, счёт/жизни/экстра-жизни, Game Over, Play Again (Restart)
+- [ ] 04-03-PLAN.md — HUD расширение (Score/Lives/HighScore) + GameOverView/GameOverScreen
+- [ ] 04-04-PLAN.md — Интеграция: Application wire-up, Unity assets (prefabs + configs), checkpoint верификация
 
 ---
 
@@ -172,7 +178,7 @@ Plans:
 | 1. Project Foundation | 3/2 | Complete   | 2026-03-27 |
 | 2. MCP Basic | 1/4 | In Progress|  |
 | 3. Core Mechanics | 2/3 | In Progress|  |
-| 4. Asteroids & Progression | 0/? | Not started | - |
+| 4. Asteroids & Progression | 0/4 | Planned | - |
 | 5. UFO & Progression Polish | 0/? | Not started | - |
 | 6. Audio & Visual Polish | 0/? | Not started | - |
 | 7. UGS Leaderboards | 0/? | Not started | - |
@@ -203,30 +209,30 @@ Plans:
 | SHOT-04 | Phase 3 | Pending |
 | SHOT-05 | Phase 3 | Pending |
 | SHOT-06 | Phase 3 | Pending |
-| AST-01 | Phase 4 | Pending |
-| AST-02 | Phase 4 | Pending |
-| AST-03 | Phase 4 | Pending |
-| AST-04 | Phase 4 | Pending |
-| AST-05 | Phase 4 | Pending |
-| AST-06 | Phase 4 | Pending |
-| AST-07 | Phase 4 | Pending |
-| AST-08 | Phase 4 | Pending |
-| AST-09 | Phase 4 | Pending |
-| AST-10 | Phase 4 | Pending |
+| AST-01 | Phase 4 | Pending (04-01) |
+| AST-02 | Phase 4 | Pending (04-02) |
+| AST-03 | Phase 4 | Pending (04-02) |
+| AST-04 | Phase 4 | Pending (04-02) |
+| AST-05 | Phase 4 | Pending (04-01) |
+| AST-06 | Phase 4 | Pending (04-01) |
+| AST-07 | Phase 4 | Pending (04-01) |
+| AST-08 | Phase 4 | Pending (04-02) |
+| AST-09 | Phase 4 | Pending (04-04) |
+| AST-10 | Phase 4 | Pending (04-04) |
 | UFO-01 | Phase 5 | Pending |
 | UFO-02 | Phase 5 | Pending |
 | UFO-03 | Phase 5 | Pending |
 | UFO-04 | Phase 5 | Pending |
 | UFO-05 | Phase 5 | Pending |
 | UFO-06 | Phase 5 | Pending |
-| PROG-01 | Phase 4 | Pending |
-| PROG-02 | Phase 4 | Pending |
-| PROG-03 | Phase 4 | Pending |
-| PROG-04 | Phase 4 | Pending |
-| PROG-05 | Phase 4 | Pending |
+| PROG-01 | Phase 4 | Pending (04-02) |
+| PROG-02 | Phase 4 | Pending (04-03) |
+| PROG-03 | Phase 4 | Pending (04-03) |
+| PROG-04 | Phase 4 | Pending (04-02) |
+| PROG-05 | Phase 4 | Pending (04-04) |
 | PROG-06 | Phase 5 | Pending |
-| PROG-07 | Phase 4 | Pending |
-| PROG-08 | Phase 4 | Pending |
+| PROG-07 | Phase 4 | Pending (04-03) |
+| PROG-08 | Phase 4 | Pending (04-04) |
 | VIS-01 | Phase 6 | Pending |
 | VIS-02 | Phase 6 | Pending |
 | VIS-03 | Phase 6 | Pending |
@@ -267,4 +273,4 @@ Plans:
 ---
 
 *Roadmap created: 2026-03-27*
-*Last updated: 2026-03-27 — Phase 3 plans added (03-01..03-03)*
+*Last updated: 2026-03-28 — Phase 4 plans added (04-01..04-04)*
