@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-29T00:13:44.442Z"
+last_updated: "2026-03-29T00:42:33.911Z"
 progress:
   total_phases: 8
-  completed_phases: 6
+  completed_phases: 7
   total_plans: 29
-  completed_plans: 28
+  completed_plans: 29
 ---
 
 # Project State
@@ -63,6 +63,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 07-ugs-leaderboards]: GameData.UgsProjectId — документационное поле, SDK читает ID из Project Settings (Pitfall 1, LEAD-06)
 - [Phase 07-ugs-leaderboards]: IApplicationComponent расширен StartCoroutine — Application не MonoBehaviour, запускает Coroutine через entry
 - [Phase 07-ugs-leaderboards]: InitUgsCoroutine использует прямой while без RunAsync — graceful обработка ошибок UGS без throw
+- [Phase 07-ugs-leaderboards]: Phase7Setup следует конвенции Phase3/4/5/6: один MenuItem вызывает все методы настройки
 
 ## Milestone
 
