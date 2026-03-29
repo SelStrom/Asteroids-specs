@@ -27,7 +27,8 @@ namespace SelStrom.Asteroids
             }
             if (_leaderboardButton != null)
             {
-                _leaderboardButton.interactable = false; // disabled до Phase 7
+                // Phase 7: кнопка активна если передан callback
+                _leaderboardButton.interactable = ViewModel?.OnLeaderboardClicked != null;
                 _leaderboardButton.onClick.AddListener(() => ViewModel?.OnLeaderboardClicked?.Invoke());
             }
         }
