@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-29T00:00:00.000Z"
+last_updated: "2026-03-29T00:08:14.692Z"
 progress:
   total_phases: 8
   completed_phases: 6
-  total_plans: 25
-  completed_plans: 25
+  total_plans: 29
+  completed_plans: 26
 ---
 
 # Project State
@@ -18,12 +18,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Играбельный Asteroids в браузере, точно воспроизводящий геймплей оригинала
-**Current focus:** Phase 06 — audio-visual-polish
+**Current focus:** Phase 07 — ugs-leaderboards
 
 ## Current Phase
 
-**Phase:** 6 ✓ complete
-**Status:** Phase 06 verified and approved — ready for Phase 07
+**Phase:** 7 — UGS Leaderboards
+**Status:** Executing Phase 07
 **Next action:** Plan Phase 07 — UGS Leaderboards
 
 ## Decisions
@@ -59,6 +59,8 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 06]: AudioManager lifecycle: StartBeat() при старте, StopBeat()+StopAll() при GameOver, StopAll() при Restart — защита от зависших loop-звуков
 - [Phase 06]: Phase6Setup следует конвенции Phase3/4/5: один MenuItem вызывает все методы настройки
 - [Phase 06]: vfx_blow.prefab ParticleSystem.stopAction=Callback — критично для OnParticleSystemStopped возврата в пул
+- [Phase 07-ugs-leaderboards]: UgsService: plain C# класс без MonoBehaviour по паттерну AudioManager (D-08, D-09)
+- [Phase 07-ugs-leaderboards]: GameData.UgsProjectId — документационное поле, SDK читает ID из Project Settings (Pitfall 1, LEAD-06)
 
 ## Milestone
 
