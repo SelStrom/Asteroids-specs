@@ -1,3 +1,4 @@
+using System.Collections;
 using SelStrom.Asteroids.Configs;
 using UnityEngine;
 
@@ -29,11 +30,15 @@ namespace SelStrom.Asteroids
         private LeaderboardView _leaderboardView;
         private GameObject _leaderboardGo;
 
+        // Phase 7: UGS-сервис передаётся из ApplicationEntry (D-08)
+        private UgsService _ugsService;
+
         public void Connect(IApplicationComponent entry, GameData configs, HudVisual hudVisual,
             TitleScreenView titleScreenView, GameObject titleScreenGo, GameObject hudGo,
             GameOverView gameOverView, GameObject gameOverGo,
             AudioManager audioManager = null,
-            LeaderboardView leaderboardView = null, GameObject leaderboardGo = null)
+            LeaderboardView leaderboardView = null, GameObject leaderboardGo = null,
+            UgsService ugsService = null)
         {
             _entry = entry;
             _configs = configs;
@@ -46,12 +51,13 @@ namespace SelStrom.Asteroids
             _audioManager = audioManager;
             _leaderboardView = leaderboardView;
             _leaderboardGo = leaderboardGo;
+            _ugsService = ugsService;
 
             _entry.OnUpdate += OnUpdate;
 
-            // TitleScreen экран
+            // TitleScreen экран — Phase 7: передаём OnLeaderboardOpen callback
             var titleScreen = new TitleScreen();
-            titleScreen.Connect(_titleScreenView, OnGameStart);
+            titleScreen.Connect(_titleScreenView, OnGameStart, OnLeaderboardOpen);
 
             // GameOver экран — скрыт при старте
             if (_gameOverGo != null) { _gameOverGo.SetActive(false); }
@@ -137,9 +143,74 @@ namespace SelStrom.Asteroids
                 _audioManager.StopBeat();  // AUD-06: пульс стоп
                 _audioManager.StopAll();   // AUD-02/05: тяга/UFO стоп (Pitfall 4)
             }
-            // Показать Game Over экран (D-11)
+
+            // Показать Game Over экран
             if (_gameOverGo != null) { _gameOverGo.SetActive(true); }
-            _gameOverScreen.Show(_game.Score, _game.HighScore);
+
+            // D-02: предзаполнить имя из PlayerPrefs
+            var playerName = PlayerPrefs.GetString("PlayerName", "");
+
+            // LEAD-02: расширенный Show с именем и callbacks
+            _gameOverScreen.Show(_game.Score, _game.HighScore, playerName,
+                onSubmitScore: (name) => _entry.StartCoroutine(SubmitScoreCoroutine(name, _game.Score)),
+                onLeaderboard: OnLeaderboardOpen);
+        }
+
+        // LEAD-03, LEAD-04: открыть LeaderboardScreen с реальными данными UGS
+        private void OnLeaderboardOpen()
+        {
+            // Скрыть GameOver и TitleScreen если открыты
+            if (_gameOverGo != null) { _gameOverGo.SetActive(false); }
+            if (_titleScreenGo != null) { _titleScreenGo.SetActive(false); }
+
+            // Показать LeaderboardScreen с реальными данными
+            if (_leaderboardGo != null) { _leaderboardGo.SetActive(true); }
+            if (_ugsService != null)
+            {
+                _entry.StartCoroutine(_leaderboardScreen.ShowWithDataCoroutine(_ugsService));
+            }
+            else
+            {
+                // UGS недоступен — показать пустой экран
+                _leaderboardScreen.Show();
+            }
+        }
+
+        // LEAD-02: отправка счёта через Coroutine-обёртку (D-09)
+        private IEnumerator SubmitScoreCoroutine(string playerName, int score)
+        {
+            if (_ugsService == null)
+            {
+                _gameOverScreen.NotifySubmitError("UGS сервис недоступен.");
+                yield break;
+            }
+
+            // D-02: сохранить имя в PlayerPrefs для следующего запуска
+            if (!string.IsNullOrEmpty(playerName))
+            {
+                PlayerPrefs.SetString("PlayerName", playerName);
+            }
+
+            var task = _ugsService.SubmitScoreAsync(playerName, score);
+            while (!task.IsCompleted)
+            {
+                yield return null;
+            }
+
+            if (task.IsFaulted)
+            {
+                // LEAD-05: показать ошибку в UI
+                _gameOverScreen.NotifySubmitError("Ошибка отправки. Проверьте соединение.");
+                Debug.LogWarning("[Application] Ошибка submit score: " + task.Exception?.Message);
+            }
+            else
+            {
+                // D-03: успех — отключить кнопку, перейти к LeaderboardScreen
+                _gameOverScreen.NotifySubmitSuccess();
+                // Краткая пауза для визуальной обратной связи
+                yield return new WaitForSeconds(0.5f);
+                OnLeaderboardOpen();
+            }
         }
 
         private void OnPlayAgain()
@@ -166,6 +237,7 @@ namespace SelStrom.Asteroids
         private void OnLeaderboardBack()
         {
             _leaderboardScreen?.Hide();
+            if (_leaderboardGo != null) { _leaderboardGo.SetActive(false); }
             if (_titleScreenGo != null) { _titleScreenGo.SetActive(true); }
         }
 
