@@ -190,11 +190,11 @@ Plans:
   2. `RuntimeBridgeProxy.cs` компилируется без ошибок в WebGL-сборке (вся логика под `#if UNITY_EDITOR`)
   3. При вызове `get_game_state` вне Play Mode возвращается `{ isPlaying: false }` без ошибок
 
-**Plans:** 1/2 plans executed
+**Plans:** 2/2 plans executed
 
 Plans:
 - [x] 08-01-PLAN.md — C# сторона: RuntimeBridgeProxy, Game/Application свойства, ApplicationEntry update, McpUnityBridge endpoint
-- [ ] 08-02-PLAN.md — TypeScript tool get_game_state + rebuild dist + human verify checkpoint
+- [x] 08-02-PLAN.md — TypeScript tool get_game_state + rebuild dist + human verify checkpoint
 
 ---
 
@@ -209,7 +209,7 @@ Plans:
 | 5. UFO & Progression Polish | 5/5 | Complete   | 2026-03-28 |
 | 6. Audio & Visual Polish | 5/5 | Complete   | 2026-03-28 |
 | 7. UGS Leaderboards | 4/4 | Complete   | 2026-03-29 |
-| 8. MCP Runtime | 1/2 | In Progress|  |
+| 8. MCP Runtime | 2/2 | Complete   | 2026-03-29 |
 
 ---
 

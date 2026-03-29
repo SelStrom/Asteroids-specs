@@ -136,7 +136,7 @@ server.tool(
 // Инструмент get_game_state — получить живое состояние игры из Runtime (MCP-07)
 server.tool(
   "get_game_state",
-  "Get current game state: score, wave, lives, isPlaying. Returns { score, wave, lives, isPlaying }. Works only in Play Mode; returns isPlaying:false otherwise.",
+  "Get current game state. Returns { score, wave, lives, isPlaying, isRunning }. isPlaying=true when Unity is in Play Mode; isRunning=true when game logic is active (not on title screen).",
   {},
   async () => {
     const text = await callBridge("/get_game_state");

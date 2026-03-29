@@ -2,12 +2,12 @@ namespace SelStrom.Asteroids
 {
     /// <summary>
     /// Статический буфер состояния игры для MCP Runtime Bridge.
-    /// В Editor-сборке хранит Score/Wave/Lives/IsRunning, обновляется каждый кадр.
-    /// В WebGL-сборке компилируется в no-op заглушки — нет зависимости от Editor API.
+    /// Поля присутствуют в Assembly-CSharp (рантайм) чтобы McpUnityBridge мог читать их
+    /// через рефлексию во время Play Mode. В WebGL-билде поля занимают минимум памяти
+    /// и никогда не обновляются (ApplicationEntry вызывает UpdateState только в Play Mode).
     /// </summary>
     public static class RuntimeBridgeProxy
     {
-#if UNITY_EDITOR
         public static int Score;
         public static int Wave;
         public static int Lives;
@@ -28,10 +28,5 @@ namespace SelStrom.Asteroids
             Lives = 0;
             IsRunning = false;
         }
-#else
-        // WebGL no-op заглушки — компилируются без Editor API
-        public static void UpdateState(int score, int wave, int lives, bool isRunning) { }
-        public static void Reset() { }
-#endif
     }
 }

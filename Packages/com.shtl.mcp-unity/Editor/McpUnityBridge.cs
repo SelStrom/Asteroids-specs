@@ -645,13 +645,33 @@ namespace Shtl.McpUnity.Editor
             SendJsonRaw(context, $"{{\"success\":true,\"message\":\"Set {EscapeJson(fieldPath)} on {EscapeJson(componentTypeName)} ({EscapeJson(objectName)})\"}}");
         }
 
+        private static System.Type FindRuntimeBridgeProxyType()
+        {
+            // System.Type.GetType с именем сборки ненадёжен когда вызывающая сборка
+            // не ссылается на целевую напрямую. Ищем по всем загруженным сборкам.
+            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                var t = asm.GetType("SelStrom.Asteroids.RuntimeBridgeProxy");
+                if (t != null) { return t; }
+            }
+            return null;
+        }
+
         private static void HandleGetGameState(HttpListenerContext context)
         {
-            var type = System.Type.GetType("SelStrom.Asteroids.RuntimeBridgeProxy, Assembly-CSharp");
-
-            if (type == null || !EditorApplication.isPlaying)
+            if (!EditorApplication.isPlaying)
             {
                 SendJsonRaw(context, "{\"success\":true,\"score\":0,\"wave\":0,\"lives\":0,\"isPlaying\":false}");
+                return;
+            }
+
+            var type = FindRuntimeBridgeProxyType();
+
+            if (type == null)
+            {
+                // Сборка ещё не загружена — возвращаем isPlaying:true но с нулевыми данными
+                Debug.LogWarning("[McpUnityBridge] RuntimeBridgeProxy type not found in any loaded assembly");
+                SendJsonRaw(context, "{\"success\":true,\"score\":0,\"wave\":0,\"lives\":0,\"isPlaying\":true}");
                 return;
             }
 
@@ -659,7 +679,6 @@ namespace Shtl.McpUnity.Editor
             var wave = (int)type.GetField("Wave").GetValue(null);
             var lives = (int)type.GetField("Lives").GetValue(null);
             var isRunning = (bool)type.GetField("IsRunning").GetValue(null);
-            var isPlaying = EditorApplication.isPlaying && isRunning;
 
             var sb = new System.Text.StringBuilder();
             sb.Append("{\"success\":true,\"score\":");
@@ -668,8 +687,9 @@ namespace Shtl.McpUnity.Editor
             sb.Append(wave);
             sb.Append(",\"lives\":");
             sb.Append(lives);
-            sb.Append(",\"isPlaying\":");
-            sb.Append(isPlaying ? "true" : "false");
+            sb.Append(",\"isPlaying\":true");
+            sb.Append(",\"isRunning\":");
+            sb.Append(isRunning ? "true" : "false");
             sb.Append("}");
 
             SendJsonRaw(context, sb.ToString());
