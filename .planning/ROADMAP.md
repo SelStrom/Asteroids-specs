@@ -4,7 +4,7 @@
 **Total Phases:** 8
 **Requirements:** 68 v1 requirements
 **Granularity:** Standard
-**Last updated:** 2026-03-28
+**Last updated:** 2026-03-29
 
 ---
 
@@ -170,7 +170,13 @@ Plans:
   4. При ошибке сети отображается сообщение об ошибке; игра продолжает работу без краша
   5. UGS Project ID и имя лидерборда вынесены в ScriptableObject — изменяются без правки кода
 
-**Plans:** TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 07-01-PLAN.md — UgsService (guest auth, submit, get scores) + GameData.UgsProjectId
+- [ ] 07-02-PLAN.md — View/Screen расширение: LeaderboardView.Bind(), GameOverView InputField
+- [ ] 07-03-PLAN.md — Application + ApplicationEntry wire-up: UGS инициализация, навигация
+- [ ] 07-04-PLAN.md — Phase7Setup Editor скрипт + Human verify checkpoint
 
 ---
 
@@ -198,7 +204,7 @@ Plans:
 | 4. Asteroids & Progression | 1/4 | In Progress|  |
 | 5. UFO & Progression Polish | 5/5 | Complete   | 2026-03-28 |
 | 6. Audio & Visual Polish | 5/5 | Complete   | 2026-03-28 |
-| 7. UGS Leaderboards | 0/? | Not started | - |
+| 7. UGS Leaderboards | 0/4 | Not started | - |
 | 8. MCP Runtime | 0/? | Not started | - |
 
 ---
@@ -265,12 +271,12 @@ Plans:
 | AUD-05 | Phase 6 | Pending (06-02, 06-04) |
 | AUD-06 | Phase 6 | Pending (06-02, 06-04) |
 | AUD-07 | Phase 6 | Pending (06-02, 06-05) |
-| LEAD-01 | Phase 7 | Pending |
-| LEAD-02 | Phase 7 | Pending |
-| LEAD-03 | Phase 7 | Pending |
-| LEAD-04 | Phase 7 | Pending |
-| LEAD-05 | Phase 7 | Pending |
-| LEAD-06 | Phase 7 | Pending |
+| LEAD-01 | Phase 7 | Pending (07-01, 07-03) |
+| LEAD-02 | Phase 7 | Pending (07-02, 07-03) |
+| LEAD-03 | Phase 7 | Pending (07-02, 07-03) |
+| LEAD-04 | Phase 7 | Pending (07-02, 07-03) |
+| LEAD-05 | Phase 7 | Pending (07-02, 07-03, 07-04) |
+| LEAD-06 | Phase 7 | Pending (07-01) |
 | MCP-01 | Phase 2 | Pending |
 | MCP-02 | Phase 2 | Pending |
 | MCP-03 | Phase 2 | Pending |
@@ -290,4 +296,4 @@ Plans:
 ---
 
 *Roadmap created: 2026-03-27*
-*Last updated: 2026-03-28 — Phase 6 plans created (5 plans, 3 waves)*
+*Last updated: 2026-03-29 — Phase 7 plans created (4 plans, 3 waves)*
