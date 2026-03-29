@@ -13,7 +13,7 @@
 - [x] **Phase 1: Project Foundation** — Unity проект, структура папок, пакеты, сцены, sprite atlas (completed 2026-03-27)
 - [ ] **Phase 2: MCP Basic** — TypeScript MCP-сервер, Editor HTTP-мост, Editor tools (compile/play/stop/list_scenes/open_scene/import_asset)
 - [ ] **Phase 3: Core Mechanics** — движение корабля, стрельба, object pool, базовые коллизии
-- [ ] **Phase 4: Asteroids & Progression** — три размера астероидов, дробление, волны, очки, жизни, Game Over
+- [x] **Phase 4: Asteroids & Progression** — три размера астероидов, дробление, волны, очки, жизни, Game Over (completed 2026-03-29)
 - [x] **Phase 5: UFO & Progression Polish** — Large/Small UFO, стрельба UFO, HUD-баннер волны, экстра-жизни (completed 2026-03-28)
 - [x] **Phase 6: Audio & Visual Polish** — все спрайты из атласа, particle effects, все SFX, фоновый пульс, UI экраны (completed 2026-03-28)
 - [x] **Phase 7: UGS Leaderboards** — guest auth, отправка счёта, экран лидерборда, обработка ошибок (completed 2026-03-29)
@@ -102,14 +102,14 @@ Plans:
   4. HUD показывает 3 жизни-иконки при старте; каждые 10 000 очков добавляется жизнь (макс. 6)
   5. При 0 жизнях открывается экран Game Over с финальным счётом и кнопками «Play Again» и «Submit Score»
 
-**Plans:** 5 plans (4 executed + 1 gap closure)
+**Plans:** 5/5 plans complete
 
 Plans:
 - [x] 04-01-PLAN.md — ECS+View слой: AsteroidModel расширение, AsteroidVisual/ViewModel, EntitiesCatalog.CreateAsteroid, Model.GroupCreator
 - [x] 04-02-PLAN.md — Game логика: StartWave, SpawnFragments, счёт/жизни/экстра-жизни, Game Over, Play Again (Restart)
 - [x] 04-03-PLAN.md — HUD расширение (Score/Lives/HighScore) + GameOverView/GameOverScreen
 - [x] 04-04-PLAN.md — Интеграция: Application wire-up, Unity assets (prefabs + configs), checkpoint верификация
-- [ ] 04-05-PLAN.md — Gap closure: bullet.Kill() при коллайде с астероидом + диагностика HUD назначения
+- [x] 04-05-PLAN.md — Gap closure: bullet.Kill() при коллайде с астероидом + диагностика HUD назначения
 
 ---
 
@@ -205,7 +205,7 @@ Plans:
 | 1. Project Foundation | 3/2 | Complete   | 2026-03-27 |
 | 2. MCP Basic | 1/4 | In Progress|  |
 | 3. Core Mechanics | 2/3 | In Progress|  |
-| 4. Asteroids & Progression | 1/4 | In Progress|  |
+| 4. Asteroids & Progression | 5/5 | Complete   | 2026-03-29 |
 | 5. UFO & Progression Polish | 5/5 | Complete   | 2026-03-28 |
 | 6. Audio & Visual Polish | 5/5 | Complete   | 2026-03-28 |
 | 7. UGS Leaderboards | 4/4 | Complete   | 2026-03-29 |

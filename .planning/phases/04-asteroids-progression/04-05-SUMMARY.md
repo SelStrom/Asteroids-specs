@@ -125,7 +125,7 @@ completed: 2026-03-28
 ## Issues Encountered
 
 - `GameObject.Find()` не находит неактивные объекты — заменён на `Resources.FindObjectsOfTypeAll<HudVisual>()`
-- CS0128 duplicate `hlg` переменная в Phase4Setup после ручного редактирования — удалён дубликат
+- CS0128 duplicate `hlg` переменная в Phase4Setup после ручного редактирования — удалён дубликат (`1fee944`)
 
 ## Next Phase Readiness
 
