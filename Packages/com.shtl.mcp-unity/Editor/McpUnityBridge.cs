@@ -181,6 +181,9 @@ namespace Shtl.McpUnity.Editor
                     case "/set_scene_object_field":
                         HandleSetSceneObjectField(context);
                         break;
+                    case "/get_game_state":
+                        HandleGetGameState(context);
+                        break;
                     default:
                         context.Response.StatusCode = 404;
                         SendJsonRaw(context, "{\"success\":false,\"message\":\"Unknown endpoint\"}");
@@ -640,6 +643,36 @@ namespace Shtl.McpUnity.Editor
             EditorSceneManager.SaveScene(activeScene);
 
             SendJsonRaw(context, $"{{\"success\":true,\"message\":\"Set {EscapeJson(fieldPath)} on {EscapeJson(componentTypeName)} ({EscapeJson(objectName)})\"}}");
+        }
+
+        private static void HandleGetGameState(HttpListenerContext context)
+        {
+            var type = System.Type.GetType("SelStrom.Asteroids.RuntimeBridgeProxy, Assembly-CSharp");
+
+            if (type == null || !EditorApplication.isPlaying)
+            {
+                SendJsonRaw(context, "{\"success\":true,\"score\":0,\"wave\":0,\"lives\":0,\"isPlaying\":false}");
+                return;
+            }
+
+            var score = (int)type.GetField("Score").GetValue(null);
+            var wave = (int)type.GetField("Wave").GetValue(null);
+            var lives = (int)type.GetField("Lives").GetValue(null);
+            var isRunning = (bool)type.GetField("IsRunning").GetValue(null);
+            var isPlaying = EditorApplication.isPlaying && isRunning;
+
+            var sb = new System.Text.StringBuilder();
+            sb.Append("{\"success\":true,\"score\":");
+            sb.Append(score);
+            sb.Append(",\"wave\":");
+            sb.Append(wave);
+            sb.Append(",\"lives\":");
+            sb.Append(lives);
+            sb.Append(",\"isPlaying\":");
+            sb.Append(isPlaying ? "true" : "false");
+            sb.Append("}");
+
+            SendJsonRaw(context, sb.ToString());
         }
 
         private static void SendJsonRaw(HttpListenerContext context, string json)
