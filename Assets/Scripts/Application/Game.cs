@@ -50,6 +50,8 @@ namespace SelStrom.Asteroids
         public int Lives => _lives;
         public int HighScore => _highScore;
         public int WaveNumber => _waveNumber;
+        public bool IsRunning => _isRunning;
+        public int Wave => _waveNumber;
 
         public void Connect(GameData configs, EntitiesCatalog catalog, Model model,
                             PlayerInput input, Action onGameOver, Action<int, int> onScoreChanged = null,

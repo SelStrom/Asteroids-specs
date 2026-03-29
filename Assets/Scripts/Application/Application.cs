@@ -33,6 +33,12 @@ namespace SelStrom.Asteroids
         // Phase 7: UGS-сервис передаётся из ApplicationEntry (D-08)
         private UgsService _ugsService;
 
+        // Свойства для RuntimeBridgeProxy — делегируют к _game (per D-07 из CONTEXT.md)
+        public int Score => _game?.Score ?? 0;
+        public int Wave => _game?.Wave ?? 0;
+        public int Lives => _game?.Lives ?? 0;
+        public bool IsRunning => _game?.IsRunning ?? false;
+
         public void Connect(IApplicationComponent entry, GameData configs, HudVisual hudVisual,
             TitleScreenView titleScreenView, GameObject titleScreenGo, GameObject hudGo,
             GameOverView gameOverView, GameObject gameOverGo,
