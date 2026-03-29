@@ -106,11 +106,11 @@
 - [x] **MCP-04**: MCP tool `compile` — выполняет `AssetDatabase.Refresh()` и возвращает статус компиляции
 - [x] **MCP-05**: MCP tool `play` — запускает Play Mode (`EditorApplication.isPlaying = true`)
 - [x] **MCP-06**: MCP tool `stop` — останавливает Play Mode (`EditorApplication.isPlaying = false`)
-- [ ] **MCP-07**: MCP tool `get_game_state` — возвращает JSON с `{ score, wave, lives, isPlaying }` (из Runtime bridge)
+- [x] **MCP-07**: MCP tool `get_game_state` — возвращает JSON с `{ score, wave, lives, isPlaying }` (из Runtime bridge)
 - [x] **MCP-08**: MCP tool `list_scenes` — возвращает список `.unity` файлов из `AssetDatabase`
 - [x] **MCP-09**: MCP tool `open_scene` — открывает сцену по пути (`EditorSceneManager.OpenScene`)
 - [x] **MCP-10**: MCP tool `import_asset` — выполняет `AssetDatabase.ImportAsset(path)`
-- [ ] **MCP-11**: `Runtime/RuntimeBridgeProxy.cs` с `#if UNITY_EDITOR` guard — пишет состояние игры в статический буфер, доступный Editor bridge; в WebGL-билде компилируется в no-op заглушки
+- [x] **MCP-11**: `Runtime/RuntimeBridgeProxy.cs` с `#if UNITY_EDITOR` guard — пишет состояние игры в статический буфер, доступный Editor bridge; в WebGL-билде компилируется в no-op заглушки
 - [ ] **MCP-12**: `Editor~/Server/mcp.json` содержит конфиг для регистрации сервера в Claude Code: `{ "command": "node", "args": ["dist/index.js"] }`
 - [ ] **MCP-13**: `Editor~/Server/README.md` с инструкцией: `npm install`, `npm run build`, регистрация в Claude Code
 

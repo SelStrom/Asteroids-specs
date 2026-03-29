@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
-last_updated: "2026-03-29T00:45:25.171Z"
+status: executing
+last_updated: "2026-03-29T01:11:27.751Z"
 progress:
   total_phases: 8
   completed_phases: 7
-  total_plans: 29
-  completed_plans: 29
+  total_plans: 31
+  completed_plans: 30
 ---
 
 # Project State
@@ -18,12 +18,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Играбельный Asteroids в браузере, точно воспроизводящий геймплей оригинала
-**Current focus:** Phase 07 — ugs-leaderboards
+**Current focus:** Phase 08 — mcp-runtime
 
 ## Current Phase
 
 **Phase:** 8
-**Status:** Ready to plan
+**Status:** Executing Phase 08
 **Next action:** Plan Phase 07 — UGS Leaderboards
 
 ## Decisions
@@ -64,6 +64,8 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 07-ugs-leaderboards]: IApplicationComponent расширен StartCoroutine — Application не MonoBehaviour, запускает Coroutine через entry
 - [Phase 07-ugs-leaderboards]: InitUgsCoroutine использует прямой while без RunAsync — graceful обработка ошибок UGS без throw
 - [Phase 07-ugs-leaderboards]: Phase7Setup следует конвенции Phase3/4/5/6: один MenuItem вызывает все методы настройки
+- [Phase 08-mcp-runtime]: RuntimeBridgeProxy: #if UNITY_EDITOR guard без using UnityEditor — WebGL-safe статический буфер состояния
+- [Phase 08-mcp-runtime]: McpUnityBridge: reflection через Assembly-CSharp для чтения RuntimeBridgeProxy — нет compile-time зависимости пакета от игрового кода
 
 ## Milestone
 
