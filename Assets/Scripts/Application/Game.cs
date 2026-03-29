@@ -46,7 +46,7 @@ namespace SelStrom.Asteroids
         private Action<int> _onAsteroidCount;   // AUD-06 (для пульса)
 
         // Публичные свойства для чтения состояния
-        public int Score => _model.Score;
+        public int Score => _model?.Score ?? 0;
         public int Lives => _lives;
         public int HighScore => _highScore;
         public int WaveNumber => _waveNumber;
