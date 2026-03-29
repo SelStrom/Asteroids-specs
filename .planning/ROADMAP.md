@@ -190,7 +190,11 @@ Plans:
   2. `RuntimeBridgeProxy.cs` компилируется без ошибок в WebGL-сборке (вся логика под `#if UNITY_EDITOR`)
   3. При вызове `get_game_state` вне Play Mode возвращается `{ isPlaying: false }` без ошибок
 
-**Plans:** TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 08-01-PLAN.md — C# сторона: RuntimeBridgeProxy, Game/Application свойства, ApplicationEntry update, McpUnityBridge endpoint
+- [ ] 08-02-PLAN.md — TypeScript tool get_game_state + rebuild dist + human verify checkpoint
 
 ---
 
