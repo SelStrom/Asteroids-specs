@@ -170,12 +170,12 @@ Plans:
   4. При ошибке сети отображается сообщение об ошибке; игра продолжает работу без краша
   5. UGS Project ID и имя лидерборда вынесены в ScriptableObject — изменяются без правки кода
 
-**Plans:** 1/4 plans executed
+**Plans:** 3/4 plans executed
 
 Plans:
 - [x] 07-01-PLAN.md — UgsService (guest auth, submit, get scores) + GameData.UgsProjectId
-- [ ] 07-02-PLAN.md — View/Screen расширение: LeaderboardView.Bind(), GameOverView InputField
-- [ ] 07-03-PLAN.md — Application + ApplicationEntry wire-up: UGS инициализация, навигация
+- [x] 07-02-PLAN.md — View/Screen расширение: LeaderboardView.Bind(), GameOverView InputField
+- [x] 07-03-PLAN.md — Application + ApplicationEntry wire-up: UGS инициализация, навигация
 - [ ] 07-04-PLAN.md — Phase7Setup Editor скрипт + Human verify checkpoint
 
 ---
@@ -204,7 +204,7 @@ Plans:
 | 4. Asteroids & Progression | 1/4 | In Progress|  |
 | 5. UFO & Progression Polish | 5/5 | Complete   | 2026-03-28 |
 | 6. Audio & Visual Polish | 5/5 | Complete   | 2026-03-28 |
-| 7. UGS Leaderboards | 1/4 | In Progress|  |
+| 7. UGS Leaderboards | 3/4 | In Progress|  |
 | 8. MCP Runtime | 0/? | Not started | - |
 
 ---

@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-29T00:08:14.692Z"
+last_updated: "2026-03-29T00:13:44.442Z"
 progress:
   total_phases: 8
   completed_phases: 6
   total_plans: 29
-  completed_plans: 26
+  completed_plans: 28
 ---
 
 # Project State
@@ -61,6 +61,8 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 06]: vfx_blow.prefab ParticleSystem.stopAction=Callback — критично для OnParticleSystemStopped возврата в пул
 - [Phase 07-ugs-leaderboards]: UgsService: plain C# класс без MonoBehaviour по паттерну AudioManager (D-08, D-09)
 - [Phase 07-ugs-leaderboards]: GameData.UgsProjectId — документационное поле, SDK читает ID из Project Settings (Pitfall 1, LEAD-06)
+- [Phase 07-ugs-leaderboards]: IApplicationComponent расширен StartCoroutine — Application не MonoBehaviour, запускает Coroutine через entry
+- [Phase 07-ugs-leaderboards]: InitUgsCoroutine использует прямой while без RunAsync — graceful обработка ошибок UGS без throw
 
 ## Milestone
 
