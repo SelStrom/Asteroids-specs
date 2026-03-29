@@ -287,11 +287,11 @@ Plans:
 | MCP-04 | Phase 2 | Pending |
 | MCP-05 | Phase 2 | Pending |
 | MCP-06 | Phase 2 | Pending |
-| MCP-07 | Phase 8 | Pending |
+| MCP-07 | Phase 8 | Complete ✅ |
 | MCP-08 | Phase 2 | Pending |
 | MCP-09 | Phase 2 | Pending |
 | MCP-10 | Phase 2 | Pending |
-| MCP-11 | Phase 8 | Pending |
+| MCP-11 | Phase 8 | Complete ✅ |
 | MCP-12 | Phase 2 | Pending |
 | MCP-13 | Phase 2 | Pending |
 
