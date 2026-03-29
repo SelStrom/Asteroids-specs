@@ -14,18 +14,37 @@ namespace SelStrom.Asteroids
             _view.Connect(vm);
         }
 
-        // Показать экран с актуальным счётом (вызывается при Game Over)
-        public void Show(int finalScore, int highScore)
+        // LEAD-02: расширенный Show с именем, onSubmitScore и onLeaderboard
+        public void Show(int finalScore, int highScore, string playerName,
+            Action<string> onSubmitScore, Action onLeaderboard)
         {
             if (_view == null) { return; }
             var vm = new GameOverViewModel
             {
                 OnPlayAgainClicked = _view.ViewModel?.OnPlayAgainClicked,
                 FinalScore = finalScore,
-                HighScore = highScore
+                HighScore = highScore,
+                // D-02: предзаполнение имени из PlayerPrefs
+                InitialPlayerName = playerName,
+                // LEAD-02: callback для отправки счёта
+                OnSubmitScore = onSubmitScore,
+                // навигация к лидерборду
+                OnLeaderboardClicked = onLeaderboard
             };
             _view.Connect(vm);
             _view.gameObject.SetActive(true);
+        }
+
+        // D-03: вызывается из Application после успешного submit
+        public void NotifySubmitSuccess()
+        {
+            _view?.OnSubmitSuccess();
+        }
+
+        // LEAD-05: вызывается из Application при ошибке submit
+        public void NotifySubmitError(string message)
+        {
+            _view?.OnSubmitError(message);
         }
 
         public void Hide()
