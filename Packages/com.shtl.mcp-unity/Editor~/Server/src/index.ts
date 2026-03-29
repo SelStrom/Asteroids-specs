@@ -133,6 +133,17 @@ server.tool(
   }
 );
 
+// Инструмент get_game_state — получить живое состояние игры из Runtime (MCP-07)
+server.tool(
+  "get_game_state",
+  "Get current game state: score, wave, lives, isPlaying. Returns { score, wave, lives, isPlaying }. Works only in Play Mode; returns isPlaying:false otherwise.",
+  {},
+  async () => {
+    const text = await callBridge("/get_game_state");
+    return { content: [{ type: "text", text }] };
+  }
+);
+
 // Подключение stdio-транспорта
 const transport = new StdioServerTransport();
 await server.connect(transport);
