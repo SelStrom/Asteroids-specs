@@ -28,6 +28,9 @@ namespace SelStrom.Asteroids.Configs
 
         [Space]
         public string LeaderboardId = "asteroids_highscores";
+        // UGS Project ID (D-07, LEAD-06). Только документационное поле — реальный ID
+        // задаётся в Edit → Project Settings → Services (Pitfall 1: SDK читает из Project Settings)
+        public string UgsProjectId = "";
 
         [Space]
         public AudioData Audio; // Phase 6: ссылка на AudioData ScriptableObject
