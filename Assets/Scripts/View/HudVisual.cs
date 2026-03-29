@@ -42,6 +42,7 @@ namespace SelStrom.Asteroids
         private void UpdateLivesIcons(int lives)
         {
             if (_livesContainer == null || _lifeIconSprite == null) { return; }
+            lives = Mathf.Max(0, lives);
 
             // Удалить лишние иконки
             while (_lifeIcons.Count > lives)

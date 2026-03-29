@@ -29,7 +29,14 @@ namespace SelStrom.Asteroids
         {
             if (_view == null) { yield break; }
             _view.gameObject.SetActive(true);
-            _view.Connect(_viewModel);
+
+            // Всегда сбрасываем перед Connect — предотвращает AssertionException
+            // "vm != ViewModel" при повторных вызовах (два пути открытия лидерборда)
+            if (_view.ViewModel != null) { _view.Dispose(); }
+            var onBack = _viewModel?.OnBackClicked;
+            var loadingVm = new LeaderboardViewModel();
+            loadingVm.OnBackClicked = onBack;
+            _view.Connect(loadingVm);
 
             // Запустить оба запроса параллельно
             var topTask = ugsService.GetTopScoresAsync();
@@ -42,7 +49,7 @@ namespace SelStrom.Asteroids
             }
 
             var vm = new LeaderboardViewModel();
-            vm.OnBackClicked = _viewModel.OnBackClicked;
+            vm.OnBackClicked = onBack;
 
             if (topTask.IsFaulted)
             {

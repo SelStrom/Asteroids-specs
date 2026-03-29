@@ -3,6 +3,7 @@ using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Leaderboards;
 using Unity.Services.Leaderboards.Models;
+using System;
 
 namespace SelStrom.Asteroids
 {
@@ -48,7 +49,7 @@ namespace SelStrom.Asteroids
             {
                 return await LeaderboardsService.Instance.GetPlayerScoreAsync(_leaderboardId);
             }
-            catch (LeaderboardsException)
+            catch (Exception)
             {
                 // Игрок не в лидерборде (NotFound) — вернуть null
                 return null;
