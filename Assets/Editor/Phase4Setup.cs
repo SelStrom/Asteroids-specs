@@ -458,11 +458,6 @@ namespace SelStrom.Asteroids.Editor
             highScoreTmp.fontSize = 22f;
             highScoreTmp.alignment = TextAlignmentOptions.Right;
             highScoreTmp.color = Color.yellow;
-            var hlg = livesGo.AddComponent<HorizontalLayoutGroup>();
-            hlg.spacing = 4f;
-            hlg.childAlignment = TextAnchor.MiddleLeft;
-            hlg.childForceExpandWidth = false;
-            hlg.childForceExpandHeight = false;
 
             // Назначить ссылки в HudVisual через SerializedObject
             var serializedHud = new SerializedObject(hudVisual);
