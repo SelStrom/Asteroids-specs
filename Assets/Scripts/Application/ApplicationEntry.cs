@@ -49,6 +49,12 @@ namespace SelStrom.Asteroids
         private void Update()
         {
             OnUpdate?.Invoke(Time.deltaTime);
+            RuntimeBridgeProxy.UpdateState(
+                _application?.Score ?? 0,
+                _application?.Wave ?? 0,
+                _application?.Lives ?? 0,
+                _application?.IsRunning ?? false
+            );
         }
 
         private void OnApplicationPause(bool pauseStatus)
@@ -59,6 +65,7 @@ namespace SelStrom.Asteroids
         private void OnDestroy()
         {
             _application?.Dispose();
+            RuntimeBridgeProxy.Reset();
         }
 
         // LEAD-01: инициализация UGS — анонимный вход
