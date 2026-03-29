@@ -11,9 +11,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf9abb24e43d94bf59a428af3735fcb3, type: 3}
   m_Name: AsteroidBigData
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   Score: 1
-  Prefab: {fileID: 1000000001, guid: b90d11a4df2d476da3b64ffc1b49a128, type: 3}
+  Prefab: {fileID: 6953336006667398341, guid: b90d11a4df2d476da3b64ffc1b49a128, type: 3}
   SpriteVariants:
   - {fileID: 1, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}
   - {fileID: 2, guid: cf467e92e508b5878eb24c5a126421e0, type: 3}

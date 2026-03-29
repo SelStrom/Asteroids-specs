@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UfoSmallData
   m_EditorClassIdentifier: 
   Score: 1000
-  Prefab: {fileID: 5455360431364665509, guid: 7a353733eb0d14c0fb864d068cefb4e1, type: 3}
+  Prefab: {fileID: 8160128942038839763, guid: 7a353733eb0d14c0fb864d068cefb4e1, type: 3}
   Speed: 10
   Gun: {fileID: 11400000, guid: 2e9329a3505cb4f4798404e00c29b402, type: 2}
   ShootDurationSec: 2

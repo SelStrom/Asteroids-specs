@@ -15,7 +15,7 @@ MonoBehaviour:
   AsteroidInitialCount: 10
   SpawnAllowedRadius: 20
   SpawnNewEnemyDurationSec: 25
-  VfxBlowPrefab: {fileID: 8695731551426823286, guid: 267838b45a2c845a08c607da709679a3, type: 3}
+  VfxBlowPrefab: {fileID: 1535309266578970312, guid: 267838b45a2c845a08c607da709679a3, type: 3}
   UfoBig: {fileID: 11400000, guid: 7c040a8ab8cd541a3baf4f6ac5c2c80f, type: 2}
   Ufo: {fileID: 11400000, guid: 825bc265315c4496496c8727da33fe1c, type: 2}
   AsteroidBig: {fileID: 11400000, guid: a11ee182efa541fd91ea25f87bb5c715, type: 2}
@@ -41,4 +41,5 @@ MonoBehaviour:
     Damping: 2
     Gun: {fileID: 11400000, guid: 68e420fe736cf45dcb2248e5df3b0a81, type: 2}
   LeaderboardId: asteroids_highscores
+  UgsProjectId: 4a7db887-6438-4daf-9be1-960b4df379c1
   Audio: {fileID: 11400000, guid: 945c1e5be04b04cd2a460d765bed9986, type: 2}
