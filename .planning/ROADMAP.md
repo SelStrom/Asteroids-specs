@@ -210,7 +210,7 @@ Plans:
 | 6. Audio & Visual Polish | 5/5 | Complete   | 2026-03-28 |
 | 7. UGS Leaderboards | 4/4 | Complete   | 2026-03-29 |
 | 8. MCP Runtime | 2/2 | Complete   | 2026-03-29 |
-| 9. WebGL Deploy | 1/2 | In Progress|  |
+| 9. WebGL Deploy | 2/2 | Complete   | 2026-03-31 |
 
 ---
 
@@ -303,11 +303,11 @@ Plans:
 **Goal:** Собрать Unity-проект под WebGL и опубликовать на GitHub Pages — игра открывается в браузере по публичной ссылке.
 **Requirements**: WEBGL-01, WEBGL-02, WEBGL-03, WEBGL-04, WEBGL-05, WEBGL-06, WEBGL-07
 **Depends on:** Phase 8
-**Plans:** 1/2 plans executed
+**Plans:** 2/2 plans complete
 
 Plans:
 - [x] 09-01-PLAN.md — Добавить сцену в EditorBuildSettings + ручная WebGL-сборка в Build/WebGL/
-- [ ] 09-02-PLAN.md — Создать gh-pages ветку с .nojekyll + включить GitHub Pages + верификация
+- [x] 09-02-PLAN.md — Создать gh-pages ветку с .nojekyll + включить GitHub Pages + верификация
 
 ---
 

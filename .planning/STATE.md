@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-31T12:12:13.803Z"
+last_updated: "2026-03-31T12:42:13.181Z"
 progress:
   total_phases: 9
-  completed_phases: 8
+  completed_phases: 9
   total_plans: 33
-  completed_plans: 32
+  completed_plans: 33
 ---
 
 # Project State
@@ -68,6 +68,8 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 08-mcp-runtime]: McpUnityBridge: reflection через Assembly-CSharp для чтения RuntimeBridgeProxy — нет compile-time зависимости пакета от игрового кода
 - [Phase 09-webgl]: GUID Main.unity (6d7de3ab382bf4928a9621158bb4fb3d) записан напрямую в EditorBuildSettings.asset — PhaseSetup не требуется для 09-webgl
 - [Phase 09-webgl]: Файлы WebGL сборки названы WebGL.* (не Asteroids.*) — Unity использует имя папки вывода при сборке через диалог
+- [Phase 09-webgl]: webGLCompressionFormat=2 (Disabled) — без сжатия для совместимости с GitHub Pages без CORS-заголовков
+- [Phase 09-webgl]: EmbeddedJson в PlayerActions.cs — Input System на WebGL не читает файл из StreamingAssets, нужен embedded JSON
 
 ## Milestone
 
