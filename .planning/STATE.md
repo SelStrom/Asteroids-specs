@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-31T11:43:05.007Z"
+last_updated: "2026-03-31T12:12:13.803Z"
 progress:
   total_phases: 9
   completed_phases: 8
@@ -67,6 +67,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 08-mcp-runtime]: RuntimeBridgeProxy: #if UNITY_EDITOR guard без using UnityEditor — WebGL-safe статический буфер состояния
 - [Phase 08-mcp-runtime]: McpUnityBridge: reflection через Assembly-CSharp для чтения RuntimeBridgeProxy — нет compile-time зависимости пакета от игрового кода
 - [Phase 09-webgl]: GUID Main.unity (6d7de3ab382bf4928a9621158bb4fb3d) записан напрямую в EditorBuildSettings.asset — PhaseSetup не требуется для 09-webgl
+- [Phase 09-webgl]: Файлы WebGL сборки названы WebGL.* (не Asteroids.*) — Unity использует имя папки вывода при сборке через диалог
 
 ## Milestone
 
