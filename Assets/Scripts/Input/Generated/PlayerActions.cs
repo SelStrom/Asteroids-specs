@@ -22,15 +22,45 @@ namespace SelStrom.Asteroids
 
         private static string LoadAssetJson()
         {
-            var asset = Resources.Load<InputActionAsset>("PlayerActions");
-            if (asset != null) { return asset.ToJson(); }
 #if UNITY_EDITOR
             var editorAsset = UnityEditor.AssetDatabase.LoadAssetAtPath<InputActionAsset>("Assets/Input/PlayerActions.inputactions");
             if (editorAsset != null) { return editorAsset.ToJson(); }
 #endif
-            // Fallback — пустой JSON
-            return "{\"name\":\"PlayerActions\",\"maps\":[{\"name\":\"Player\",\"actions\":[],\"bindings\":[]}]}";
+            var asset = Resources.Load<InputActionAsset>("PlayerActions");
+            if (asset != null) { return asset.ToJson(); }
+            return EmbeddedJson;
         }
+
+        private const string EmbeddedJson = @"{
+    ""name"": ""PlayerActions"",
+    ""maps"": [
+        {
+            ""name"": ""Player"",
+            ""id"": ""a1b2c3d4-0000-0000-0000-000000000001"",
+            ""actions"": [
+                { ""name"": ""Rotate"", ""type"": ""Value"", ""id"": ""a1b2c3d4-0000-0000-0000-000000000002"", ""expectedControlType"": ""Axis"", ""processors"": """", ""interactions"": """", ""initialStateCheck"": false },
+                { ""name"": ""Thrust"", ""type"": ""Button"", ""id"": ""a1b2c3d4-0000-0000-0000-000000000003"", ""expectedControlType"": ""Button"", ""processors"": """", ""interactions"": """", ""initialStateCheck"": false },
+                { ""name"": ""Attack"", ""type"": ""Button"", ""id"": ""a1b2c3d4-0000-0000-0000-000000000004"", ""expectedControlType"": ""Button"", ""processors"": """", ""interactions"": """", ""initialStateCheck"": false },
+                { ""name"": ""Laser"",  ""type"": ""Button"", ""id"": ""a1b2c3d4-0000-0000-0000-000000000005"", ""expectedControlType"": ""Button"", ""processors"": """", ""interactions"": """", ""initialStateCheck"": false },
+                { ""name"": ""Back"",   ""type"": ""Button"", ""id"": ""a1b2c3d4-0000-0000-0000-000000000006"", ""expectedControlType"": ""Button"", ""processors"": """", ""interactions"": """", ""initialStateCheck"": false }
+            ],
+            ""bindings"": [
+                { ""name"": ""1D Axis"",  ""id"": ""a1b2c3d4-0000-0000-0000-000000000010"", ""path"": ""1DAxis"",              ""action"": ""Rotate"", ""isComposite"": true,  ""isPartOfComposite"": false },
+                { ""name"": ""negative"", ""id"": ""a1b2c3d4-0000-0000-0000-000000000011"", ""path"": ""<Keyboard>/a"",        ""action"": ""Rotate"", ""isComposite"": false, ""isPartOfComposite"": true },
+                { ""name"": ""positive"", ""id"": ""a1b2c3d4-0000-0000-0000-000000000012"", ""path"": ""<Keyboard>/d"",        ""action"": ""Rotate"", ""isComposite"": false, ""isPartOfComposite"": true },
+                { ""name"": ""negative"", ""id"": ""a1b2c3d4-0000-0000-0000-000000000013"", ""path"": ""<Keyboard>/leftArrow"",  ""action"": ""Rotate"", ""isComposite"": false, ""isPartOfComposite"": true },
+                { ""name"": ""positive"", ""id"": ""a1b2c3d4-0000-0000-0000-000000000014"", ""path"": ""<Keyboard>/rightArrow"", ""action"": ""Rotate"", ""isComposite"": false, ""isPartOfComposite"": true },
+                { ""name"": """",         ""id"": ""a1b2c3d4-0000-0000-0000-000000000020"", ""path"": ""<Keyboard>/w"",        ""action"": ""Thrust"", ""isComposite"": false, ""isPartOfComposite"": false },
+                { ""name"": """",         ""id"": ""a1b2c3d4-0000-0000-0000-000000000021"", ""path"": ""<Keyboard>/upArrow"",  ""action"": ""Thrust"", ""isComposite"": false, ""isPartOfComposite"": false },
+                { ""name"": """",         ""id"": ""a1b2c3d4-0000-0000-0000-000000000030"", ""path"": ""<Keyboard>/space"",    ""action"": ""Attack"", ""isComposite"": false, ""isPartOfComposite"": false },
+                { ""name"": """",         ""id"": ""a1b2c3d4-0000-0000-0000-000000000031"", ""path"": ""<Mouse>/leftButton"",  ""action"": ""Attack"", ""isComposite"": false, ""isPartOfComposite"": false },
+                { ""name"": """",         ""id"": ""a1b2c3d4-0000-0000-0000-000000000040"", ""path"": ""<Keyboard>/q"",        ""action"": ""Laser"",  ""isComposite"": false, ""isPartOfComposite"": false },
+                { ""name"": """",         ""id"": ""a1b2c3d4-0000-0000-0000-000000000050"", ""path"": ""<Keyboard>/escape"",   ""action"": ""Back"",   ""isComposite"": false, ""isPartOfComposite"": false }
+            ]
+        }
+    ],
+    ""controlSchemes"": []
+}";
 
         public PlayerMap Player => _playerMap;
 
