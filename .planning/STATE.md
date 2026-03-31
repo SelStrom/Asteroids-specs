@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-29T01:58:55.249Z"
+last_updated: "2026-03-31T11:43:05.007Z"
 progress:
-  total_phases: 8
+  total_phases: 9
   completed_phases: 8
-  total_plans: 31
-  completed_plans: 31
+  total_plans: 33
+  completed_plans: 32
 ---
 
 # Project State
@@ -18,12 +18,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-27)
 
 **Core value:** Играбельный Asteroids в браузере, точно воспроизводящий геймплей оригинала
-**Current focus:** Phase 08 — mcp-runtime
+**Current focus:** Phase 09 — webgl
 
 ## Current Phase
 
 **Phase:** 8
-**Status:** Executing Phase 08
+**Status:** Executing Phase 09
 **Next action:** Plan Phase 07 — UGS Leaderboards
 
 ## Decisions
@@ -66,6 +66,7 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 - [Phase 07-ugs-leaderboards]: Phase7Setup следует конвенции Phase3/4/5/6: один MenuItem вызывает все методы настройки
 - [Phase 08-mcp-runtime]: RuntimeBridgeProxy: #if UNITY_EDITOR guard без using UnityEditor — WebGL-safe статический буфер состояния
 - [Phase 08-mcp-runtime]: McpUnityBridge: reflection через Assembly-CSharp для чтения RuntimeBridgeProxy — нет compile-time зависимости пакета от игрового кода
+- [Phase 09-webgl]: GUID Main.unity (6d7de3ab382bf4928a9621158bb4fb3d) записан напрямую в EditorBuildSettings.asset — PhaseSetup не требуется для 09-webgl
 
 ## Milestone
 
@@ -73,6 +74,12 @@ See: .planning/PROJECT.md (updated 2026-03-27)
 
 - 8 phases total
 - 68 v1 requirements
+
+## Accumulated Context
+
+### Roadmap Evolution
+
+- Phase 9 added: Добавить поддержку WebGL и настроить сборку под эту цель
 
 ## Notes
 
