@@ -210,6 +210,7 @@ Plans:
 | 6. Audio & Visual Polish | 5/5 | Complete   | 2026-03-28 |
 | 7. UGS Leaderboards | 4/4 | Complete   | 2026-03-29 |
 | 8. MCP Runtime | 2/2 | Complete   | 2026-03-29 |
+| 9. WebGL Deploy | 0/2 | Planned    |  |
 
 ---
 
@@ -297,7 +298,18 @@ Plans:
 
 **Coverage:** 68/68 v1 requirements mapped. No orphans. ✓
 
+### Phase 9: WebGL Deploy
+
+**Goal:** Собрать Unity-проект под WebGL и опубликовать на GitHub Pages — игра открывается в браузере по публичной ссылке.
+**Requirements**: WEBGL-01, WEBGL-02, WEBGL-03, WEBGL-04, WEBGL-05, WEBGL-06, WEBGL-07
+**Depends on:** Phase 8
+**Plans:** 2 plans
+
+Plans:
+- [ ] 09-01-PLAN.md — Добавить сцену в EditorBuildSettings + ручная WebGL-сборка в Build/WebGL/
+- [ ] 09-02-PLAN.md — Создать gh-pages ветку с .nojekyll + включить GitHub Pages + верификация
+
 ---
 
 *Roadmap created: 2026-03-27*
-*Last updated: 2026-03-29 — Phase 7 plans created (4 plans, 3 waves)*
+*Last updated: 2026-03-31 — Phase 9 plans created (2 plans, 2 waves)*
